@@ -1,0 +1,49 @@
+.my-recipe {
+  margin: 20px;
+}
+
+.my-recipe-ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.my-recipe-li{
+  margin-bottom: 5px;
+  text-align: start;
+}
+
+a {
+  margin: 0;
+}
+
+.button-rec {
+  font-size: 18px;
+  background-color: #0023ff;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  user-select: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-shadow: 2px 2px 5px #000000;
+  transition: 0.2s;
+  margin-left: 20px;
+}
+
+.button-rec:active{
+  transform: scale(0.97);
+  box-shadow: inset 2px 2px 5px #000000;
+}
+
+
+@media (min-width: 640px)  {
+  .my-recipe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+  }
+  
+}
