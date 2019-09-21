@@ -1,7 +1,9 @@
 import * as types from "../actionTypes";
 import axios from "axios";
-import { request } from "graphql-request";
-const url = "http://hipstagram.asmer.fs.a-level.com.ua/graphql";
+import { GraphQLClient } from 'graphql-request'
+
+const qql = new GraphQLClient("/graphql", {headers: {}})
+const url = "http://hipstagram.asmer.fs.a-level.com.ua/";
 
 export const delUser = () => ({
   type: types.DEL_USER
@@ -60,22 +62,38 @@ const userRequestLoginFail = payload => ({
   payload
 });
 
+// export const userLogin = data => {
+//   return async dispatch => {
+//     dispatch(userRequestLogin());
+//     try {
+// 			const res = await axios({
+// 				method: "POST",
+// 				url: "/graphql",
+// 				data
+// 			})
+//       console.log(res);
+//     } catch (err) {
+//       dispatch(userRequestLoginFail(err));
+//     }
+//   };
+// };
+
 export const userLogin = data => {
   return async dispatch => {
     dispatch(userRequestLogin());
+    console.log(data)
     try {
-			const res = await axios({
-				method: "POST",
-				url,
-				data,
-				headers: localStorage.authToken ? {Authorization: 'Bearer ' + localStorage.authToken} : {},
-			})
-      console.log(res);
+    qql.request(`query login($login:String!, $password:String!){
+      login(login:$login, password:$password)
+    } `,{login: data.login, password: data.password})
+    .then(data=> console.log(data))
+
     } catch (err) {
       dispatch(userRequestLoginFail(err));
     }
   };
-};
+
+}
 
 const userRequestAuthorization = () => ({
   type: types.USER_REQUEST_AUTHORIZATION
