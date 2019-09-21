@@ -1,9 +1,22 @@
 import * as types from "../actionTypes";
 import axios from "axios";
-import { GraphQLClient } from 'graphql-request'
+import { GraphQLClient } from "graphql-request";
 
-const qql = new GraphQLClient("/graphql", {headers: {}})
+let qql;
+
+function checkToken() {
+  if (localStorage.authToken) {
+    return (qql = new GraphQLClient("/graphql", {
+      headers: { Authorization: `Bearer ${localStorage.authToken}` }
+    }));
+  } else {
+    return (qql = new GraphQLClient("/graphql", { headers: {} }));
+  }
+}
+// const qql = new GraphQLClient("/graphql", { headers: {} });
 const url = "http://hipstagram.asmer.fs.a-level.com.ua/";
+
+// qql = new GraphQLClient("/graphql", { headers: {Authorization: `Bearer ${localStorage.authToken}`} });
 
 export const delUser = () => ({
   type: types.DEL_USER
@@ -62,38 +75,28 @@ const userRequestLoginFail = payload => ({
   payload
 });
 
-// export const userLogin = data => {
-//   return async dispatch => {
-//     dispatch(userRequestLogin());
-//     try {
-// 			const res = await axios({
-// 				method: "POST",
-// 				url: "/graphql",
-// 				data
-// 			})
-//       console.log(res);
-//     } catch (err) {
-//       dispatch(userRequestLoginFail(err));
-//     }
-//   };
-// };
-
 export const userLogin = data => {
   return async dispatch => {
     dispatch(userRequestLogin());
-    console.log(data)
+    console.log(data);
     try {
-    qql.request(`query login($login:String!, $password:String!){
+      checkToken();
+      console.log(qql)
+      const res = await qql.request(
+        `query login($login:String!, $password:String!){
       login(login:$login, password:$password)
-    } `,{login: data.login, password: data.password})
-    .then(data=> console.log(data))
-
+    } `,
+        { login: data.login, password: data.password }
+      );
+      if (res.login) {
+        localStorage.setItem("authToken", res.login);
+        dispatch(userRequestLoginSuccess());
+      }
     } catch (err) {
       dispatch(userRequestLoginFail(err));
     }
   };
-
-}
+};
 
 const userRequestAuthorization = () => ({
   type: types.USER_REQUEST_AUTHORIZATION
@@ -178,5 +181,23 @@ export const updateUserSave = (id, data, email) => {
     } catch (err) {
       dispatch(updateUserSaveRequestFail(err));
     }
+  };
+};
+
+export const getPost = () => {
+  return async dispatch => {
+    checkToken();
+    const res = await qql.request(
+      `query postAll{
+        PostFind(query: "[{}]"){
+          _id,
+          text,
+          comments{
+            _id, text
+          }
+        }
+      } `
+    );
+    console.log(res);
   };
 };

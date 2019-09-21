@@ -24,7 +24,7 @@ export default (state = initialState, { type, name, payload }) => {
 			return { ...state, user: null, isFetching: true, incorected: false };
 		}
 		case types.USER_REQUEST_LOGIN_SUCCESS: {
-			return { ...state, isFetching: false, user: payload, incorected: false };
+			return { ...state, isFetching: false, user: {role: "user"}, incorected: false };
 		}
 		case types.USER_REQUEST_LOGIN_FAIL: {
 			return { ...state, isFetching: false, incorected: true };
