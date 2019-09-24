@@ -1,4 +1,4 @@
-.all-rec-wrapper{
+.all-posts{
   margin: 0;
   padding: 0;
   display: flex;
@@ -7,13 +7,13 @@
   width: 100%;
 }
 
-.all-rec-img {
+.all-post-img {
   height: 100px;
   margin: 10px 20px 10px 10px;
   border-radius: 10px;
 }
 
-.all-rec-conteiner {
+.all-post-conteiner {
   max-height: 250px;
   border: 2px solid #d0d0d0;
   width: 100%; 
@@ -27,7 +27,7 @@
   padding-right: 15px;
 }
 
-.all-rec-wrapp{
+.all-posts-wrapp{
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;

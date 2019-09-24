@@ -2,15 +2,15 @@ import * as types from "../actionTypes";
 import axios from "axios";
 import { GraphQLClient } from "graphql-request";
 
-let qql;
+let gql;
 
 function checkToken() {
   if (localStorage.authToken) {
-    return (qql = new GraphQLClient("/graphql", {
+    return (gql = new GraphQLClient("/graphql", {
       headers: { Authorization: `Bearer ${localStorage.authToken}` }
     }));
   } else {
-    return (qql = new GraphQLClient("/graphql", { headers: {} }));
+    return (gql = new GraphQLClient("/graphql", { headers: {} }));
   }
 }
 // const qql = new GraphQLClient("/graphql", { headers: {} });
@@ -81,8 +81,8 @@ export const userLogin = data => {
     console.log(data);
     try {
       checkToken();
-      console.log(qql)
-      const res = await qql.request(
+      console.log(gql);
+      const res = await gql.request(
         `query login($login:String!, $password:String!){
       login(login:$login, password:$password)
     } `,
@@ -187,11 +187,15 @@ export const updateUserSave = (id, data, email) => {
 export const getPost = () => {
   return async dispatch => {
     checkToken();
-    const res = await qql.request(
+    const res = await gql.request(
       `query postAll{
         PostFind(query: "[{}]"){
           _id,
           text,
+          title,
+          images{_id, url}
+          owner{_id},
+          likes{_id},
           comments{
             _id, text
           }
@@ -201,3 +205,71 @@ export const getPost = () => {
     console.log(res);
   };
 };
+
+// export const userFindOne = id => {
+//   return async dispatch => {
+//     checkToken();
+//     const res = await gql.request(
+//       `query user($query:String!){
+//         UserFindOne(query:$query){
+//           _id, login, nick
+//           likes{_id},
+//           incomings{_id},
+//           followers{_id},
+//           following{_id}
+//         }
+//       }
+//       `,
+//      {query: JSON.stringify([{ _id: id }])}
+//     );
+//     console.log(res);
+//   };
+// };
+
+export const userFindOne = id => {
+  return async dispatch => {
+    checkToken();
+    const res = await gql.request(
+      `query user{
+        UserFind(query: "[{}]"){
+          _id, login
+        }
+      }
+      `,
+      { query: JSON.stringify([{ _id: id }]) }
+    );
+    console.log(res);
+  };
+};
+
+// export const UserUpsert = (id, nick) => {
+//   return async dispatch => {
+//     checkToken();
+//     const res = await gql.request(
+//       `mutation UserUpsert($user: UserInput){
+//         UserUpsert(user: $user){
+//           _id, login, nick
+//         }
+//       }
+//       `,
+//       { user: { _id: id, nick: nick } }
+//     );
+//     console.log(res);
+//   };
+// };
+
+// export const userDel = id => {
+//   return async dispatch => {
+//     checkToken();
+//     const res = await gql.request(
+//       `mutation UserDelete($user: UserInput){
+//         UserDelete(user: $user){
+//           _id, login, nick
+//         }
+//       }
+//       `,
+//       { user: { _id: id } }
+//     );
+//     console.log(res);
+//   };
+// };

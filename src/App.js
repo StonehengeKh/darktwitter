@@ -19,7 +19,7 @@ export const ROUTERS = [
     },
     path: "/",
     component: HomePage,
-    privateRoute: true,
+    privateRoute: false,
     className: "header__link",
     exact: true,
     role: ["user", "admin"]
@@ -44,7 +44,7 @@ export const ROUTERS = [
     path: "/My page",
     component: MyPage,
     className: "header__link",
-    privateRoute: true,
+    privateRoute: false,
     exact: true,
     role: ["user", "admin"]
   },
@@ -79,21 +79,21 @@ export const ROUTERS = [
   //   exact: true,
   //   role: ["user", "admin"]
   // },
-  // {
-  //   id: 6,
-  //   link: {
-  //     title: "Admin"
-  //   },
-  //   path: "/admin",
-  //   component: Admin,
-  //   privateRoute: true,
-  //   className: "header__link",
-  //   exact: true,
-  //   role: ["admin"]
-  // },
+  {
+    id: 6,
+    link: {
+      title: "Admin"
+    },
+    path: "/admin",
+    component: Admin,
+    privateRoute: true,
+    className: "header__link",
+    exact: true,
+    role: ["admin"]
+  },
   {
     id: 7,
-    path: "/posts/:id",
+    path: "/post/:id",
     component: Post,
     privateRoute: true,
     exact: true,

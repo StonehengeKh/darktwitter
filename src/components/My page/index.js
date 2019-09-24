@@ -12,6 +12,7 @@ class MyPage extends Component {
 		return (
 			<div>
 				MyPage
+				<img src="http://hipstagram.asmer.fs.a-level.com.ua/images/de27fb210820dfdf3d1f54e44ec1e1c3" />
 			</div >
 		);
 	}

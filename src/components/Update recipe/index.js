@@ -48,9 +48,10 @@ class UpdateRecipe extends React.Component {
             <div className="inputs">
               {Object.keys(form).map(el => {
                 const { component: Component, props } = form[el];
+                console.log(updateItem.form[el])
                 return (
                   <Component
-                    value={updateItem.el}
+                    value={updateItem.form[el]}
                     key={el}
                     onChange={e => updateRecipe(e.target.name, e.target.value)}
                     {...props}

@@ -12,7 +12,7 @@ class Header extends React.Component {
     const { delUser } = this.props
     event.preventDefault();
     delUser();
-    localStorage.removeItem("email")
+    localStorage.removeItem("authToken")
   }
 
   renderLi = el => {
