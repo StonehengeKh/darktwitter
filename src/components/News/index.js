@@ -20,7 +20,6 @@ class News extends React.Component {
 
   render() {
     const { posts} = this.props;
-    console.log("new",posts)
     return (
       <div className="all_posts">
         <button onClick={this.clicker}>Posts</button>

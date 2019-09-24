@@ -1,5 +1,6 @@
 import * as types from "../actionTypes";
 import axios from "axios";
+import jwt_decode from 'jwt-decode';
 import { GraphQLClient } from "graphql-request";
 
 let gql;
@@ -90,7 +91,7 @@ export const userLogin = data => {
       );
       if (res.login) {
         localStorage.setItem("authToken", res.login);
-        dispatch(userRequestLoginSuccess());
+        dispatch(tokenDecode());
       }
     } catch (err) {
       dispatch(userRequestLoginFail(err));
@@ -183,6 +184,19 @@ export const updateUserSave = (id, data, email) => {
     }
   };
 };
+
+const addUser = payload => ({
+  type: types.ADD_USER,
+  payload
+});
+
+export const tokenDecode =() =>{
+  return dispatch => {
+    let decoded = jwt_decode(localStorage.authToken);
+    dispatch(addUser(decoded.sub));
+
+  }
+}
 
 export const getPost = () => {
   return async dispatch => {

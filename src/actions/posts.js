@@ -22,16 +22,15 @@ const getAllPostsRuguestSuccess = payload => ({
   payload
 });
 
-const getAllPostsRuguestFail = payload => ({
-  type: types.GET_ALL_POSTS_REQUEST_FAIL,
-  payload
-});
+// const getAllPostsRuguestFail = payload => ({
+//   type: types.GET_ALL_POSTS_REQUEST_FAIL,
+//   payload
+// });
 
 export const getAllPosts = () => {
   return async dispatch => {
     dispatch(getAllPostsRuguest());
       checkToken();
-      console.log(gql);
       const res = await gql.request(
         `query postAll{
           PostFind(query: "[{}]"){
@@ -48,7 +47,5 @@ export const getAllPosts = () => {
         } `
       );
       dispatch(getAllPostsRuguestSuccess(res.PostFind)) ;
-      
-  
   };
 };

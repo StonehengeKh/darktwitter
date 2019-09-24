@@ -2,13 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NotFound } from './components/Nofound';
-import HomePage from './components/News';
-import Header from './components/Header';
-import MyPage from './components/My page';
-import Auth from './components/Auth'
-import Post from './components/Post'
-import Admin from './components/Admin';
+import { NotFound } from "./components/Nofound";
+import HomePage from "./components/News";
+import Header from "./components/Header";
+import MyPage from "./components/My page";
+import Auth from "./components/Auth";
+import Post from "./components/Post";
+import Admin from "./components/Admin";
+import UserCab from "./components/Usercab";
 import "./App.css";
 
 export const ROUTERS = [
@@ -71,14 +72,14 @@ export const ROUTERS = [
     privateRoute: false,
     exact: true
   },
-  // {
-  //   id: 5,
-  //   path: "/usercab",
-  //   component: UserCab,
-  //   privateRoute: true,
-  //   exact: true,
-  //   role: ["user", "admin"]
-  // },
+  {
+    id: 5,
+    path: "/usercab",
+    component: UserCab,
+    privateRoute: true,
+    exact: true,
+    role: ["user", "admin"]
+  },
   {
     id: 6,
     link: {
@@ -115,39 +116,55 @@ export const ROUTERS = [
   }
 ];
 
-
-function App() {
-  return (
-    <Router>
-      <Header/>
-      <Switch>
-        {ROUTERS.map(route => {
-          const { path, component, privateRoute, exact, role, id } = route;
-          return privateRoute ? (
-            <PrivateRoute
-              exact={exact}
-              path={path}
-              component={component}
-              key={id}
-              role={role}
-            />
-          ) : (
-            <Route exact={exact} path={path} component={component} key={id} />
-          );
-        })}
-      </Switch>
-    </Router>
-  );
+class App extends React.Component {
+  render() {
+    const { isFetching } = this.props;
+    return (
+      <div>
+        {isFetching ? (
+          <div>Loading...</div>
+        ) : (
+          <Router>
+            <Header />
+            <Switch>
+              {ROUTERS.map(route => {
+                const {
+                  path,
+                  component,
+                  privateRoute,
+                  exact,
+                  role,
+                  id
+                } = route;
+                return privateRoute ? (
+                  <PrivateRoute
+                    exact={exact}
+                    path={path}
+                    component={component}
+                    key={id}
+                    role={role}
+                  />
+                ) : (
+                  <Route
+                    exact={exact}
+                    path={path}
+                    component={component}
+                    key={id}
+                  />
+                );
+              })}
+            </Switch>
+          </Router>
+        )}
+      </div>
+    );
+  }
 }
-
 
 const mapStateToProps = state => {
   return {
-
+    isFetching: state.postsReduser.isFetching
   };
 };
 
-export default connect(
-  mapStateToProps
-)(App);
-
+export default connect(mapStateToProps)(App);

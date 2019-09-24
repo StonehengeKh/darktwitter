@@ -70,6 +70,11 @@ export default (state = initialState, { type, name, payload }) => {
 		case types.UPDATE_USER_SAVE_REQUEST_FAIL: {
 			return { ...state, update: false, updateError: true };
 		}
+		case types.ADD_USER: {
+			return { ...state, user:{id: payload.id, login: payload.login, role: payload.acl[1] } };
+		}
+
+
 
 
 		default: {
