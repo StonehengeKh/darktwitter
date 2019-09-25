@@ -12,18 +12,17 @@ class News extends React.Component {
     getAllPosts();
   };
 
-  user = () => {
-    const { userFindOne } = this.props;
-    let id = "5d7cf2a28657825417878094";
-    userFindOne(id);
-  };
+  // user = () => {
+  //   const { userFindOne } = this.props;
+  //   let id = "5d7cf2a28657825417878094";
+  //   userFindOne(id);
+  // };
 
   render() {
     const { posts} = this.props;
     return (
       <div className="all_posts">
-        <button onClick={this.clicker}>Posts</button>
-        <button onClick={this.user}>user</button>
+        {/* <button onClick={this.user}>user</button> */}
         <div className="all-posts-wrapp">
         { posts ? posts.map( post=> {
           const {title, text, images , comments, likes, owner, _id } = post

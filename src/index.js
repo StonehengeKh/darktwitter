@@ -10,9 +10,12 @@ import { tokenDecode } from "./actions/user";
 import {getAllPosts} from './actions/posts'
 
 
-store.dispatch(getAllPosts())
-const token = localStorage.getItem("email");
-if (token) store.dispatch(tokenDecode())
+
+const token = localStorage.getItem("authToken");
+if (token) {
+  store.dispatch(tokenDecode())
+  store.dispatch(getAllPosts())
+}
 
 render(
   <Provider store={store}>

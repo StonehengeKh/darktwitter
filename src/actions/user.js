@@ -79,10 +79,8 @@ const userRequestLoginFail = payload => ({
 export const userLogin = data => {
   return async dispatch => {
     dispatch(userRequestLogin());
-    console.log(data);
     try {
       checkToken();
-      console.log(gql);
       const res = await gql.request(
         `query login($login:String!, $password:String!){
       login(login:$login, password:$password)
