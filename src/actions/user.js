@@ -1,6 +1,7 @@
 import * as types from "../actionTypes";
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
+import { getAllPosts } from "./posts";
 import { GraphQLClient } from "graphql-request";
 
 let gql;
@@ -90,7 +91,8 @@ export const userLogin = data => {
       if (res.login) {
         localStorage.setItem("authToken", res.login);
         dispatch(tokenDecode());
-      }
+        dispatch(getAllPosts())
+      } else dispatch(userRequestLoginFail());
     } catch (err) {
       dispatch(userRequestLoginFail(err));
     }

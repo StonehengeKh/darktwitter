@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import {userFindOne } from "../../actions/user";
-import {getAllPosts } from "../../actions/posts";
+import { getAllPosts } from "../../actions/posts";
 import { Card } from "../Card"
 import "./style.css";
 
