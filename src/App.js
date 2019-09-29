@@ -2,14 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NotFound } from "./components/Nofound";
-import HomePage from "./components/News";
+import { NotFound } from "./containers/Nofound";
+import HomePage from "./containers/News";
 import Header from "./components/Header";
-import MyPage from "./components/My page";
-import Auth from "./components/Auth";
-import Post from "./components/Post";
-import Admin from "./components/Admin";
-import UserCab from "./components/Usercab";
+import MyPage from "./containers/My page";
+import Auth from "./containers/Auth";
+import Post from "./containers/Post";
+import Admin from "./containers/Admin";
+import UserCab from "./containers/Usercab";
+import Search from "./containers/Search"
 import "./App.css";
 
 export const ROUTERS = [
@@ -25,18 +26,18 @@ export const ROUTERS = [
     exact: true,
     role: ["user", "admin"]
   },
-  // {
-  //   id: 10,
-  //   link: {
-  //     title: ""
-  //   },
-  //   path: "/search",
-  //   component: Search,
-  //   privateRoute: false,
-  //   className: "header__link icon-search",
-  //   exact: true,
-  //   role: ["user", "admin"]
-  // },
+  {
+    id: 10,
+    link: {
+      title: ""
+    },
+    path: "/search",
+    component: Search,
+    privateRoute: false,
+    className: "header__link icon-search",
+    exact: true,
+    role: ["user", "admin"]
+  },
   {
     id: 2,
     link: {

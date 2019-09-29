@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Login from '../Login'
-import Regisration from '../Registration'
+import Login from '../../components/Login'
+import Regisration from '../../components/Registration'
 import { connect } from "react-redux";
 import * as actions from "../../actions/user";
 import { Redirect,  Route  } from "react-router-dom";
