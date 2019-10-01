@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { NotFound } from "./containers/Nofound";
+import Layout from "./components/Layout";
 import HomePage from "./containers/News";
 import Header from "./components/Header";
 import MyPage from "./containers/My page";
@@ -126,35 +128,36 @@ class App extends React.Component {
           <div>Loading...</div>
         ) : (
           <Router>
-            <Header />
-            <Switch>
-              {ROUTERS.map(route => {
-                const {
-                  path,
-                  component,
-                  privateRoute,
-                  exact,
-                  role,
-                  id
-                } = route;
-                return privateRoute ? (
-                  <PrivateRoute
-                    exact={exact}
-                    path={path}
-                    component={component}
-                    key={id}
-                    role={role}
-                  />
-                ) : (
-                  <Route
-                    exact={exact}
-                    path={path}
-                    component={component}
-                    key={id}
-                  />
-                );
-              })}
-            </Switch>
+              <Layout>
+                <Switch>
+                  {ROUTERS.map(route => {
+                    const {
+                      path,
+                      component,
+                      privateRoute,
+                      exact,
+                      role,
+                      id
+                    } = route;
+                    return privateRoute ? (
+                      <PrivateRoute
+                        exact={exact}
+                        path={path}
+                        component={component}
+                        key={id}
+                        role={role}
+                      />
+                    ) : (
+                      <Route
+                        exact={exact}
+                        path={path}
+                        component={component}
+                        key={id}
+                      />
+                    );
+                  })}
+                </Switch>
+              </Layout>
           </Router>
         )}
       </div>

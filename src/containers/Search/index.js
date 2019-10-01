@@ -8,8 +8,11 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div>
-        Search
+      <div className="search-block">
+          <h3>Search</h3>
+          <input
+            
+          />
       </div>
     )
   }
