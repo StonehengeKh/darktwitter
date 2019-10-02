@@ -16,15 +16,17 @@ export class Auth extends Component {
 		const { login } = this.state;
 		return (
 			<div>
-				<div>
+				<div className="wrap">
+
 					{isFetching && <p>Loading...</p>}
+					{login ? (
+						<button onClick={this.toggleAuthProperty} className="button">Registration</button>
+					) : (
+							<button onClick={this.toggleAuthProperty} className="button">Login</button>
+						)}
 					{login ? <Login /> : <Regisration />}
 
-					{login ? (
-						<button onClick={this.toggleAuthProperty} className="button">Do you have accaunt ?</button>
-					) : (
-							<button onClick={this.toggleAuthProperty} className="button">I already have an account</button>
-						)}
+		
 				</div>
 				{incorected && <p className="error text_response">Incorected login/password</p>}
 				{mailExists && <p className="error text_response">Email already exists</p>}

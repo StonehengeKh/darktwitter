@@ -7,8 +7,8 @@ import "./style.css";
 class AddRecipes extends React.Component {
 
 
-  render() {
 
+  render() {
     return (
       <div>
       add new post

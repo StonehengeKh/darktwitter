@@ -67,10 +67,10 @@ const userRequestLogin = () => ({
   type: types.USER_REQUEST_LOGIN
 });
 
-const userRequestLoginSuccess = payload => ({
-  type: types.USER_REQUEST_LOGIN_SUCCESS,
-  payload
-});
+// const userRequestLoginSuccess = payload => ({
+//   type: types.USER_REQUEST_LOGIN_SUCCESS,
+//   payload
+// });
 
 const userRequestLoginFail = payload => ({
   type: types.USER_REQUEST_LOGIN_FAIL,

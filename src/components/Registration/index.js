@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions/user";
+import { Field, reduxForm } from 'redux-form'
+import {renderField,  validate} from '../../utils/valid'
 import { Input } from "../Input";
 
 export const FORM_TEMPLATE = {
@@ -99,6 +101,8 @@ class Registration extends Component {
 		this.clearInput();
 	};
 
+	submit = values => console.log(values)
+	
 	render() {
 		const { form } = this.state;
 		return (
@@ -123,19 +127,61 @@ class Registration extends Component {
 						Registration
 					</button> : null}
 				</form>
+				<RegistrationForm onSubmit={this.submit} />
 			</div>
 		);
 	}
 }
 
+let field = [
+	{
+		name: "nick",
+		type:"text",
+		label:"Nick"
+	},
+	{
+		name: "login",
+		type:"text",
+		label:"Login"
+	},
+	{
+		name: "password",
+		type:"password",
+		label:"Password"
+	},
+	{
+		name: "confirmPassword",
+		type:"password",
+		label:"Confirm password"
+	}
 
-const mapStateToProps = state => {
-	return {
-		user: state.userReduser.user
-	};
-};
+]
+
+let RegistrationForm = props => {
+	const { handleSubmit, submitting } = props
+	return (
+	  <form onSubmit={handleSubmit}>
+		 { field.map((elem, index)=> {
+			 const {name, type, label} = elem
+			return <div key={index} >
+ 				<Field name={name} component={renderField} type={type}  label={label} />
+				</div>
+		 })}
+		<button type="submit" disabled={submitting}>Submit</button>
+	  </form>
+	)
+  }
+  
+  RegistrationForm = reduxForm({
+	form: 'Registration',
+	validate
+  })(RegistrationForm)
+
+
+
+
 
 export default connect(
-	mapStateToProps,
+null,
 	actions
 )(Registration);

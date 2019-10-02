@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import "./style.css";
 
 
+
 class MyPage extends Component {
 	state = { modal: false };
+
 
 	render() {
 		const {user} = this.props

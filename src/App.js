@@ -33,7 +33,7 @@ export const ROUTERS = [
     },
     path: "/search",
     component: Search,
-    privateRoute: false,
+    privateRoute: true,
     className: "header__link icon-search",
     exact: true,
     role: ["user", "admin"]

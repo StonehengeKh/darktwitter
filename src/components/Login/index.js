@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions/user";
 import { Input } from "../Input";
+import { Field, reduxForm } from 'redux-form'
+import {renderField,  validate} from '../../utils/valid'
 import './style.css'
 
 const FORM_TEMPLATE = {
@@ -82,9 +84,15 @@ class Login extends Component {
 		const values = Object.keys(this.state.form).reduce((prev, elem) => {
 			return { ...prev, [elem]: this.state.form[elem].value };
 		}, {});
+		console.log(values)
 		userLogin(values)
 		this.clearEvent()
 	};
+
+	submit = values => {
+		const { userLogin } = this.props;
+		userLogin(values)
+	}
 
 	render() {
 		const { form } = this.state;
@@ -108,19 +116,48 @@ class Login extends Component {
 						Log In
 					</button>
 				</form>
+				<LoginForm onSubmit={this.submit} />
 			</div>
 		);
 	}
 }
 
+let field = [
+	{
+		name: "login",
+		type:"text",
+		label:"Login"
+	},
+	{
+		name: "password",
+		type:"password",
+		label:"Password"
+	}
 
-const mapStateToProps = state => {
-	return {
-		user: state.userReduser.user,
-	};
-};
+]
+
+let LoginForm = props => {
+	const { handleSubmit, submitting } = props
+	return (
+	  <form onSubmit={handleSubmit}>
+		 { field.map((elem, index)=> {
+			 const {name, type, label} = elem
+			return <div key={index} >
+ 				<Field name={name} component={renderField} type={type}  label={label} />
+				</div>
+		 })}
+		<button type="submit" disabled={submitting}>Submit</button>
+	  </form>
+	)
+  }
+  
+  LoginForm = reduxForm({
+	form: 'Login',
+	validate
+  })(LoginForm)
+
 
 export default connect(
-	mapStateToProps,
+	null,
 	actions
 )(Login);
