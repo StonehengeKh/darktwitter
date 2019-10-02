@@ -43,15 +43,14 @@ a {
   padding-bottom: 5px;
 }
 
-.icon-search,
-.icon-enter,
-.icon-exit {
+.header .icon-search,
+.header .icon-enter,
+.header.icon-exit {
   font-size: 25px;
 }
-.icon-search:hover,
-.icon-enter:hover,
-.icon-exit:hover{
-  font-size: 25px;
+.header .icon-search:hover,
+.header .icon-enter:hover,
+.header .icon-exit:hover{
   color: #0023ff;
 }
 

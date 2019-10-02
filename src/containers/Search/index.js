@@ -9,10 +9,8 @@ class Search extends React.Component {
   render() {
     return (
       <div className="search-block">
-          <h3>Search</h3>
-          <input
-
-          />
+          <h3>Search post</h3>
+          <input className="input"/><span className="butt icon-search"/>
       </div>
     )
   }
