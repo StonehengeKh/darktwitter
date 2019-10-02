@@ -11,7 +11,7 @@ class Search extends React.Component {
       <div className="search-block">
           <h3>Search</h3>
           <input
-            
+
           />
       </div>
     )
