@@ -31,3 +31,20 @@
 .text-pre{
   text-align: start;
 }
+
+.like {
+  padding: 10px;
+}
+
+.like-button {
+  user-select: none;
+  border: none;
+  outline: none;
+  background: none;
+  color:  red;
+  font-size: 20px;
+}
+
+.like-button:active {
+  transform: scale(0.97);
+}

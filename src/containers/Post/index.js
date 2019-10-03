@@ -1,8 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { addLike } from "../../actions/likes"
 import "./style.css";
 
 class Post extends Component {
+
+checkLike = post => {
+  const {user, addLike} = this.props
+  let check = post.likes.some(like => like.owner._id === user.id)
+ console.log(check)
+ check ?  console.log(check) : addLike(post._id)
+}
+
   render() {
     const { posts, isFetching  } = this.props;
     const post = posts.find(x => x._id === this.props.match.params.id);
@@ -29,6 +38,7 @@ class Post extends Component {
                   );
                 })
               : null}
+              <button className="icon-plus like-button" onClick={e=>this.checkLike(post)}></button><span className="like">{post.likes.length}</span>
           </div>
         )}
       </div>
@@ -38,9 +48,10 @@ class Post extends Component {
 
 const mapStateToProps = state => {
   return {
+    user: state.userReduser.user,
     posts: state.postsReduser.posts,
     isFetching: state.postsReduser.isFetching
   };
 };
 
-export default connect(mapStateToProps)(Post);
+export default connect(mapStateToProps, { addLike })(Post);

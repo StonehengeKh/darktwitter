@@ -8,13 +8,14 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { tokenDecode } from "./actions/user";
 import {getAllPosts} from './actions/posts'
-
+import {getAllMyPosts} from './actions/myposts'
 
 
 const token = localStorage.getItem("authToken");
 if (token) {
   store.dispatch(tokenDecode())
   store.dispatch(getAllPosts())
+  store.dispatch(getAllMyPosts())
 }
 
 render(

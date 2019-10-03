@@ -1,17 +1,5 @@
 import * as types from "../actionTypes";
-import { GraphQLClient } from "graphql-request";
-
-let gql;
-
-function checkToken() {
-  if (localStorage.authToken) {
-    return (gql = new GraphQLClient("/graphql", {
-      headers: { Authorization: `Bearer ${localStorage.authToken}` }
-    }));
-  } else {
-    return (gql = new GraphQLClient("/graphql", { headers: {} }));
-  }
-}
+import {gql, checkToken} from './user'
 
 const getAllMyPostsRuguest = () => ({
   type: types.GET_ALL_MY_POSTS_REQUEST

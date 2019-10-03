@@ -20,10 +20,12 @@ class News extends React.Component {
   // };
 
   render() {
-    const { posts} = this.props;
+    const { posts, isFetching} = this.props;
     return (
       <div className="all_posts">
-        {/* <button onClick={this.user}>user</button> */}
+        {isFetching ? (
+          <div>Loading...</div>
+        ) : (
         <div className="all-posts-wrapp">
         { posts ? posts.map( post=> {
           const {title, text, images , comments, likes, owner, _id } = post
@@ -31,6 +33,7 @@ class News extends React.Component {
         }
           ) : null}
           </div>
+        )}
       </div>
     );
   }

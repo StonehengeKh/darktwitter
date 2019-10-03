@@ -4,9 +4,8 @@ import jwt_decode from 'jwt-decode';
 import { getAllPosts } from "./posts";
 import { GraphQLClient } from "graphql-request";
 
-let gql;
-
-function checkToken() {
+export let gql
+export const  checkToken = () => {
   if (localStorage.authToken) {
     return (gql = new GraphQLClient("/graphql", {
       headers: { Authorization: `Bearer ${localStorage.authToken}` }
