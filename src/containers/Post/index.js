@@ -6,7 +6,6 @@ import "./style.css";
 class Post extends Component {
   checkLike = post => {
     const { user, addLike, delLike } = this.props;
-    let check = post.likes.some(like => like.owner._id === user.id);
     let like = post.likes.find(like=> like.owner._id === user.id )
     console.log(like);
     like ? delLike(like._id) : addLike(post._id);

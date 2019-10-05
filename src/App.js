@@ -1,12 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { NotFound } from "./containers/Nofound";
 import Layout from "./components/Layout";
 import HomePage from "./containers/News";
-import Header from "./components/Header";
 import MyPage from "./containers/My page";
 import Auth from "./containers/Auth";
 import Post from "./containers/Post";

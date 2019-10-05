@@ -2,7 +2,6 @@ import React, { Component } from "react";
 // import axios from "axios";
 import { connect } from "react-redux";
 import * as actions from "../../actions/user";
-import { Input } from "../Input";
 import { Field, reduxForm } from "redux-form";
 import { renderField, validate } from "../../utils/valid";
 import "./style.css";

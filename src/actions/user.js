@@ -1,7 +1,6 @@
 import * as types from "../actionTypes";
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
-import { getAllPosts } from "./posts";
 import { GraphQLClient } from "graphql-request";
 
 export let gql
