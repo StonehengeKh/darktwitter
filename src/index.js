@@ -11,6 +11,7 @@ import {getAllPosts} from './actions/posts'
 import {getAllMyPosts} from './actions/myposts'
 import jwt_decode from 'jwt-decode';
 
+// alex lox
 const token = localStorage.getItem("authToken");
 if (token) {
   store.dispatch(tokenDecode())
