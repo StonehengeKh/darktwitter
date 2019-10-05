@@ -11,12 +11,15 @@ import {getAllPosts} from './actions/posts'
 import {getAllMyPosts} from './actions/myposts'
 import jwt_decode from 'jwt-decode';
 
+let ID = ["5d6fccfc5fce6722147978f2", "5d66e01dc6a7071408ac1e1c"]
+
 const token = localStorage.getItem("authToken");
 if (token) {
   store.dispatch(tokenDecode())
   let decode = jwt_decode(localStorage.authToken);
   store.dispatch(getAllPosts())
-  store.dispatch(getAllMyPosts(decode.sub.id))
+  // store.dispatch(getAllMyPosts(decode.sub.id))
+  store.dispatch(getAllMyPosts(ID))
 }
 
 render(

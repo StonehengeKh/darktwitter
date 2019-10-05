@@ -4,6 +4,7 @@ import { addLike, delLike } from "../../actions/likes";
 import "./style.css";
 
 class Post extends Component {
+  
   checkLike = post => {
     const { user, addLike, delLike } = this.props;
     let like = post.likes.find(like=> like.owner._id === user.id )
@@ -14,7 +15,7 @@ class Post extends Component {
   render() {
     const { posts, isFetching } = this.props;
     const post = posts.find(x => x._id === this.props.match.params.id);
-
+    console.log(post)
     return (
       <div className="wrap">
         {isFetching ? (

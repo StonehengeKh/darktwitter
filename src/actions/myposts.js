@@ -33,9 +33,13 @@ export const getAllMyPosts = id => {
               }
             }
           } `,
-      { query: JSON.stringify([{___owner: id }])}
+
+      { query: JSON.stringify([{___owner: {$in: [...id]}}])}
+      // { query: JSON.stringify([{___owner: {$in: [id]}}])}
+      // { query: JSON.stringify([{___owner: id }])}
  
     );
+    console.log(res)
     dispatch(getAllMyPostsRuguestSuccess(res.PostFind));
   };
 };
