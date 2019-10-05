@@ -90,7 +90,6 @@ export const userLogin = data => {
       if (res.login) {
         localStorage.setItem("authToken", res.login);
         dispatch(tokenDecode());
-        dispatch(getAllPosts())
       } else dispatch(userRequestLoginFail());
     } catch (err) {
       dispatch(userRequestLoginFail(err));
@@ -197,27 +196,27 @@ export const tokenDecode =() =>{
   }
 }
 
-export const getPost = () => {
-  return async dispatch => {
-    checkToken();
-    const res = await gql.request(
-      `query postAll{
-        PostFind(query: "[{}]"){
-          _id,
-          text,
-          title,
-          images{_id, url}
-          owner{_id},
-          likes{_id},
-          comments{
-            _id, text
-          }
-        }
-      } `
-    );
-    console.log(res);
-  };
-};
+// export const getPost = () => {
+//   return async dispatch => {
+//     checkToken();
+//     const res = await gql.request(
+//       `query postAll{
+//         PostFind(query: "[{}]"){
+//           _id,
+//           text,
+//           title,
+//           images{_id, url}
+//           owner{_id},
+//           likes{_id},
+//           comments{
+//             _id, text
+//           }
+//         }
+//       } `
+//     );
+//     console.log(res);
+//   };
+// };
 
 // export const userFindOne = id => {
 //   return async dispatch => {

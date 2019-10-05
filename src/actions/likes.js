@@ -27,22 +27,28 @@ export const addLike = id => {
     }
   };
 };
-//   const delLikeRuguest = () => ({
-//     type: types.DEL_LIKE_REQUEST
-//   });
+  const delLikeRuguest = () => ({
+    type: types.DEL_LIKE_REQUEST
+  });
 
-//   const delLikeRuguestSuccess = payload => ({
-//     type: types.DEL_LIKE_REQUEST_SUCCESS,
-//     payload
-//   });
+  const delLikeRuguestSuccess = payload => ({
+    type: types.DEL_LIKE_REQUEST_SUCCESS,
+    payload
+  });
 
-//  export const delLike = id => {
-//     return async dispatch => {
-//         dispatch(delLikeRuguest());
-//           checkToken();
-//           const res = await gql.request(
+ export const delLike = id => {
+    return async dispatch => {
+        dispatch(delLikeRuguest());
+          checkToken();
+          const res = await gql.request(
+            `mutation like($like: LikeInput){
+              LikeDelete(like: $like) {
+                    _id
+                }
+              }`,
+            { like: { _id: id  } }
+          );
 
-//           );
-
-//           dispatch(delLikeRuguestSuccess()) ;
-//   };
+          dispatch(delLikeRuguestSuccess()) ;
+  };
+ }

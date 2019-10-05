@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addLike } from "../../actions/likes"
+import { addLike, delLike } from "../../actions/likes";
 import "./style.css";
 
 class Post extends Component {
-
-checkLike = post => {
-  const {user, addLike} = this.props
-  let check = post.likes.some(like => like.owner._id === user.id)
- console.log(check)
- check ?  console.log(check) : addLike(post._id)
-}
+  checkLike = post => {
+    const { user, addLike, delLike } = this.props;
+    let check = post.likes.some(like => like.owner._id === user.id);
+    let like = post.likes.find(like=> like.owner._id === user.id )
+    console.log(like);
+    like ? delLike(like._id) : addLike(post._id);
+  };
 
   render() {
-    const { posts, isFetching  } = this.props;
+    const { posts, isFetching } = this.props;
     const post = posts.find(x => x._id === this.props.match.params.id);
 
     return (
@@ -38,7 +38,11 @@ checkLike = post => {
                   );
                 })
               : null}
-              <button className="icon-plus like-button" onClick={e=>this.checkLike(post)}></button><span className="like">{post.likes.length}</span>
+            <button
+              className="icon-heart like-button"
+              onClick={e => this.checkLike(post)}
+            ></button>
+            <span className="like">{post.likes.length}</span>
           </div>
         )}
       </div>
@@ -54,4 +58,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { addLike })(Post);
+export default connect(
+  mapStateToProps,
+  { addLike, delLike }
+)(Post);
