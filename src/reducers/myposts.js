@@ -6,7 +6,7 @@ const initialState = {
   fail: false
 };
 
-export default (state = initialState, { type, id, payload }) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case types.GET_ALL_MY_POSTS_REQUEST: {
       return { ...state, posts: null, isFetching: true, fail: false };
@@ -18,15 +18,7 @@ export default (state = initialState, { type, id, payload }) => {
       return { ...state, isFetching: false, fail: true };
     }
 
-    case types.ADD_LIKE_REQUEST: {
-      return { ...state,  isFetching: true};
-    }
-    case types.ADD_LIKE_REQUEST_SUCCESS: {
-      return {
-        ...state,
-		isFetching: false,
-      };
-    }
+
 
     default: {
       return state;

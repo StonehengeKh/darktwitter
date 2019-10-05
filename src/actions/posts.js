@@ -2,11 +2,11 @@ import * as types from "../actionTypes";
 import {gql, checkToken} from './user'
 
 
-const getAllPostsRuguest = () => ({
+const getAllPostsReguest = () => ({
   type: types.GET_ALL_POSTS_REQUEST
 });
 
-const getAllPostsRuguestSuccess = payload => ({
+const getAllPostsReguestSuccess = payload => ({
   type: types.GET_ALL_POSTS_REQUEST_SUCCESS,
   payload
 });
@@ -18,7 +18,7 @@ const getAllPostsRuguestSuccess = payload => ({
 
 export const getAllPosts = () => {
   return async dispatch => {
-    dispatch(getAllPostsRuguest());
+    dispatch(getAllPostsReguest());
       checkToken();
       const res = await gql.request(
         `query postAll{
@@ -35,6 +35,7 @@ export const getAllPosts = () => {
           }
         } `
       );
-      dispatch(getAllPostsRuguestSuccess(res.PostFind)) ;
+      dispatch(getAllPostsReguestSuccess(res.PostFind)) ;
   };
 };
+

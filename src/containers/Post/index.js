@@ -4,18 +4,17 @@ import { addLike, delLike } from "../../actions/likes";
 import "./style.css";
 
 class Post extends Component {
-  
   checkLike = post => {
     const { user, addLike, delLike } = this.props;
-    let like = post.likes.find(like=> like.owner._id === user.id )
-    console.log(like);
-    like ? delLike(like._id) : addLike(post._id);
+    let like = post.likes.find(like => like.owner._id === user.id);
+    like ? delLike(like._id, post._id) : addLike(post._id);
+    // refreshPost(post._id);
   };
 
   render() {
-    const { posts, isFetching } = this.props;
+    const { posts, isFetching, likeFetching, user } = this.props;
     const post = posts.find(x => x._id === this.props.match.params.id);
-    console.log(post)
+    let check = post.likes.some(like => like.owner._id === user.id);
     return (
       <div className="wrap">
         {isFetching ? (
@@ -39,8 +38,8 @@ class Post extends Component {
                 })
               : null}
             <button
-              className="icon-heart like-button"
-              onClick={e => this.checkLike(post)}
+              className={check ? "icon-heart like-button like-red" : "icon-heart like-button like-white"}
+              onClick={likeFetching ? null : e => this.checkLike(post)}
             ></button>
             <span className="like">{post.likes.length}</span>
           </div>
@@ -50,11 +49,12 @@ class Post extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ userReduser, postsReduser }) => {
   return {
-    user: state.userReduser.user,
-    posts: state.postsReduser.posts,
-    isFetching: state.postsReduser.isFetching
+    user: userReduser.user,
+    posts: postsReduser.posts,
+    isFetching: postsReduser.isFetching,
+    likeFetching: postsReduser.likeFetching
   };
 };
 

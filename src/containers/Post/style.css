@@ -36,12 +36,19 @@
   padding: 10px;
 }
 
+.like-white{
+  color: white
+}
+
+.like-red{
+  color: red;
+}
+
 .like-button {
   user-select: none;
   border: none;
   outline: none;
   background: none;
-  color:  red;
   font-size: 20px;
 }
 

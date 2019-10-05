@@ -14,8 +14,6 @@ nav {
   width: 100%;
 }
 
-
-
 .header__item:active,
 .header__item:hover  {
   color: #0023ff;
@@ -45,9 +43,10 @@ a {
 
 .header .icon-search,
 .header .icon-enter,
-.header.icon-exit {
+.header .icon-exit {
   font-size: 25px;
 }
+
 .header .icon-search:hover,
 .header .icon-enter:hover,
 .header .icon-exit:hover{

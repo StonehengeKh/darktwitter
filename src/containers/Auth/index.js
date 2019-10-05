@@ -42,12 +42,12 @@ export class Auth extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = ({userReduser}) => {
   return {
-    user: state.userReduser.user,
-    isFetching: state.userReduser.isFetching,
-    incorected: state.userReduser.incorected,
-    mailExists: state.userReduser.mailExists
+    user: userReduser.user,
+    isFetching: userReduser.isFetching,
+    incorected: userReduser.incorected,
+    mailExists: userReduser.mailExists
   };
 };
 
