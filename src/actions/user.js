@@ -14,10 +14,7 @@ export const checkToken = () => {
     return (gql = new GraphQLClient("/graphql", { headers: {} }));
   }
 };
-// const qql = new GraphQLClient("/graphql", { headers: {} });
 const url = "http://hipstagram.asmer.fs.a-level.com.ua/";
-
-// qql = new GraphQLClient("/graphql", { headers: {Authorization: `Bearer ${localStorage.authToken}`} });
 
 export const delUser = () => ({
   type: types.DEL_USER
@@ -40,25 +37,20 @@ const userRequestRegistrFail = payload => ({
 export const registration = data => {
   return async dispatch => {
     dispatch(userRequestRegistr());
-    try {
-      const res = await axios.get(url);
-      const user = res.data.some(
-        x => x.email.toLowerCase() === data.email.toLowerCase()
-      );
-      if (user) {
-        dispatch(userRequestRegistrFail());
-      } else {
-        try {
-          const post = await axios.post(url, data);
-          localStorage.setItem("email", post.data.email);
-          dispatch(userRequestRegistrSuccess(post));
-        } catch (err) {
-          dispatch(userRequestRegistrFail(err));
-        }
-      }
-    } catch (err) {
-      dispatch(userRequestRegistrFail(err));
-    }
+    checkToken();
+    const res = await gql.request(
+      `mutation reg($login:String!, $password:String!){
+            createUser(login:$login, password:$password){
+              _id
+            }
+          }
+           `,
+      { login: data.login, password: data.password }
+    );
+    console.log(res.createUser);
+    if (res.createUser) {
+      dispatch(userLogin(data));
+    } else dispatch(userRequestRegistrFail());
   };
 };
 
@@ -93,61 +85,6 @@ export const userLogin = data => {
       } else dispatch(userRequestLoginFail());
     } catch (err) {
       dispatch(userRequestLoginFail(err));
-    }
-  };
-};
-
-export const updateUser = (name, payload) => ({
-  type: types.UPDATE_USER,
-  name,
-  payload
-});
-
-export const setUserToUpdate = () => ({
-  type: types.SET_USER_TO_UPDATE
-});
-
-const updateUserSaveRequest = () => ({
-  type: types.UPDATE_USER_SAVE_REQUEST
-});
-
-const updateUserSaveRequestSuccess = payload => ({
-  type: types.UPDATE_USER_SAVE_REQUEST_SUCCESS,
-  payload
-});
-
-const updateUserSaveRequestFail = payload => ({
-  type: types.UPDATE_USER_SAVE_REQUEST_FAIL,
-  payload
-});
-
-export const updateUserSave = (id, data, email) => {
-  return async dispatch => {
-    dispatch(updateUserSaveRequest());
-    try {
-      if (data.email === email) {
-        const post = await axios.patch(`${url}/${id}`, data);
-        localStorage.setItem("email", post.data.email);
-        dispatch(updateUserSaveRequestSuccess(post.data));
-      } else {
-        const res = await axios.get(url);
-        const user = res.data.some(
-          x => x.email.toLowerCase() === data.email.toLowerCase()
-        );
-        if (user) {
-          dispatch(updateUserSaveRequestFail());
-        } else {
-          try {
-            const post = await axios.patch(`${url}/${id}`, data);
-            localStorage.setItem("email", post.data.email);
-            dispatch(updateUserSaveRequestSuccess(post.data));
-          } catch (err) {
-            dispatch(updateUserSaveRequestFail(err));
-          }
-        }
-      }
-    } catch (err) {
-      dispatch(updateUserSaveRequestFail(err));
     }
   };
 };

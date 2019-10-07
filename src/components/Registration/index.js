@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../actions/user";
+import {registration} from "../../actions/user";
 import { Field, reduxForm } from 'redux-form'
 import {renderField,  validate} from '../../utils/valid'
 
@@ -19,7 +19,10 @@ class Registration extends Component {
 	// 	this.clearInput();
 	// };
 
-	submit = values => console.log(values)
+	submit = values => {
+		const {registration} = this.props
+		registration(values)
+	}
 	
 	render() {
 		return (
@@ -88,5 +91,5 @@ let RegistrationForm = props => {
 
 export default connect(
 null,
-	actions
+	{registration}
 )(Registration);

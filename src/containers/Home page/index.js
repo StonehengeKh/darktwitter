@@ -5,7 +5,7 @@ import { getAllPosts, loadPosts } from "../../actions/posts";
 import { Card } from "../../components/Card";
 import "./style.css";
 
-class News extends React.Component {
+class HomePage extends React.Component {
   clicker = () => {
     const { getAllPosts } = this.props;
     getAllPosts();
@@ -20,11 +20,6 @@ class News extends React.Component {
   scroll = e => {
     let scrollBottom =
       e.target.scrollTop + e.target.offsetHeight > e.target.scrollHeight - 100;
-    // console.log(
-    //   e.target.scrollTop + e.target.offsetHeight,
-    //   e.target.scrollHeight,
-    //   scrollBottom
-    // );
     if (scrollBottom) {
       this.loadContent();
     }
@@ -89,4 +84,4 @@ const mapStateToProps = ({ postsReduser }) => {
 export default connect(
   mapStateToProps,
   { getAllPosts, userFindOne, loadPosts }
-)(News);
+)(HomePage);
