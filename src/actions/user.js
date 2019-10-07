@@ -1,10 +1,11 @@
 import * as types from "../actionTypes";
 import axios from "axios";
-import jwt_decode from 'jwt-decode';
+import jwt_decode from "jwt-decode";
 import { GraphQLClient } from "graphql-request";
+import { getAllPosts } from "./posts";
 
-export let gql
-export const  checkToken = () => {
+export let gql;
+export const checkToken = () => {
   if (localStorage.authToken) {
     return (gql = new GraphQLClient("/graphql", {
       headers: { Authorization: `Bearer ${localStorage.authToken}` }
@@ -12,7 +13,7 @@ export const  checkToken = () => {
   } else {
     return (gql = new GraphQLClient("/graphql", { headers: {} }));
   }
-}
+};
 // const qql = new GraphQLClient("/graphql", { headers: {} });
 const url = "http://hipstagram.asmer.fs.a-level.com.ua/";
 
@@ -96,37 +97,6 @@ export const userLogin = data => {
   };
 };
 
-const userRequestAuthorization = () => ({
-  type: types.USER_REQUEST_AUTHORIZATION
-});
-
-const userRequestAuthorizationSuccess = payload => ({
-  type: types.USER_REQUEST_AUTHORIZATION_SUCCESS,
-  payload
-});
-
-const userRequestAuthorizationLoginFail = payload => ({
-  type: types.USER_REQUEST_AUTHORIZATION_FAIL,
-  payload
-});
-
-export const authorization = data => {
-  return async dispatch => {
-    dispatch(userRequestAuthorization());
-    try {
-      const res = await axios.get(url);
-      const user = res.data.find(
-        x => x.email.toLowerCase() === data.toLowerCase()
-      );
-      if (user) {
-        dispatch(userRequestAuthorizationSuccess(user));
-      } else dispatch(userRequestAuthorizationLoginFail());
-    } catch (err) {
-      dispatch(userRequestAuthorizationLoginFail(err));
-    }
-  };
-};
-
 export const updateUser = (name, payload) => ({
   type: types.UPDATE_USER,
   name,
@@ -187,13 +157,13 @@ const addUser = payload => ({
   payload
 });
 
-export const tokenDecode =() =>{
+export const tokenDecode = () => {
   return dispatch => {
     let decoded = jwt_decode(localStorage.authToken);
     dispatch(addUser(decoded.sub));
-
-  }
-}
+    dispatch(getAllPosts());
+  };
+};
 
 // export const getPost = () => {
 //   return async dispatch => {

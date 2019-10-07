@@ -27,11 +27,11 @@ class MyPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({userReduser, myPostsReduser}) => {
   return {
-    user: state.userReduser.user,
-    isFetching: state.myPostsReduser.isFetching,
-    myPosts: state.myPostsReduser.myPosts
+    user: userReduser.user,
+    isFetching: myPostsReduser.isFetching,
+    myPosts: myPostsReduser.myPosts
   };
 };
 

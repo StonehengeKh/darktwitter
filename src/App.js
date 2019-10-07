@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { NotFound } from "./containers/Nofound";
 import Layout from "./components/Layout";
-import HomePage from "./containers/News";
+import HomePage from "./containers/Home page";
 import MyPage from "./containers/My page";
 import Auth from "./containers/Auth";
 import Post from "./containers/Post";
@@ -163,9 +163,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({postsReduser}) => {
   return {
-    isFetching: state.postsReduser.isFetching
+    isFetching: postsReduser.isFetching
   };
 };
 

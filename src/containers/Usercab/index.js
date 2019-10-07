@@ -10,9 +10,9 @@ class UserCab extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({userReduser}) => {
   return {
-    user: state.userReduser.user
+    user: userReduser.user
   };
 };
 

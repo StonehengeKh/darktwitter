@@ -1,11 +1,10 @@
 .all-posts{
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
 }
+
+
 
 .all-post-img {
   height: 100px;
@@ -27,9 +26,10 @@
 }
 
 .all-posts-wrapp{
+  overflow: auto;
+  height: calc(100vh - 80px);
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 

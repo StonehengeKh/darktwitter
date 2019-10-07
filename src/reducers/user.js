@@ -71,7 +71,7 @@ export default (state = initialState, { type, name, payload }) => {
 			return { ...state, update: false, updateError: true };
 		}
 		case types.ADD_USER: {
-			return { ...state, user:{id: payload.id, login: payload.login, role: payload.acl[1] } };
+			return { ...state, user:{id: payload.id, login: payload.login, role: payload.acl[1] }, isFetching: false };
 		}
 
 

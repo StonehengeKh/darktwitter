@@ -4,13 +4,15 @@ const initialState = {
   posts: null,
   isFetching: false,
   fail: false,
-  likeFetching: false
+  likeFetching: false,
+  loadFetching: false,
+  loadFail: false
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case types.GET_ALL_POSTS_REQUEST: {
-      return { ...state, posts: null, isFetching: true, fail: false };
+      return { ...state,  isFetching: true, fail: false };
     }
     case types.GET_ALL_POSTS_REQUEST_SUCCESS: {
       return { ...state, isFetching: false, posts: payload };
@@ -43,6 +45,19 @@ export default (state = initialState, { type, payload }) => {
 				posts: [...state.posts, elem]
       };
     }
+
+    case types.LOAD_POSTS_REQUEST: {
+      return { ...state, loadFetching: true, fail: false, loadFail: false };
+    }
+    case types.LOAD_POSTS_REQUEST_SUCCESS: {
+      return { ...state, loadFetching: false, 
+      posts: [...state.posts, ...payload]
+      };
+    }
+    case types.LOAD_POSTS_REQUEST_FAIL: {
+      return { ...state, loadFetching: false, fail: true, loadFail: true };
+    }
+
 
     default: {
       return state;
