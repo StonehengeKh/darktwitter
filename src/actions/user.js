@@ -1,5 +1,4 @@
 import * as types from "../actionTypes";
-import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { GraphQLClient } from "graphql-request";
 import { getAllPosts } from "./posts";
@@ -14,7 +13,6 @@ export const checkToken = () => {
     return (gql = new GraphQLClient("/graphql", { headers: {} }));
   }
 };
-const url = "http://hipstagram.asmer.fs.a-level.com.ua/";
 
 export const delUser = () => ({
   type: types.DEL_USER
@@ -24,10 +22,10 @@ const userRequestRegistr = () => ({
   type: types.USER_REQUEST_REGISTR
 });
 
-const userRequestRegistrSuccess = payload => ({
-  type: types.USER_REQUEST_REGISTR_SUCCESS,
-  payload
-});
+// const userRequestRegistrSuccess = payload => ({
+//   type: types.USER_REQUEST_REGISTR_SUCCESS,
+//   payload
+// });
 
 const userRequestRegistrFail = payload => ({
   type: types.USER_REQUEST_REGISTR_FAIL,
