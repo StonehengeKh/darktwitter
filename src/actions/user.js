@@ -3,6 +3,7 @@ import jwt_decode from "jwt-decode";
 import { GraphQLClient } from "graphql-request";
 import { getAllPosts } from "./posts";
 import { userFind } from "./folowing";
+export const url = "http://hipstagram.asmer.fs.a-level.com.ua/";
 
 export let gql;
 export const checkToken = () => {
