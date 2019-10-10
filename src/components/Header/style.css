@@ -6,6 +6,12 @@
   color: #c4c4c4;
 }
 
+.avatar-img {
+  max-width: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 nav {
   display: flex;
   justify-content: center;
@@ -23,6 +29,8 @@ ul {
   display: flex;
   margin: 0;
   padding: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 a {

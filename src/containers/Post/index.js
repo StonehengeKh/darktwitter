@@ -2,8 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addLike, delLike } from "../../actions/likes";
 import "./style.css";
+import { getPost } from "../../actions/post";
 
 class Post extends Component {
+
+  componentDidMount(){
+    const {getPost} = this.props
+    getPost(this.props.match.params.id)
+  }
+
+
   checkLike = post => {
     const { user, addLike, delLike } = this.props;
     let like = post.likes.find(like => like.owner._id === user.id);
@@ -12,12 +20,10 @@ class Post extends Component {
   };
 
   render() {
-    const { posts, isFetching, likeFetching, user } = this.props;
-    const post = posts.find(x => x._id === this.props.match.params.id);
-    let check = post.likes.some(like => like.owner._id === user.id);
+    const { post, isFetching, likeFetching, user} = this.props;
     return (
       <div className="wrap">
-        {isFetching ? (
+        {!post ? (
           <div>Loading...</div>
         ) : (
           <div className="context-rec">
@@ -38,7 +44,7 @@ class Post extends Component {
                 })
               : null}
             <button
-              className={check ? "icon-heart like-button like-red" : "icon-heart like-button like-white"}
+              className={post.likes.some(like => like.owner._id === user.id) ? "icon-heart like-button like-red" : "icon-heart like-button like-white"}
               onClick={likeFetching ? null : e => this.checkLike(post)}
             ></button>
             <span className="like">{post.likes.length}</span>
@@ -49,16 +55,16 @@ class Post extends Component {
   }
 }
 
-const mapStateToProps = ({ userReduser, postsReduser }) => {
+const mapStateToProps = ({ userReduser, postReduser }) => {
   return {
     user: userReduser.user,
-    posts: postsReduser.posts,
-    isFetching: postsReduser.isFetching,
-    likeFetching: postsReduser.likeFetching
+    post: postReduser.post,
+    isFetching: postReduser.isFetching,
+    likeFetching: postReduser.likeFetching
   };
 };
 
 export default connect(
   mapStateToProps,
-  { addLike, delLike }
+  { addLike, delLike, getPost }
 )(Post);

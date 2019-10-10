@@ -56,7 +56,7 @@ const loadPostsRuguestFail = () => ({
   type: types.LOAD_POSTS_REQUEST_FAIL
 });
 
-export const loadPosts =  numb => {
+export const loadPosts =  skip => {
   return async dispatch => {
     dispatch(loadPostsReguest());
     checkToken();
@@ -74,7 +74,7 @@ export const loadPosts =  numb => {
             }
           }
         } `,
-      { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [10], skip: [numb] }]) }
+      { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [10], skip: [skip] }]) }
     );
     if (res.PostFind.length > 0) {
       dispatch(loadPostsReguestSuccess(res.PostFind));

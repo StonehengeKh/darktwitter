@@ -2,6 +2,7 @@ import * as types from "../actionTypes";
 import jwt_decode from "jwt-decode";
 import { GraphQLClient } from "graphql-request";
 import { getAllPosts } from "./posts";
+import { userFind } from "./folowing";
 
 export let gql;
 export const checkToken = () => {
@@ -97,6 +98,8 @@ export const tokenDecode = () => {
     let decoded = jwt_decode(localStorage.authToken);
     dispatch(addUser(decoded.sub));
     dispatch(getAllPosts());
+    dispatch(userFind());
+    dispatch(userFindOne(decoded.sub.id));
   };
 };
 
@@ -122,70 +125,97 @@ export const tokenDecode = () => {
 //   };
 // };
 
-// export const userFindOne = id => {
-//   return async dispatch => {
-//     checkToken();
-//     const res = await gql.request(
-//       `query user($query:String!){
-//         UserFindOne(query:$query){
-//           _id, login, nick
-//           likes{_id},
-//           incomings{_id},
-//           followers{_id},
-//           following{_id}
-//         }
-//       }
-//       `,
-//      {query: JSON.stringify([{ _id: id }])}
-//     );
-//     console.log(res);
-//   };
-// };
+const addUserSetings = payload => ({
+  type: types.ADD_USER_SETINGS,
+  payload
+});
 
 export const userFindOne = id => {
   return async dispatch => {
     checkToken();
     const res = await gql.request(
-      `query user{
-        UserFind(query: "[{}]"){
-          _id, login
+      `query user($query:String!){
+        UserFindOne(query:$query){
+          nick
+          followers{_id},
+          following{_id},
+          avatar{_id, url}
         }
       }
       `,
-      { query: JSON.stringify([{ _id: id }]) }
+     {query: JSON.stringify([{ _id: id }])}
     );
-    console.log(res);
+    dispatch(addUserSetings(res.UserFindOne));
   };
 };
 
-// export const UserUpsert = (id, nick) => {
-//   return async dispatch => {
-//     checkToken();
-//     const res = await gql.request(
-//       `mutation UserUpsert($user: UserInput){
-//         UserUpsert(user: $user){
-//           _id, login, nick
-//         }
-//       }
-//       `,
-//       { user: { _id: id, nick: nick } }
-//     );
-//     console.log(res);
-//   };
-// };
+const UserUpsertNickReguest = () => ({
+  type: types.USER_UPSERT_NICK_REQUEST
+});
 
-// export const userDel = id => {
-//   return async dispatch => {
-//     checkToken();
-//     const res = await gql.request(
-//       `mutation UserDelete($user: UserInput){
-//         UserDelete(user: $user){
-//           _id, login, nick
-//         }
-//       }
-//       `,
-//       { user: { _id: id } }
-//     );
-//     console.log(res);
-//   };
-// };
+const UserUpsertNickReguestSuccess = payload => ({
+  type: types.USER_UPSERT_NICK_REQUEST_SUCCESS,
+  payload
+});
+
+const UserUpsertNickReguestFail = () => ({
+  type: types.USER_UPSERT_NICK_REQUEST_FAIL
+});
+
+
+export const UserUpsertNick = (id, nick) => {
+  return async dispatch => {
+    dispatch(UserUpsertNickReguest());
+    checkToken();
+    const res = await gql.request(
+      `mutation UserUpsert($user: UserInput){
+        UserUpsert(user: $user){
+          nick
+        }
+      }
+      `,
+      { user: { _id: id, nick: nick } }
+    );
+    if (res.UserUpsert.nick) {
+      dispatch(UserUpsertNickReguestSuccess(res.UserUpsert.nick));
+    } else {
+      dispatch(UserUpsertNickReguestFail());
+    }
+  };
+};
+
+const UserUpsertAvatarReguest = () => ({
+  type: types.USER_UPSERT_AVATAR_REQUEST
+});
+
+const UserUpsertAvatarReguestSuccess = payload => ({
+  type: types.USER_UPSERT_AVATAR_REQUEST_SUCCESS,
+  payload
+});
+
+const UserUpsertAvatarkReguestFail = () => ({
+  type: types.USER_UPSERT_AVATAR_REQUEST_FAIL
+});
+
+
+export const UserUpsertAvatar = (id, imageId) => {
+  return async dispatch => {
+    dispatch(UserUpsertAvatarReguest());
+    checkToken();
+    const res = await gql.request(
+      `mutation UserUpsert($user: UserInput){
+        UserUpsert(user: $user){
+          avatar{_id, url}
+        }
+      }
+      `,
+      { user: { _id: id, avatar:{_id:imageId}} }
+    );
+    if (res.UserUpsert.avatar) {
+      dispatch(UserUpsertAvatarReguestSuccess(res.UserUpsert.avatar));
+    } else {
+      dispatch(UserUpsertAvatarkReguestFail());
+    }
+  };
+};
+

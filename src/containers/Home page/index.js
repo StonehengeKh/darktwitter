@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { userFindOne } from "../../actions/user";
+// import { userFindOne } from "../../actions/user";
 import { getAllPosts, loadPosts } from "../../actions/posts";
+
 import { Card } from "../../components/Card";
 import "./style.css";
+
 
 class HomePage extends React.Component {
   clicker = () => {
@@ -19,7 +21,7 @@ class HomePage extends React.Component {
 
   scroll = e => {
     let scrollBottom =
-      e.target.scrollTop + e.target.offsetHeight > e.target.scrollHeight - 100;
+      e.target.scrollTop + e.target.offsetHeight > e.target.scrollHeight - 150;
     if (scrollBottom) {
       this.loadContent();
     }
@@ -32,7 +34,7 @@ class HomePage extends React.Component {
   };
 
   render() {
-    const { posts, isFetching, loadFetching } = this.props;
+    const { posts, isFetching, loadFetching, loadFail } = this.props;
     return (
       <div className="all-posts">
         {isFetching ? (
@@ -40,7 +42,7 @@ class HomePage extends React.Component {
         ) : (
           <div
             className="all-posts-wrapp"
-            onScroll={loadFetching ? null : e => this.scroll(e)}
+            onScroll={loadFail || loadFetching ? null : e => this.scroll(e)}
           >
             {posts
               ? posts.map(post => {
@@ -83,5 +85,5 @@ const mapStateToProps = ({ postsReduser }) => {
 
 export default connect(
   mapStateToProps,
-  { getAllPosts, userFindOne, loadPosts }
+  { getAllPosts, loadPosts }
 )(HomePage);

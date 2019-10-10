@@ -4,10 +4,11 @@ const initialState = {
 	user: null,
 	isFetching: false,
 	incorected: false,
+	upsertFetching: false
 }
 
 
-export default (state = initialState, { type, name, payload }) => {
+export default (state = initialState, { type, payload }) => {
 	switch (type) {
 
 		case types.USER_REQUEST_REGISTR: {
@@ -34,9 +35,29 @@ export default (state = initialState, { type, name, payload }) => {
 		case types.ADD_USER: {
 			return { ...state, user:{id: payload.id, login: payload.login, role: payload.acl[1] }, isFetching: false };
 		}
+		case types.ADD_USER_SETINGS: {
+			return { ...state, user:{...state.user, ...payload }, isFetching: false };
+		}
 
+		case types.USER_UPSERT_NICK_REQUEST: {
+			return { ...state, upsertFetching: true};
+		}
+		case types.USER_UPSERT_NICK_REQUEST_SUCCESS: {
+			return { ...state, upsertFetching: false, user: {...state.user, nick:payload}};
+		}
+		case types.USER_UPSERT_NICK_REQUEST_FAIL: {
+			return { ...state, upsertFetching: false};
+		}
 
-
+		case types.USER_UPSERT_AVATAR_REQUEST: {
+			return { ...state, upsertFetching: true};
+		}
+		case types.USER_UPSERT_AVATAR_REQUEST_SUCCESS: {
+			return { ...state, upsertFetching: false, user: {...state.user, avatar:payload}};
+		}
+		case types.USER_UPSERT_AVATAR_REQUEST_FAIL: {
+			return { ...state, upsertFetching: false};
+		}
 
 		default: {
 			return state;

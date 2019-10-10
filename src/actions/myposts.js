@@ -10,10 +10,10 @@ const getAllMyPostsRuguestSuccess = payload => ({
   payload
 });
 
-// const getAllPostsRuguestFail = payload => ({
-//   type: types.GET_ALL_POSTS_REQUEST_FAIL,
-//   payload
-// });
+const getAllPostsRuguestFail = payload => ({
+  type: types.GET_ALL_POSTS_REQUEST_FAIL,
+  payload
+});
 
 export const getAllMyPosts = id => {
   return async dispatch => {
@@ -36,7 +36,11 @@ export const getAllMyPosts = id => {
       // { query: JSON.stringify([{___owner: {$in: [...id]}}])}
       { query: JSON.stringify([{___owner: id }])}
     );
-    dispatch(getAllMyPostsRuguestSuccess(res.PostFind));
+    if(res.PostFind){ 
+      dispatch(getAllMyPostsRuguestSuccess(res.PostFind))
+    } else {
+      dispatch(getAllPostsRuguestFail(res.PostFind))
+    }
   };
 };
 

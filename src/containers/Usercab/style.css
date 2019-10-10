@@ -1,3 +1,10 @@
+.drop_div{
+  width: 250px;
+  height: 250px;
+  border: 1px dotted white;
+}
+
+
 .button {
   font-size: 80%;
   background-color: #0023ff;
@@ -27,6 +34,8 @@
   border: 1px solid #d0d0d0;
   margin: 5px;
 }
+
+
 
 .input-number:focus {
   box-shadow: 2px 2px 5px #000000;
@@ -58,6 +67,8 @@
 .text_response{
   font-size: 80%;
 }
+
+
 
 @media (min-width: 480px)  {
   .input__label {

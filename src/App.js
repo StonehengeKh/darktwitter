@@ -5,6 +5,7 @@ import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { NotFound } from "./containers/Nofound";
 import Layout from "./components/Layout";
 import HomePage from "./containers/Home page";
+import Following from "./containers/Following";
 import MyPage from "./containers/My page";
 import Auth from "./containers/Auth";
 import Post from "./containers/Post";
@@ -12,6 +13,7 @@ import Admin from "./containers/Admin";
 import UserCab from "./containers/Usercab";
 import Search from "./containers/Search"
 import "./App.css";
+import { withRouter } from "react-router-dom";
 
 export const ROUTERS = [
   {
@@ -35,6 +37,18 @@ export const ROUTERS = [
     component: Search,
     privateRoute: true,
     className: "header__link icon-search",
+    exact: true,
+    role: ["user", "admin"]
+  },
+  {
+    id: 11,
+    link: {
+      title: "Following"
+    },
+    path: "/following",
+    component: Following,
+    privateRoute: true,
+    className: "header__link",
     exact: true,
     role: ["user", "admin"]
   },
@@ -118,10 +132,11 @@ export const ROUTERS = [
 ];
 
 class App extends React.Component {
+
   render() {
     const { isFetching } = this.props;
     return (
-      <div>
+      <div className="main-wrapper">
         {isFetching ? (
           <div>Loading...</div>
         ) : (

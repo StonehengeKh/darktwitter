@@ -7,7 +7,7 @@ class MyPage extends Component {
 
 
   render() {
-    const { isFetching, myPosts } = this.props;
+    const { isFetching, myPosts, user } = this.props;
     return (
       <div>
         {isFetching ? (
