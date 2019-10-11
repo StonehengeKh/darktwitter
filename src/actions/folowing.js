@@ -13,7 +13,7 @@ export const userFind = id => {
     const res = await gql.request(
       `query user($query:String!){
         UserFind(query: $query){
-          _id, login
+          _id, login, avatar{_id, url}
         }
       }
       `,
@@ -43,7 +43,7 @@ export const loadUsers =  skip => {
     const res = await gql.request(
       `query user($query:String!){
         UserFind(query: $query){
-          _id, login
+          _id, login, avatar{_id, url}
         }
       }
       `,

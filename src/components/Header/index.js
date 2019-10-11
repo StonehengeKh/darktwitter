@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/user";
 import { ROUTERS } from "../../App";
 import { withRouter } from "react-router-dom";
-const url = "http://hipstagram.asmer.fs.a-level.com.ua/";
+import {url} from "../../actions/user";
+import kartinka from "../../assets/img/smile.jpg"
 
 class Header extends React.Component {
   exitClick = event => {
@@ -48,11 +49,13 @@ class Header extends React.Component {
                   : !el.privateRoute && this.renderLi(el)
                 : null
             )}
-            {user && user.avatar && (
+            {user && user.avatar ? 
               <li className="header__item">
-                <img src={url + user.avatar.url} className="avatar-img" />
+                <img src={url + user.avatar.url} className="avatar-img"  alt="avatar"/>
+              </li> : <li className="header__item">
+                <img src={kartinka} className="avatar-img"  alt="avatar" />
               </li>
-            )}
+            }
             {user && (
               <li className="header__item">
                 <Link
