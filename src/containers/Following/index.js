@@ -5,6 +5,7 @@ import * as actions from "../../actions/folowing";
 import { url } from "../../actions/user";
 import kartinka from "../../assets/img/smile.jpg"
 
+
 class Following extends Component {
   render() {
     const { following } = this.props;
