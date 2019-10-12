@@ -18,6 +18,15 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, isFetching: false, fail: true };
     }
 
+    case types.CREATE_NEW_POST_REQUEST: {
+      return { ...state, posts: null, isFetching: true, fail: false };
+    }
+    case types.CREATE_NEW_POST_REQUEST_SUCCESS: {
+      return { ...state, isFetching: false, myPosts: [...state.myPosts, payload] };
+    }
+    case types.CREATE_NEW_POST_REQUEST_FAIL: {
+      return { ...state, isFetching: false, fail: true };
+    }
 
 
     default: {
