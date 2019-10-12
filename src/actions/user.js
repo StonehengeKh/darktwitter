@@ -126,27 +126,43 @@ export const tokenDecode = () => {
 //   };
 // };
 
-const addUserSetings = payload => ({
-  type: types.ADD_USER_SETINGS,
+// const addUserSetingsRequest = () => ({
+//   type: types.ADD_USER_SETINGS_REQUEST
+// });
+
+const addUserSetingsRequestSuccess = payload => ({
+  type: types.ADD_USER_SETINGS_REQUEST_SUCCESS,
   payload
 });
 
+// const addUserSetingsRequestFail = ()=> ({
+//   type: types.ADD_USER_SETINGS_REQUEST_FAIL,
+// });
+
+
+
 export const userFindOne = id => {
   return async dispatch => {
+    // dispatch(addUserSetingsRequest());
     checkToken();
     const res = await gql.request(
       `query user($query:String!){
         UserFindOne(query:$query){
           nick
-          followers{_id},
-          following{_id},
+          followers{_id, avatar{_id, url}, login, nick},
+          following{_id, avatar{_id, url}, login, nick},
           avatar{_id, url}
         }
       }
       `,
      {query: JSON.stringify([{ _id: id }])}
     );
-    dispatch(addUserSetings(res.UserFindOne));
+    if (res.UserFindOne){
+    dispatch(addUserSetingsRequestSuccess(res.UserFindOne));
+    } 
+    // else {
+    //   dispatch(addUserSetingsRequestFail());
+    // }
   };
 };
 

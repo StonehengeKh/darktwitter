@@ -6,6 +6,7 @@ import { NotFound } from "./containers/Nofound";
 import Layout from "./components/Layout";
 import HomePage from "./containers/Home page";
 import Following from "./containers/Following";
+import Followers from "./containers/Followers";
 import MyPage from "./containers/My page";
 import Auth from "./containers/Auth";
 import Post from "./containers/Post";
@@ -47,6 +48,18 @@ export const ROUTERS = [
     },
     path: "/following",
     component: Following,
+    privateRoute: true,
+    className: "header__link",
+    exact: true,
+    role: ["user", "admin"]
+  },  
+  {
+    id: 12,
+    link: {
+      title: "Followers"
+    },
+    path: "/followers",
+    component: Followers,
     privateRoute: true,
     className: "header__link",
     exact: true,

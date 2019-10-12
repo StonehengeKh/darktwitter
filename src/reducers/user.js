@@ -33,9 +33,12 @@ export default (state = initialState, { type, payload }) => {
 		}
 
 		case types.ADD_USER: {
-			return { ...state, user:{id: payload.id, login: payload.login, role: payload.acl[1] }, isFetching: false };
+			return { ...state, user:{id: payload.id, login: payload.login, role: payload.acl[1] },  isFetching: true};
 		}
-		case types.ADD_USER_SETINGS: {
+
+
+
+		case types.ADD_USER_SETINGS_REQUEST_SUCCESS: {
 			return { ...state, user:{...state.user, ...payload }, isFetching: false };
 		}
 

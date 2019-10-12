@@ -24,14 +24,12 @@ class Layout extends Component {
       following,
       loadUserFail
     } = this.props;
-    let skipPost = posts.length;
-    let skipFollowing = following.length;
     switch (location.pathname) {
       case "/":
-        loadFail || loadPosts(skipPost);
+        loadFail || loadPosts(posts.length);
         break;
       case "/following":
-        loadUserFail || loadUsers(skipFollowing);
+        loadUserFail || loadUsers(following.length);
         break;
 
       default:

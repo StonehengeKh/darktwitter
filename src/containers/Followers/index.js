@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./style.css";
+// import "./style.css";
 import * as actions from "../../actions/folowing";
 import { url } from "../../actions/user";
 import kartinka from "../../assets/img/smile.jpg"
 
 
-class Following extends Component {
+class Followers extends Component {
   render() {
-    const { following, user} = this.props;
+    const { followers, user} = this.props;
     return (
       <div>
-        {following && 
-          following.map(userF => {
+        {followers && 
+          followers.map(userF => {
             return <div key={userF._id} className="user-wrap">
               {userF.avatar ? (
                 <img src={url + userF.avatar.url} className="avatar-img" alt="avatar"/>
@@ -25,7 +25,7 @@ class Following extends Component {
               )}
               <p className="user-login">{userF.login}</p>
            
-             {user.following.some(user => user._id === userF._id) ?  <span className="icon-minus"/> :  <span className="icon-plus"/>}
+             {user.followers && user.followers.some(user => user._id === userF._id) ?  null :  <span className="icon-plus"/>}
             </div>
         })}
       </div>
@@ -33,9 +33,9 @@ class Following extends Component {
   }
 }
 
-const mapStateToProps = ({ folowingReduser, userReduser }) => {
+const mapStateToProps = ({ userReduser }) => {
   return {
-    following: folowingReduser.following,
+    followers: userReduser.user.followers,
     user: userReduser.user,
   };
 };
@@ -43,4 +43,4 @@ const mapStateToProps = ({ folowingReduser, userReduser }) => {
 export default connect(
   mapStateToProps,
   actions
-)(Following);
+)(Followers);
