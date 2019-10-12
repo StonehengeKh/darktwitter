@@ -5,6 +5,7 @@ import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { NotFound } from "./containers/Nofound";
 import Layout from "./components/Layout";
 import HomePage from "./containers/Home page";
+import Users from "./containers/Users";
 import Following from "./containers/Following";
 import Followers from "./containers/Followers";
 import MyPage from "./containers/My page";
@@ -44,6 +45,18 @@ export const ROUTERS = [
   {
     id: 11,
     link: {
+      title: "Users"
+    },
+    path: "/Users",
+    component: Users,
+    privateRoute: true,
+    className: "header__link",
+    exact: true,
+    role: ["user", "admin"]
+  },  
+  {
+    id: 12,
+    link: {
       title: "Following"
     },
     path: "/following",
@@ -52,9 +65,9 @@ export const ROUTERS = [
     className: "header__link",
     exact: true,
     role: ["user", "admin"]
-  },  
+  },
   {
-    id: 12,
+    id: 13,
     link: {
       title: "Followers"
     },

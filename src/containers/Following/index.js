@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./style.css";
-import * as actions from "../../actions/folowing";
+// import "./style.css";
+import * as actions from "../../actions/users";
 import { url } from "../../actions/user";
 import kartinka from "../../assets/img/smile.jpg"
 
@@ -23,9 +23,8 @@ class Following extends Component {
                   alt="avatar"
                 />
               )}
-              <p className="user-login">{userF.login}</p>
-           
-             {user.following.some(user => user._id === userF._id) ?  <span className="icon-minus"/> :  <span className="icon-plus"/>}
+              <p className="user-login">{userF.nick || userF.login}</p>
+              <span className="icon-minus"/>
             </div>
         })}
       </div>
@@ -33,9 +32,9 @@ class Following extends Component {
   }
 }
 
-const mapStateToProps = ({ folowingReduser, userReduser }) => {
+const mapStateToProps = ({ userReduser }) => {
   return {
-    following: folowingReduser.following,
+    following: userReduser.user.following,
     user: userReduser.user,
   };
 };

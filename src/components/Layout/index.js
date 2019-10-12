@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Header from "../../components/Header";
 import { loadPosts } from "../../actions/posts";
-import { loadUsers } from "../../actions/folowing";
+import { loadUsers } from "../../actions/users";
 import { connect } from "react-redux";
 import "./Layout.css";
 

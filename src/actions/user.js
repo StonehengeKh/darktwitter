@@ -2,7 +2,7 @@ import * as types from "../actionTypes";
 import jwt_decode from "jwt-decode";
 import { GraphQLClient } from "graphql-request";
 // import { getAllPosts } from "./posts";
-import { userFind } from "./folowing";
+import { userFind } from "./users";
 export const url = "http://hipstagram.asmer.fs.a-level.com.ua/";
 
 export let gql;
