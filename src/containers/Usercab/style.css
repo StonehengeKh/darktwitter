@@ -122,3 +122,18 @@
     font-size: 100%;
   }
 }
+
+.userInfo{
+  right: 0;
+  width: 100%;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userInfo img{
+  width: 40%;
+}
