@@ -8,6 +8,11 @@ import "./style.css";
 
 
 class HomePage extends React.Component {
+
+  componentDidMount(){
+    const { getAllPosts } = this.props;
+    getAllPosts()
+  }
   clicker = () => {
     const { getAllPosts } = this.props;
     getAllPosts();

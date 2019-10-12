@@ -178,9 +178,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({postsReduser}) => {
+const mapStateToProps = ({userReduser}) => {
   return {
-    isFetching: postsReduser.isFetching
+    isFetching: userReduser.isFetching
   };
 };
 

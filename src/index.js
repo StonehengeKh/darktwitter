@@ -7,7 +7,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { tokenDecode, userFindOne } from "./actions/user";
-import { getAllPosts } from "./actions/posts";
+// import { getAllPosts } from "./actions/posts";
 import { getAllMyPosts } from "./actions/myposts";
 import jwt_decode from "jwt-decode";
 
@@ -17,7 +17,7 @@ const token = localStorage.getItem("authToken");
 if (token) {
   store.dispatch(tokenDecode());
   let decode = jwt_decode(localStorage.authToken);
-  store.dispatch(getAllPosts());
+  // store.dispatch(getAllPosts());
   store.dispatch(getAllMyPosts(decode.sub.id));
   store.dispatch(userFindOne(decode.sub.id));
 
