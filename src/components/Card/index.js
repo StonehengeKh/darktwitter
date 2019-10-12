@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 
 function Card(props) {
   return (
-    <div className="all-rec-conteiner" key={props.id}>
-      <p><Link to={`/recipe/${props.id}`}>{props.title}</Link></p>
-      <img alt="img" src={props.file} className="all-rec-img"></img>
+    <div className="all-post-conteiner" key={props.id}>
+      {props.title ? <p><Link to={`/post/${props.id}`}> {props.title} </Link></p> : <p><Link to={`/post/${props.id}`}> Title </Link></p>}
+      {props.text ? <p>{props.text}</p> : null}
+      {props.images ? props.images.map(image=>{
+      return <img key={image._id} alt="img"src={`http://hipstagram.asmer.fs.a-level.com.ua/${image.url}`} className="all-post-img"></img>} 
+  ) : null}
     </div>
   )
 }

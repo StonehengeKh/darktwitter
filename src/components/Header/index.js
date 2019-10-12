@@ -1,19 +1,20 @@
-import React from 'react';
+import React from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions/user";
-import { ROUTERS } from '../../App'
+import { ROUTERS } from "../../App";
 import { withRouter } from "react-router-dom";
+import {url} from "../../actions/user";
+import kartinka from "../../assets/img/smile.jpg"
 
 class Header extends React.Component {
-
   exitClick = event => {
-    const { delUser } = this.props
+    const { delUser } = this.props;
     event.preventDefault();
     delUser();
-    localStorage.removeItem("email")
-  }
+    localStorage.removeItem("authToken");
+  };
 
   renderLi = el => {
     const { location } = this.props;
@@ -21,17 +22,20 @@ class Header extends React.Component {
       <li key={el.id} className="header__item">
         <Link
           className={
-            location.pathname === el.path ? `${el.className} header__link--active` : `${el.className}`
+            location.pathname === el.path
+              ? `${el.className} header__link--active`
+              : `${el.className}`
           }
-          to={el.path}>
+          to={el.path}
+        >
           {el.link.title}
         </Link>
       </li>
     );
   };
-  
+
   render() {
-    const { user, location } = this.props
+    const { user, location } = this.props;
     return (
       <div className="header">
         <nav>
@@ -39,13 +43,41 @@ class Header extends React.Component {
             {ROUTERS.map(el =>
               el.link
                 ? user
-                  ? el.role && el.role.some(el => el === user.role) && this.renderLi(el)
+                  ? el.role &&
+                    el.role.some(el => el === user.role) &&
+                    this.renderLi(el)
                   : !el.privateRoute && this.renderLi(el)
                 : null
             )}
-            {user && <li className="header__item"><Link to="/usercab" className={
-              location.pathname === "/usercab" ? "header__link header__link--active" : "header__link"}>{user.login}</Link></li>}
-            {user && <li className="header__item"><span className="exit icon-exit" onClick={this.exitClick}></span></li>}
+            {user && user.avatar ? 
+              <li className="header__item">
+                <img src={url + user.avatar.url} className="avatar-img"  alt="avatar"/>
+              </li> : <li className="header__item">
+                <img src={kartinka} className="avatar-img"  alt="avatar" />
+              </li>
+            }
+            {user && (
+              <li className="header__item">
+                <Link
+                  to="/usercab"
+                  className={
+                    location.pathname === "/usercab"
+                      ? "header__link header__link--active"
+                      : "header__link"
+                  }
+                >
+                  {user.nick || user.login}
+                </Link>
+              </li>
+            )}
+            {user && (
+              <li className="header__item">
+                <span
+                  className="exit icon-exit"
+                  onClick={this.exitClick}
+                ></span>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
@@ -55,7 +87,7 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.userReduser.user,
+    user: state.userReduser.user
   };
 };
 

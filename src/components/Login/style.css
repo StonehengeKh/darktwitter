@@ -1,7 +1,20 @@
+.wrap-registr,
+.wrap-login{
+  margin-top: 20px;
+}
+
 .input-valid{
   color: blue;
 }
 
 .input-error {
   color:red;
+  border: 2px solid red;
+}
+.span-error {
+  color: red;
+}
+
+.valid-error {
+  border: 2px solid red;
 }

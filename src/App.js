@@ -1,15 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NotFound } from './components/Nofound';
-import HomePage from './components/News';
-import Header from './components/Header';
-import MyPage from './components/My page';
-import Auth from './components/Auth'
-import Post from './components/Post'
-import Admin from './components/Admin';
+import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
+import { NotFound } from "./containers/Nofound";
+import Layout from "./components/Layout";
+import HomePage from "./containers/Home page";
+import Following from "./containers/Following";
+import MyPage from "./containers/My page";
+import Auth from "./containers/Auth";
+import Post from "./containers/Post";
+import Admin from "./containers/Admin";
+import UserCab from "./containers/Usercab";
+import Search from "./containers/Search"
 import "./App.css";
+import { withRouter } from "react-router-dom";
 
 export const ROUTERS = [
   {
@@ -19,23 +23,35 @@ export const ROUTERS = [
     },
     path: "/",
     component: HomePage,
-    privateRoute: false,
+    privateRoute: true,
     className: "header__link",
     exact: true,
     role: ["user", "admin"]
   },
-  // {
-  //   id: 10,
-  //   link: {
-  //     title: ""
-  //   },
-  //   path: "/search",
-  //   component: Search,
-  //   privateRoute: false,
-  //   className: "header__link icon-search",
-  //   exact: true,
-  //   role: ["user", "admin"]
-  // },
+  {
+    id: 10,
+    link: {
+      title: ""
+    },
+    path: "/search",
+    component: Search,
+    privateRoute: true,
+    className: "header__link icon-search",
+    exact: true,
+    role: ["user", "admin"]
+  },
+  {
+    id: 11,
+    link: {
+      title: "Following"
+    },
+    path: "/following",
+    component: Following,
+    privateRoute: true,
+    className: "header__link",
+    exact: true,
+    role: ["user", "admin"]
+  },
   {
     id: 2,
     link: {
@@ -44,7 +60,7 @@ export const ROUTERS = [
     path: "/My page",
     component: MyPage,
     className: "header__link",
-    privateRoute: false,
+    privateRoute: true,
     exact: true,
     role: ["user", "admin"]
   },
@@ -71,31 +87,31 @@ export const ROUTERS = [
     privateRoute: false,
     exact: true
   },
-  // {
-  //   id: 5,
-  //   path: "/usercab",
-  //   component: UserCab,
-  //   privateRoute: true,
-  //   exact: true,
-  //   role: ["user", "admin"]
-  // },
-  // {
-  //   id: 6,
-  //   link: {
-  //     title: "Admin"
-  //   },
-  //   path: "/admin",
-  //   component: Admin,
-  //   privateRoute: true,
-  //   className: "header__link",
-  //   exact: true,
-  //   role: ["admin"]
-  // },
+  {
+    id: 5,
+    path: "/usercab",
+    component: UserCab,
+    privateRoute: true,
+    exact: true,
+    role: ["user", "admin"]
+  },
+  {
+    id: 6,
+    link: {
+      title: "Admin"
+    },
+    path: "/admin",
+    component: Admin,
+    privateRoute: true,
+    className: "header__link",
+    exact: true,
+    role: ["admin"]
+  },
   {
     id: 7,
-    path: "/posts/:id",
+    path: "/post/:id",
     component: Post,
-    privateRoute: false,
+    privateRoute: true,
     exact: true,
     role: ["user", "admin"]
   },
@@ -115,39 +131,57 @@ export const ROUTERS = [
   }
 ];
 
+class App extends React.Component {
 
-function App() {
-  return (
-    <Router>
-      <Header/>
-      <Switch>
-        {ROUTERS.map(route => {
-          const { path, component, privateRoute, exact, role, id } = route;
-          return privateRoute ? (
-            <PrivateRoute
-              exact={exact}
-              path={path}
-              component={component}
-              key={id}
-              role={role}
-            />
-          ) : (
-            <Route exact={exact} path={path} component={component} key={id} />
-          );
-        })}
-      </Switch>
-    </Router>
-  );
+  render() {
+    const { isFetching } = this.props;
+    return (
+      <div className="main-wrapper">
+        {isFetching ? (
+          <div>Loading...</div>
+        ) : (
+          <Router>
+              <Layout>
+                <Switch>
+                  {ROUTERS.map(route => {
+                    const {
+                      path,
+                      component,
+                      privateRoute,
+                      exact,
+                      role,
+                      id
+                    } = route;
+                    return privateRoute ? (
+                      <PrivateRoute
+                        exact={exact}
+                        path={path}
+                        component={component}
+                        key={id}
+                        role={role}
+                      />
+                    ) : (
+                      <Route
+                        exact={exact}
+                        path={path}
+                        component={component}
+                        key={id}
+                      />
+                    );
+                  })}
+                </Switch>
+              </Layout>
+          </Router>
+        )}
+      </div>
+    );
+  }
 }
 
-
-const mapStateToProps = state => {
+const mapStateToProps = ({postsReduser}) => {
   return {
-
+    isFetching: postsReduser.isFetching
   };
 };
 
-export default connect(
-  mapStateToProps
-)(App);
-
+export default connect(mapStateToProps)(App);

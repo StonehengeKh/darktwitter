@@ -1,0 +1,18 @@
+.butt {
+  font-size: 18px;
+  background-color: #0023ff;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  user-select: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 5px #000000;
+  transition: 0.2s;
+  margin: 20px 10px 0 10px;
+}
+
+.butt:active {
+  transform: scale(0.97);
+  box-shadow: inset 2px 2px 5px #000000;
+}
