@@ -38,8 +38,8 @@ class Header extends React.Component {
     const { user, location } = this.props;
     return (
       <div className="header">
-        <nav>
-          <ul>
+        <nav className="nav-menu">
+          <ul className="nav-menu-ul">
             {ROUTERS.map(el =>
               el.link
                 ? user
@@ -49,14 +49,14 @@ class Header extends React.Component {
                   : !el.privateRoute && this.renderLi(el)
                 : null
             )}
-            {user && user.avatar ? 
+            {localStorage.authToken ? user && user.avatar ? 
               <li className="header__item">
                 <img src={url + user.avatar.url} className="avatar-img"  alt="avatar"/>
               </li> : <li className="header__item">
                 <img src={kartinka} className="avatar-img"  alt="avatar" />
-              </li>
+              </li> : null
             }
-            {user && (
+            {localStorage.authToken ? user && (
               <li className="header__item">
                 <Link
                   to="/usercab"
@@ -68,16 +68,16 @@ class Header extends React.Component {
                 >
                   {user.nick || user.login}
                 </Link>
-              </li>
-            )}
-            {user && (
+              </li> 
+            ): null}
+            {localStorage.authToken ?user && (
               <li className="header__item">
                 <span
                   className="exit icon-exit"
                   onClick={this.exitClick}
                 ></span>
               </li>
-            )}
+            ): null}
           </ul>
         </nav>
       </div>

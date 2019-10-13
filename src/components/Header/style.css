@@ -13,7 +13,7 @@
   object-fit: cover;
 }
 
-nav {
+.nav-menu {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +26,7 @@ nav {
   color: #0023ff;
 }
 
-ul {
+.nav-menu-ul {
   display: flex;
   margin: 0;
   padding: 0;

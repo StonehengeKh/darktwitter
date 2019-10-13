@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import { loadPosts } from "../../actions/posts";
 import { loadUsers } from "../../actions/users";
 import { connect } from "react-redux";
+import Aside from "../Aside"
 import "./Layout.css";
 
 class Layout extends Component {
@@ -41,6 +42,7 @@ class Layout extends Component {
     const { children, loadFetching, loadUserFetching } = this.props;
     return (
       <div className="layout-block">
+        <Aside/>
         <div
           className="layout-block-page"
           onScroll={

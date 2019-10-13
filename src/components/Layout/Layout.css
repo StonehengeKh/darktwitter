@@ -1,18 +1,20 @@
 .layout-block {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     margin: 0 auto;
     width: 100%;
-    max-width: 1280px;
-    box-shadow: 0 0 25px 20px black;
+    /* max-width: 1280px; */
+    /* box-shadow: 0 0 25px 20px black; */
 }
 
 .layout-block-page {
-    background: url("../../assets/img/img1.jpg") 0 50% no-repeat;
+    /* background: url("../../assets/img/img1.jpg") 0 50% no-repeat; */
     background-size: cover;
+    flex-grow: 2;
     height: 100vh;
-    box-shadow: 0 0 15px 5px white;
+    /* box-shadow: 0 0 15px 5px white; */
     position: relative;
     overflow: auto;
 }
+
 
