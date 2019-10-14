@@ -7,12 +7,15 @@ import kartinka from "../../assets/img/smile.jpg";
 class Users extends Component {
   addFollowin = id => {
     const { user, userUpsertFollowing } = this.props;
-    let newFollowing = user.following.map(x => {
-      delete x.avatar;
-      delete x.nick;
-      delete x.login;
-      return x;
-    });
+
+    let newFollowing = user.following
+      ? user.following.map(x => {
+          delete x.avatar;
+          delete x.nick;
+          delete x.login;
+          return x;
+        })
+      : ( []);
     newFollowing.push({ _id: id });
     console.log(newFollowing);
     userUpsertFollowing(user.id, newFollowing);
@@ -48,8 +51,11 @@ class Users extends Component {
                 ) : (
                   <img src={kartinka} className="avatar-img" alt="avatar" />
                 )}
-                {userF.login && <p className="user-login">{userF.nick || userF.login}</p>}
-                {user.following && user.following.some(user => user._id === userF._id) ? (
+                {userF.login && (
+                  <p className="user-login">{userF.nick || userF.login}</p>
+                )}
+                {user.following &&
+                user.following.some(user => user._id === userF._id) ? (
                   <span
                     className="followers-border icon-minus"
                     onClick={() => this.delFollowin(userF._id)}
