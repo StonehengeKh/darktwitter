@@ -43,8 +43,8 @@ class Layout extends Component {
     return (
       <div className="layout-block">
         {user && <Aside />}
-        <section className="layout-center">
-         {user &&  <Header />}
+        {/* <section className="layout-center"> */}
+         {/* {user &&  <Header />} */}
           <div
             className="layout-block-page"
             onScroll={
@@ -55,10 +55,12 @@ class Layout extends Component {
                 : e => this.scroll(e)
             }
           >
-            {/* <Header /> */}
+                     {user && <Header />}
+            <div className="margin-top"/>
+   
             {children}
           </div>
-        </section>
+        {/* </section> */}
       </div>
     );
   }
