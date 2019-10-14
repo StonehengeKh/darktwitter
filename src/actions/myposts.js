@@ -34,7 +34,7 @@ export const getAllMyPosts = id => {
             }
           } `,
       // { query: JSON.stringify([{___owner: {$in: [...id]}}])}
-      { query: JSON.stringify([{___owner: id }])}
+      { query: JSON.stringify([{___owner: id },{ sort: ["_id", -1]}])}
     );
     if(res.PostFind){ 
       dispatch(getAllMyPostsRuguestSuccess(res.PostFind))
@@ -43,6 +43,11 @@ export const getAllMyPosts = id => {
     }
   };
 };
+
+export const refreshMyPost = payload => ({
+  type: types.REFRESH_MY_POST,
+  payload
+})
 
 // export const userFindOne = id => {
 //   return async dispatch => {

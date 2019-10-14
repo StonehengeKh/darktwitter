@@ -48,7 +48,9 @@ export const addLike = id => {
               }`,
             { like: { _id: id  } }
           );
-          dispatch(delLikeReguestSuccess([res.LikeDelete._id, postid])) ;
+          if(res.LikeDelete){
+            dispatch(delLikeReguestSuccess([res.LikeDelete._id, postid])) ;
+          }
   };
  }
 

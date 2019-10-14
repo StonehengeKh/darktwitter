@@ -39,12 +39,12 @@ class Layout extends Component {
   };
 
   render() {
-    const { children, loadFetching, loadUserFetching } = this.props;
+    const { children, loadFetching, loadUserFetching, user } = this.props;
     return (
       <div className="layout-block">
-        <Aside />
+       {user&& <Aside />}
         <section className="layout-center">
-          <Header />
+          {user && <Header />}
           <div
             className="layout-block-page"
             onScroll={
@@ -64,14 +64,15 @@ class Layout extends Component {
   }
 }
 
-const mapStateToProps = ({ postsReduser, folowingReduser }) => {
+const mapStateToProps = ({ postsReduser, folowingReduser, userReduser }) => {
   return {
     posts: postsReduser.posts,
     loadFetching: postsReduser.loadFetching,
     loadFail: postsReduser.loadFail,
     following: folowingReduser.following,
     loadUserFail: folowingReduser.loadUserFail,
-    loadUserFetching: folowingReduser.loadUserFetching
+    loadUserFetching: folowingReduser.loadUserFetching,
+    user: userReduser.user
   };
 };
 
