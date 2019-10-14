@@ -15,13 +15,13 @@ import Admin from "./containers/Admin";
 import UserCab from "./containers/Usercab";
 import Search from "./containers/Search";
 import "./App.css";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 
 export const ROUTERS = [
   {
     id: 1,
     link: {
-      title: "Home page"
+      title: "Home"
     },
     path: "/",
     component: HomePage,
