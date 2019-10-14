@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
-import kartinka from "../../assets/img/smile.jpg"
-
+import kartinka from "../../assets/img/smile.jpg";
 
 class Following extends Component {
-
   delFollowin = id => {
     const { user, userUpsertFollowing } = this.props;
     let newFollowing = user.following
@@ -21,27 +19,30 @@ class Following extends Component {
   };
 
   render() {
-    const { following} = this.props;
+    const { following } = this.props;
     return (
       <div>
-        {following && 
+        {following &&
           following.map(userF => {
-            return <div key={userF._id} className="user-wrap">
-              {userF.avatar ? (
-                <img src={url + userF.avatar.url} className="avatar-img" alt="avatar"/>
-              ) : (
-                <img
-                  src={kartinka}
-                  className="avatar-img"
-                  alt="avatar"
+            return (
+              <div key={userF._id} className="user-wrap">
+                {userF.avatar ? (
+                  <img
+                    src={url + userF.avatar.url}
+                    className="avatar-img"
+                    alt="avatar"
+                  />
+                ) : (
+                  <img src={kartinka} className="avatar-img" alt="avatar" />
+                )}
+                <p className="user-login">{userF.nick || userF.login}</p>
+                <span
+                  className="followers-border icon-minus"
+                  onClick={() => this.delFollowin(userF._id)}
                 />
-              )}
-              <p className="user-login">{userF.nick || userF.login}</p>
-              <span className="followers-border icon-minus"
-              onClick={() => this.delFollowin(userF._id)}
-              />
-            </div>
-        })}
+              </div>
+            );
+          })}
       </div>
     );
   }
@@ -50,7 +51,7 @@ class Following extends Component {
 const mapStateToProps = ({ userReduser }) => {
   return {
     following: userReduser.user.following,
-    user: userReduser.user,
+    user: userReduser.user
   };
 };
 
