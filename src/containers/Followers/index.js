@@ -39,9 +39,9 @@ class Followers extends Component {
                 />
               )}
               <p className="user-login">{userF.nick || userF.login}</p>
-             {user.followers && user.followers.some(user => user.id === userF._id) ?  null :  <span className="followers-border icon-plus"
-              onClick={() => this.addFollowin(userF._id)}
-             />}
+             {user.following && user.following.some(user => user._id === userF._id) ?  null : <span className="followers-border icon-plus"
+              onClick={() => this.addFollowin(userF._id)} 
+             /> }
             </div>
         })}
       </div>
