@@ -24,8 +24,23 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-home3:before {
+  content: "\e902";
+}
 .icon-quill:before {
   content: "\e907";
+}
+.icon-file-text2:before {
+  content: "\e926";
+}
+.icon-users:before {
+  content: "\e972";
+}
+.icon-user-plus:before {
+  content: "\e973";
+}
+.icon-user-minus:before {
+  content: "\e974";
 }
 .icon-search:before {
   content: "\e986";

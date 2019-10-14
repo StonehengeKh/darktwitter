@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 class MyPage extends Component {
-
-
   render() {
-    const { isFetching, myPosts} = this.props;
+    const { isFetching, myPosts } = this.props;
     return (
       <div>
         {isFetching ? (
@@ -27,7 +25,7 @@ class MyPage extends Component {
   }
 }
 
-const mapStateToProps = ({userReduser, myPostsReduser}) => {
+const mapStateToProps = ({ userReduser, myPostsReduser }) => {
   return {
     user: userReduser.user,
     isFetching: myPostsReduser.isFetching,
@@ -35,6 +33,4 @@ const mapStateToProps = ({userReduser, myPostsReduser}) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-)(MyPage);
+export default connect(mapStateToProps)(MyPage);

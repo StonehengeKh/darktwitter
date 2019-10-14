@@ -40,7 +40,7 @@ const UserCab = ({
       {!!userAvatar && (
         <section className="userInfo">
           <h2>{user.nick}</h2>
-          <img src={userAvatar} alt="avatar" />
+          <img src={userAvatar} alt="avatar" className="avatar"/>
           <div className="generalInfo"></div>
           <button onClick={() => openSettings(!isSetOpen)}>EDIT</button>
           {isSetOpen && (

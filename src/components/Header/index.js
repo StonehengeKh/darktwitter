@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/user";
 import { ROUTERS } from "../../App";
 import { withRouter } from "react-router-dom";
-import {url} from "../../actions/user";
-import kartinka from "../../assets/img/smile.jpg"
+import { url } from "../../actions/user";
+import kartinka from "../../assets/img/smile.jpg";
 
 class Header extends React.Component {
   exitClick = event => {
@@ -28,7 +28,7 @@ class Header extends React.Component {
           }
           to={el.path}
         >
-          {el.link.title}
+          <span className="header__span-text">{el.link.title}</span>
         </Link>
       </li>
     );
@@ -49,14 +49,24 @@ class Header extends React.Component {
                   : !el.privateRoute && this.renderLi(el)
                 : null
             )}
-            {localStorage.authToken && user ? user.avatar ? 
-              <li className="header__item">
-                <img src={url + user.avatar.url} className="avatar-img"  alt="avatar"/>
-              </li> : <li className="header__item">
-                <img src={kartinka} className="avatar-img"  alt="avatar" />
-              </li> : null
-            }
-            {localStorage.authToken && user && (
+            {localStorage.authToken && user ? (
+              user.avatar ? (
+                <li className="header__item">
+                  <Link to="/usercab">
+                    <img
+                      src={url + user.avatar.url}
+                      className="avatar-img"
+                      alt="avatar"
+                    />
+                  </Link>
+                </li>
+              ) : (
+                <li className="header__item">
+                 <Link to="/usercab"><img src={kartinka} className="avatar-img" alt="avatar" /></Link> 
+                </li>
+              )
+            ) : null}
+            {/* {localStorage.authToken && user && (
               <li className="header__item">
                 <Link
                   to="/usercab"
@@ -68,8 +78,8 @@ class Header extends React.Component {
                 >
                   {user.nick || user.login}
                 </Link>
-              </li> 
-            )}
+              </li>
+            )} */}
             {localStorage.authToken && user && (
               <li className="header__item">
                 <span

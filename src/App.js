@@ -26,19 +26,19 @@ export const ROUTERS = [
     path: "/",
     component: HomePage,
     privateRoute: true,
-    className: "header__link",
+    className: "header__link icon-home3",
     exact: true,
     role: ["user", "admin"]
   },
   {
     id: 10,
     link: {
-      title: ""
+      title: "Search"
     },
     path: "/search",
     component: Search,
     privateRoute: true,
-    className: "header__link icon-search",
+    className: "icon-search header__link",
     exact: true,
     role: ["user", "admin"]
   },
@@ -50,7 +50,7 @@ export const ROUTERS = [
     path: "/Users",
     component: Users,
     privateRoute: true,
-    className: "header__link",
+    className: "header__link icon-users",
     exact: true,
     role: ["user", "admin"]
   },
@@ -62,7 +62,7 @@ export const ROUTERS = [
     path: "/following",
     component: Following,
     privateRoute: true,
-    className: "header__link",
+    className: "header__link icon-users",
     exact: true,
     role: ["user", "admin"]
   },
@@ -74,7 +74,7 @@ export const ROUTERS = [
     path: "/followers",
     component: Followers,
     privateRoute: true,
-    className: "header__link",
+    className: "header__link icon-users",
     exact: true,
     role: ["user", "admin"]
   },
@@ -85,7 +85,7 @@ export const ROUTERS = [
     },
     path: "/My page",
     component: MyPage,
-    className: "header__link",
+    className: "header__link icon-file-text2",
     privateRoute: true,
     exact: true,
     role: ["user", "admin"]
