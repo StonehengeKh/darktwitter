@@ -24,6 +24,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 .icon-home3:before {
   content: "\e902";
 }
@@ -42,11 +43,17 @@
 .icon-user-minus:before {
   content: "\e974";
 }
+.icon-user-check:before {
+  content: "\e975";
+}
 .icon-search:before {
   content: "\e986";
 }
 .icon-heart:before {
   content: "\e9da";
+}
+.icon-man-woman:before {
+  content: "\e9de";
 }
 .icon-plus:before {
   content: "\ea0a";

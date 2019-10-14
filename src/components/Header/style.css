@@ -50,6 +50,8 @@ a {
   padding-bottom: 5px;
 }
 
+.header .icon-user-check,
+.header .icon-man-woman,
 .header .icon-users,
 .header .icon-file-text2,
 .header .icon-home3,
@@ -58,6 +60,8 @@ a {
 .header .icon-exit {
   font-size: 25px;
 }
+.header .icon-user-check:hover,
+.header .icon-man-woman:hover,
 .header .icon-users:hover,
 .header .icon-file-text2:hover,
 .header .icon-home3:hover,
@@ -71,6 +75,10 @@ a {
   list-style: none;
   margin: 10px;
   font-size: 75%;
+}
+
+.header__span-text{
+  display: none;
 }
 
 .header__span-text{
@@ -93,5 +101,9 @@ a {
   .header__item {
     font-size: 100%;
   }
+  .header__span-text{
+    display: inline-block;
+  }
+  
 }
 

@@ -62,7 +62,7 @@ export const ROUTERS = [
     path: "/following",
     component: Following,
     privateRoute: true,
-    className: "header__link icon-users",
+    className: "header__link icon-user-check",
     exact: true,
     role: ["user", "admin"]
   },
@@ -74,7 +74,7 @@ export const ROUTERS = [
     path: "/followers",
     component: Followers,
     privateRoute: true,
-    className: "header__link icon-users",
+    className: "header__link icon-man-woman",
     exact: true,
     role: ["user", "admin"]
   },

@@ -35,7 +35,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { user, location } = this.props;
+    const { user } = this.props;
     return (
       <div className="header">
         <nav className="nav-menu">
@@ -62,7 +62,9 @@ class Header extends React.Component {
                 </li>
               ) : (
                 <li className="header__item">
-                 <Link to="/usercab"><img src={kartinka} className="avatar-img" alt="avatar" /></Link> 
+                  <Link to="/usercab">
+                    <img src={kartinka} className="avatar-img" alt="avatar" />
+                  </Link>
                 </li>
               )
             ) : null}
