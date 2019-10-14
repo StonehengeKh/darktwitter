@@ -49,7 +49,7 @@ class Users extends Component {
                   <img src={kartinka} className="avatar-img" alt="avatar" />
                 )}
                 {userF.login && <p className="user-login">{userF.nick || userF.login}</p>}
-                {user.following && user.following.some(user => user.id === userF._id) ? (
+                {user.following && user.following.some(user => user._id === userF._id) ? (
                   <span
                     className="followers-border icon-minus"
                     onClick={() => this.delFollowin(userF._id)}
