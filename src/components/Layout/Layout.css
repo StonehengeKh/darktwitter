@@ -3,6 +3,7 @@
     /* flex-direction: column; */
     margin: 0 auto;
     width: 100%;
+    height: 100vh;
     /* max-width: 1280px; */
     /* box-shadow: 0 0 25px 20px black; */
 }
@@ -17,4 +18,11 @@
     overflow: auto;
 }
 
+.layout-center {
+    width: 100%;
+    height: 100vh;
+}
 
+.layout-center-top{
+    height: 80px;
+}

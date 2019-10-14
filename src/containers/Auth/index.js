@@ -36,8 +36,7 @@ export class Auth extends Component {
         {mailExists && (
           <p className="error text_response">Email already exists</p>
         )}
-        {user ? <p>{user.login}</p> : null}
-        <Route render={() => (user ? <Redirect to="/" /> : null)} />
+        <Route render={() => (localStorage.authToken ? <Redirect to="/" /> : null)} />
       </div>
     );
   }

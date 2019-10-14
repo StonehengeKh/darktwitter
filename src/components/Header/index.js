@@ -42,21 +42,21 @@ class Header extends React.Component {
           <ul className="nav-menu-ul">
             {ROUTERS.map(el =>
               el.link
-                ? user
+                ? localStorage.authToken && user
                   ? el.role &&
                     el.role.some(el => el === user.role) &&
                     this.renderLi(el)
                   : !el.privateRoute && this.renderLi(el)
                 : null
             )}
-            {localStorage.authToken ? user && user.avatar ? 
+            {localStorage.authToken && user ? user.avatar ? 
               <li className="header__item">
                 <img src={url + user.avatar.url} className="avatar-img"  alt="avatar"/>
               </li> : <li className="header__item">
                 <img src={kartinka} className="avatar-img"  alt="avatar" />
               </li> : null
             }
-            {localStorage.authToken ? user && (
+            {localStorage.authToken && user && (
               <li className="header__item">
                 <Link
                   to="/usercab"
@@ -69,15 +69,15 @@ class Header extends React.Component {
                   {user.nick || user.login}
                 </Link>
               </li> 
-            ): null}
-            {localStorage.authToken ?user && (
+            )}
+            {localStorage.authToken && user && (
               <li className="header__item">
                 <span
                   className="exit icon-exit"
                   onClick={this.exitClick}
                 ></span>
               </li>
-            ): null}
+            )}
           </ul>
         </nav>
       </div>
