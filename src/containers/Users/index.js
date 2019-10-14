@@ -7,7 +7,6 @@ import kartinka from "../../assets/img/smile.jpg";
 class Users extends Component {
   addFollowin = id => {
     const { user, userUpsertFollowing } = this.props;
-
     let newFollowing = user.following
       ? user.following.map(x => {
           delete x.avatar;

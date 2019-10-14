@@ -9,12 +9,14 @@ class Followers extends Component {
 
   addFollowin = id => {
     const { user, userUpsertFollowing } = this.props;
-    let newFollowing = user.following.map(x => {
-      delete x.avatar;
-      delete x.nick;
-      delete x.login;
-      return x;
-    });
+    let newFollowing = user.following
+      ? user.following.map(x => {
+          delete x.avatar;
+          delete x.nick;
+          delete x.login;
+          return x;
+        })
+      : ( []);
     newFollowing.push({ _id: id });
     console.log(newFollowing);
     userUpsertFollowing(user.id, newFollowing);
