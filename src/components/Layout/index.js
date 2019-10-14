@@ -22,15 +22,15 @@ class Layout extends Component {
       loadFail,
       loadPosts,
       loadUsers,
-      following,
+      users,
       loadUserFail
     } = this.props;
     switch (location.pathname) {
       case "/":
         loadFail || loadPosts(posts.length);
         break;
-      case "/following":
-        loadUserFail || loadUsers(following.length);
+      case "/users":
+        loadUserFail || loadUsers(users.length);
         break;
 
       default:
@@ -39,41 +39,37 @@ class Layout extends Component {
   };
 
   render() {
-    const { children, loadFetching, loadUserFetching, user} = this.props;
+    const { children, loadFetching, loadUserFetching, user } = this.props;
     return (
       <div className="layout-block">
         {user && <Aside />}
-        {/* <section className="layout-center"> */}
-         {/* {user &&  <Header />} */}
-          <div
-            className="layout-block-page"
-            onScroll={
-              loadFetching
-                ? null
-                : loadUserFetching
-                ? null
-                : e => this.scroll(e)
-            }
-          >
-                     {user && <Header />}
-            <div className="margin-top"/>
-   
+        <section
+          className="layout-center"
+          onScroll={
+            loadFetching ? null : loadUserFetching ? null : e => this.scroll(e)
+          }
+        >
+          {user && <Header />}
+          <div className="layout-block-page">
+            {/* {user && <Header />} */}
+            <div className="margin-top" />
+
             {children}
           </div>
-        {/* </section> */}
+        </section>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ postsReduser, folowingReduser, userReduser }) => {
+const mapStateToProps = ({ postsReduser, usersReduser, userReduser }) => {
   return {
     posts: postsReduser.posts,
     loadFetching: postsReduser.loadFetching,
     loadFail: postsReduser.loadFail,
-    following: folowingReduser.following,
-    loadUserFail: folowingReduser.loadUserFail,
-    loadUserFetching: folowingReduser.loadUserFetching,
+    users: usersReduser.users,
+    loadUserFail: usersReduser.loadUserFail,
+    loadUserFetching: usersReduser.loadUserFetching,
     user: userReduser.user
   };
 };

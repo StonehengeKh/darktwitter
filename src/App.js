@@ -47,7 +47,7 @@ export const ROUTERS = [
     link: {
       title: "Users"
     },
-    path: "/Users",
+    path: "/users",
     component: Users,
     privateRoute: true,
     className: "header__link icon-users",

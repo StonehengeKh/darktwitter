@@ -104,27 +104,7 @@ export const tokenDecode = () => {
   };
 };
 
-// export const getPost = () => {
-//   return async dispatch => {
-//     checkToken();
-//     const res = await gql.request(
-//       `query postAll{
-//         PostFind(query: "[{}]"){
-//           _id,
-//           text,
-//           title,
-//           images{_id, url}
-//           owner{_id},
-//           likes{_id},
-//           comments{
-//             _id, text
-//           }
-//         }
-//       } `
-//     );
-//     console.log(res);
-//   };
-// };
+
 
 // const addUserSetingsRequest = () => ({
 //   type: types.ADD_USER_SETINGS_REQUEST
@@ -166,23 +146,23 @@ export const userFindOne = id => {
   };
 };
 
-const UserUpsertNickReguest = () => ({
+const userUpsertNickReguest = () => ({
   type: types.USER_UPSERT_NICK_REQUEST
 });
 
-const UserUpsertNickReguestSuccess = payload => ({
+const userUpsertNickReguestSuccess = payload => ({
   type: types.USER_UPSERT_NICK_REQUEST_SUCCESS,
   payload
 });
 
-const UserUpsertNickReguestFail = () => ({
+const userUpsertNickReguestFail = () => ({
   type: types.USER_UPSERT_NICK_REQUEST_FAIL
 });
 
 
-export const UserUpsertNick = (id, nick) => {
+export const userUpsertNick = (id, nick) => {
   return async dispatch => {
-    dispatch(UserUpsertNickReguest());
+    dispatch(userUpsertNickReguest());
     checkToken();
     const res = await gql.request(
       `mutation UserUpsert($user: UserInput){
@@ -194,30 +174,30 @@ export const UserUpsertNick = (id, nick) => {
       { user: { _id: id, nick: nick } }
     );
     if (res.UserUpsert.nick) {
-      dispatch(UserUpsertNickReguestSuccess(res.UserUpsert.nick));
+      dispatch(userUpsertNickReguestSuccess(res.UserUpsert.nick));
     } else {
-      dispatch(UserUpsertNickReguestFail());
+      dispatch(userUpsertNickReguestFail());
     }
   };
 };
 
-const UserUpsertAvatarReguest = () => ({
+const userUpsertAvatarReguest = () => ({
   type: types.USER_UPSERT_AVATAR_REQUEST
 });
 
-const UserUpsertAvatarReguestSuccess = payload => ({
+const userUpsertAvatarReguestSuccess = payload => ({
   type: types.USER_UPSERT_AVATAR_REQUEST_SUCCESS,
   payload
 });
 
-const UserUpsertAvatarkReguestFail = () => ({
+const userUpsertAvatarkReguestFail = () => ({
   type: types.USER_UPSERT_AVATAR_REQUEST_FAIL
 });
 
 
-export const UserUpsertAvatar = (id, imageId) => {
+export const userUpsertAvatar = (id, imageId) => {
   return async dispatch => {
-    dispatch(UserUpsertAvatarReguest());
+    dispatch(userUpsertAvatarReguest());
     checkToken();
     const res = await gql.request(
       `mutation UserUpsert($user: UserInput){
@@ -229,10 +209,45 @@ export const UserUpsertAvatar = (id, imageId) => {
       { user: { _id: id, avatar:{_id:imageId}} }
     );
     if (res.UserUpsert.avatar) {
-      dispatch(UserUpsertAvatarReguestSuccess(res.UserUpsert.avatar));
+      dispatch(userUpsertAvatarReguestSuccess(res.UserUpsert.avatar));
     } else {
-      dispatch(UserUpsertAvatarkReguestFail());
+      dispatch(userUpsertAvatarkReguestFail());
     }
   };
 };
 
+
+const userUpsertFollowingReguest = () => ({
+  type: types.USER_UPSERT_FOLLOWING_REQUEST
+});
+
+const userUpsertFollowingReguestSuccess = payload => ({
+  type: types.USER_UPSERT_FOLLOWING_REQUEST_SUCCESS,
+  payload
+});
+
+const userUpsertFollowingkReguestFail = () => ({
+  type: types.USER_UPSERT_FOLLOWING_REQUEST_FAIL
+});
+
+
+export const userUpsertFollowing = (id, following) => {
+  return async dispatch => {
+    dispatch(userUpsertFollowingReguest());
+    checkToken();
+    const res = await gql.request(
+      `mutation UserUpsert($user: UserInput){
+        UserUpsert(user: $user){
+          following{_id, avatar{_id, url}, login, nick}
+        }
+      }
+      `,
+      { user: { _id: id, following: following } }
+    );
+    if (res.UserUpsert.following) {
+      dispatch(userUpsertFollowingReguestSuccess(res.UserUpsert.following));
+    } else {
+      dispatch(userUpsertFollowingkReguestFail());
+    }
+  };
+};

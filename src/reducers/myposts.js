@@ -1,7 +1,7 @@
 import * as types from "../actionTypes";
 
 const initialState = {
-  myPosts: null,
+  myPosts: [],
   isFetching: false,
   fail: false
 };
@@ -9,7 +9,7 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case types.GET_ALL_MY_POSTS_REQUEST: {
-      return { ...state, posts: null, isFetching: true, fail: false };
+      return { ...state,  isFetching: true, fail: false };
     }
     case types.GET_ALL_MY_POSTS_REQUEST_SUCCESS: {
       return { ...state, isFetching: false, myPosts: payload };
@@ -19,7 +19,7 @@ export default (state = initialState, { type, payload }) => {
     }
 
     case types.CREATE_NEW_POST_REQUEST: {
-      return { ...state, posts: null, isFetching: true, fail: false };
+      return { ...state, isFetching: true, fail: false };
     }
     case types.CREATE_NEW_POST_REQUEST_SUCCESS: {
       return { ...state, isFetching: false, myPosts: [...state.myPosts, payload] };

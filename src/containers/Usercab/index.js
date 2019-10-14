@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import {createNewPost} from "../../actions/addPost"
 import SettingMenu from "../../components/settingMenu";
 import "./style.css";
-import {UserUpsertNick,UserUpsertAvatar } from "../../actions/user";
+import {userUpsertNick,userUpsertAvatar } from "../../actions/user";
 import Post from "../../components/userPagePostItem";
 
 const UserCab = ({
   user,
-  UserUpsertNick,
-  UserUpsertAvatar,
+  userUpsertNick,
+  userUpsertAvatar,
   upsertFetching,
   createNewPost,
   posts
@@ -22,7 +22,7 @@ const UserCab = ({
   const nickChange = e => setNick(e.target.value);
   const nickClear = () => setNick("");
   const send = () => {
-    UserUpsertNick(user.id, nick);
+    userUpsertNick(user.id, nick);
     nickClear();
   };
   let userAvatar;
@@ -49,7 +49,7 @@ const UserCab = ({
               user={user}
               nickHandler={nickChange}
               sendHandler={send}
-              UserUpsertAvatar={UserUpsertAvatar}
+              userUpsertAvatar={userUpsertAvatar}
               nick={nick}
             />
           )}
@@ -84,5 +84,5 @@ const mapStateToProps = ({ userReduser, myPostsReduser }) => {
 
 export default connect(
   mapStateToProps,
-  {UserUpsertNick,UserUpsertAvatar, createNewPost }
+  {userUpsertNick,userUpsertAvatar, createNewPost }
 )(UserCab);

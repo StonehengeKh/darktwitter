@@ -3,7 +3,7 @@ import Dropzone from "react-dropzone";
 
 const imageMaxSize = 1024 * 1024;
 
-const SettingMenu = ({upsertFetching, user, nickHandler, sendHandler, UserUpsertAvatar, nick}) => {
+const SettingMenu = ({upsertFetching, user, nickHandler, sendHandler, userUpsertAvatar, nick}) => {
     const handleOnDrop = async (files, rejectedFile) => {
         // console.log("file rejected", rejectedFile);
         if (files && files.length > 0) {
@@ -19,7 +19,7 @@ const SettingMenu = ({upsertFetching, user, nickHandler, sendHandler, UserUpsert
           })).text();
           let avatar = JSON.parse(res);
           if (avatar._id) {
-            UserUpsertAvatar(user.id, avatar._id);
+            userUpsertAvatar(user.id, avatar._id);
           }
         }
       };

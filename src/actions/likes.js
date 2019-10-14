@@ -22,35 +22,37 @@ export const addLike = id => {
                  }`,
       { like: { post: { _id: id } } }
     );
-    if (res.LikeUpsert){
-    dispatch(addLikeReguestSuccess([res.LikeUpsert, id]));
+    if (res.LikeUpsert) {
+      dispatch(addLikeReguestSuccess([res.LikeUpsert, id]));
     }
   };
 };
-  const delLikeReguest = () => ({
-    type: types.DEL_LIKE_REQUEST
-  });
+const delLikeReguest = () => ({
+  type: types.DEL_LIKE_REQUEST
+});
 
-  const delLikeReguestSuccess = payload => ({
-    type: types.DEL_LIKE_REQUEST_SUCCESS,
-    payload
-  });
+const delLikeReguestSuccess = payload => ({
+  type: types.DEL_LIKE_REQUEST_SUCCESS,
+  payload
+});
 
- export const delLike = (id, postid) => {
-    return async dispatch => {
-        dispatch(delLikeReguest());
-          checkToken();
-          const res = await gql.request(
-            `mutation like($like: LikeInput){
+export const delLike = (id, postid) => {
+  return async dispatch => {
+    dispatch(delLikeReguest());
+    checkToken();
+    const res = await gql.request(
+      `mutation like($like: LikeInput){
               LikeDelete(like: $like) {
                     _id
                 }
               }`,
-            { like: { _id: id  } }
-          );
-          dispatch(delLikeReguestSuccess([res.LikeDelete._id, postid])) ;
+      { like: { _id: id } }
+    );
+    if (res.LikeDelete) {
+      dispatch(delLikeReguestSuccess([res.LikeDelete._id, postid]));
+    }
   };
- }
+};
 
 //  const refreshPostReguest = () => ({
 //   type: types.GET_ALL_POSTS_REQUEST

@@ -4,8 +4,8 @@
   background-color: black;
   font-size: 18px;
   color: #c4c4c4;
-  position: absolute;
-  left: 0;
+  position: relative;
+  right:  0;
   width: 100%;
   border-bottom: 1px solid white;
   z-index: 10;

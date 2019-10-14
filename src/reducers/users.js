@@ -1,7 +1,7 @@
 import * as types from "../actionTypes";
 
 const initialState = {
-	following: null,
+	users: [],
 	isFetching: false,
   loadUserFail: false,
   loadUserFetching: false
@@ -13,7 +13,7 @@ export default (state = initialState, { type, payload }) => {
 	switch (type) {
 
 		case types.ALL_USERS: {
-			return { ...state, following: payload, isFetching: false };
+			return { ...state, users: payload, isFetching: false };
 		}
 
     case types.LOAD_USERS_REQUEST: {
@@ -21,7 +21,7 @@ export default (state = initialState, { type, payload }) => {
     }
     case types.LOAD_USERS_REQUEST_SUCCESS: {
       return { ...state, loadUserFetching: false, 
-        following: [...state.following, ...payload]
+        users: [...state.users, ...payload]
       };
     }
     case types.LOAD_USERS_REQUEST_FAIL: {

@@ -1,14 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import "./style.css";
-import * as actions from "../../actions/users";
-import { url } from "../../actions/user";
+import { url, userUpsertFollowing } from "../../actions/user";
 import kartinka from "../../assets/img/smile.jpg"
 
 
 class Following extends Component {
+
+  delFollowin = id => {
+    const { user, userUpsertFollowing } = this.props;
+    let newFollowing = user.following
+      .filter(user => user._id !== id)
+      .map(x => {
+        delete x.avatar;
+        delete x.nick;
+        delete x.login;
+        return x;
+      });
+    userUpsertFollowing(user.id, newFollowing);
+  };
+
   render() {
-    const { following, user} = this.props;
+    const { following} = this.props;
     return (
       <div>
         {following && 
@@ -24,7 +37,9 @@ class Following extends Component {
                 />
               )}
               <p className="user-login">{userF.nick || userF.login}</p>
-              <span className="icon-minus"/>
+              <span className="followers-border icon-minus"
+              onClick={() => this.delFollowin(userF._id)}
+              />
             </div>
         })}
       </div>
@@ -41,5 +56,5 @@ const mapStateToProps = ({ userReduser }) => {
 
 export default connect(
   mapStateToProps,
-  actions
+  { userUpsertFollowing }
 )(Following);
