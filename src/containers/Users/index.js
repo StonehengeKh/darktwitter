@@ -1,46 +1,86 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./style.css";
-import * as actions from "../../actions/users";
-import { url } from "../../actions/user";
-import kartinka from "../../assets/img/smile.jpg"
+import { url, userUpsertFollowing } from "../../actions/user";
+import kartinka from "../../assets/img/smile.jpg";
 
+class Users extends Component {
+  addFollowin = id => {
+    const { user, userUpsertFollowing } = this.props;
+    let newFollowing = user.following
+      ? user.following.map(x => {
+          delete x.avatar;
+          delete x.nick;
+          delete x.login;
+          return x;
+        })
+      : ( []);
+    newFollowing.push({ _id: id });
+    console.log(newFollowing);
+    userUpsertFollowing(user.id, newFollowing);
+  };
 
-class Following extends Component {
+  delFollowin = id => {
+    const { user, userUpsertFollowing } = this.props;
+    let newFollowing = user.following
+      .filter(user => user._id !== id)
+      .map(x => {
+        delete x.avatar;
+        delete x.nick;
+        delete x.login;
+        return x;
+      });
+    userUpsertFollowing(user.id, newFollowing);
+  };
+
   render() {
-    const { following, user} = this.props;
+    const { users, user } = this.props;
     return (
       <div>
-        {following && 
-          following.map(userF => {
-            return <div key={userF._id} className="user-wrap">
-              {userF.avatar ? (
-                <img src={url + userF.avatar.url} className="avatar-img" alt="avatar"/>
-              ) : (
-                <img
-                  src={kartinka}
-                  className="avatar-img"
-                  alt="avatar"
-                />
-              )}
-              <p className="user-login">{userF.login}</p>
-           
-             {user.following.some(user => user._id === userF._id) ?  <span className="icon-minus"/> :  <span className="icon-plus"/>}
-            </div>
-        })}
+        {users &&
+          users.map(userF => {
+            return (
+              <div key={userF._id} className="user-wrap">
+                {userF.avatar ? (
+                  <img
+                    src={url + userF.avatar.url}
+                    className="avatar-img"
+                    alt="avatar"
+                  />
+                ) : (
+                  <img src={kartinka} className="avatar-img" alt="avatar" />
+                )}
+                {userF.login && (
+                  <p className="user-login">{userF.nick || userF.login}</p>
+                )}
+                {user.following &&
+                user.following.some(user => user._id === userF._id) ? (
+                  <span
+                    className="followers-border icon-minus"
+                    onClick={() => this.delFollowin(userF._id)}
+                  />
+                ) : (
+                  <span
+                    className="followers-border icon-plus"
+                    onClick={() => this.addFollowin(userF._id)}
+                  />
+                )}
+              </div>
+            );
+          })}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ folowingReduser, userReduser }) => {
+const mapStateToProps = ({ usersReduser, userReduser }) => {
   return {
-    following: folowingReduser.following,
-    user: userReduser.user,
+    users: usersReduser.users,
+    user: userReduser.user
   };
 };
 
 export default connect(
   mapStateToProps,
-  actions
-)(Following);
+  { userUpsertFollowing }
+)(Users);

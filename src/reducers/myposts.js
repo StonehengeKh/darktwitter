@@ -9,7 +9,7 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case types.GET_ALL_MY_POSTS_REQUEST: {
-      return { ...state, isFetching: true, fail: false };
+      return { ...state,  isFetching: true, fail: false };
     }
     case types.GET_ALL_MY_POSTS_REQUEST_SUCCESS: {
       return { ...state, isFetching: false, myPosts: payload };

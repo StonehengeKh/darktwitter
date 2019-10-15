@@ -35,8 +35,6 @@
   margin: 5px;
 }
 
-
-
 .input-number:focus {
   box-shadow: 2px 2px 5px #000000;
   outline: none;
@@ -136,4 +134,9 @@
 
 .userInfo img{
   width: 40%;
+}
+
+.avatar{
+  max-width: 250px;
+  max-height: 250px;
 }

@@ -61,6 +61,16 @@ export default (state = initialState, { type, payload }) => {
 		case types.USER_UPSERT_AVATAR_REQUEST_FAIL: {
 			return { ...state, upsertFetching: false};
 		}
+		
+		case types.USER_UPSERT_FOLLOWING_REQUEST: {
+			return { ...state, upsertFetching: true};
+		}
+		case types.USER_UPSERT_FOLLOWING_REQUEST_SUCCESS: {
+			return { ...state, upsertFetching: false, user: {...state.user, following:payload}};
+		}
+		case types.USER_UPSERT_FOLLOWING_REQUEST_FAIL: {
+			return { ...state, upsertFetching: false};
+		}
 
 		default: {
 			return state;

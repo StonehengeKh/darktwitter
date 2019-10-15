@@ -7,7 +7,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { tokenDecode } from "./actions/user";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 // import { getAllPosts } from "./actions/posts";
 import { getAllMyPosts } from "./actions/myposts";
 import jwt_decode from "jwt-decode";

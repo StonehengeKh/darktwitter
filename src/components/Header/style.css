@@ -1,9 +1,14 @@
 .header {
   height: 80px;
   /*width: 100vw;*/
-  /*background-color: #ffffff;*/
+  background-color: black;
   font-size: 18px;
   color: #c4c4c4;
+  position: relative;
+  right:  0;
+  width: 100%;
+  border-bottom: 1px solid white;
+  z-index: 10;
 }
 
 .avatar-img {
@@ -50,12 +55,21 @@ a {
   padding-bottom: 5px;
 }
 
+.header .icon-user-check,
+.header .icon-man-woman,
+.header .icon-users,
+.header .icon-file-text2,
+.header .icon-home3,
 .header .icon-search,
 .header .icon-enter,
 .header .icon-exit {
   font-size: 25px;
 }
-
+.header .icon-user-check:hover,
+.header .icon-man-woman:hover,
+.header .icon-users:hover,
+.header .icon-file-text2:hover,
+.header .icon-home3:hover,
 .header .icon-search:hover,
 .header .icon-enter:hover,
 .header .icon-exit:hover{
@@ -68,6 +82,13 @@ a {
   font-size: 75%;
 }
 
+.header__span-text{
+  display: none;
+}
+
+.header__span-text{
+  font-size: 18px;
+}
 
 @media (min-width: 480px)  {
   .header__item {
@@ -85,5 +106,9 @@ a {
   .header__item {
     font-size: 100%;
   }
+  .header__span-text{
+    display: inline-block;
+  }
+  
 }
 

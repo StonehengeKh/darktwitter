@@ -3,7 +3,9 @@
     /* flex-direction: column; */
     margin: 0 auto;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
     /* max-width: 1280px; */
     /* box-shadow: 0 0 25px 20px black; */
 }
@@ -15,12 +17,14 @@
     height: 100vh;
     /* box-shadow: 0 0 15px 5px white; */
     position: relative;
-    overflow: auto;
+
+ 
 }
 
 .layout-center {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    overflow: auto;
 }
 
 .layout-center-top{
