@@ -22,10 +22,13 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, isFetching: true, fail: false };
     }
     case types.CREATE_NEW_POST_REQUEST_SUCCESS: {
-      return { ...state, isFetching: false, myPosts: [...state.myPosts, payload] };
+      return { ...state, isFetching: false, myPosts: [payload, ...state.myPosts]  };
     }
     case types.CREATE_NEW_POST_REQUEST_FAIL: {
       return { ...state, isFetching: false, fail: true };
+    }
+    case types.REFRESH_MY_POST: {
+      return{ ...state, myPosts: state.myPosts.map(post => post._id === payload._id ? payload : post)}
     }
 
 
