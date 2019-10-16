@@ -40,8 +40,8 @@
   margin: 5px;
 }
 
-.input-number:focus {
-  box-shadow: 2px 2px 5px #000000;
+.input__label .input:focus {
+  box-shadow: 2px 2px 4px gray;
   outline: none;
 }
 
