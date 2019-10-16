@@ -41,7 +41,7 @@ let LoginForm = props => {
       {field.map((elem, index) => {
         const { name, type, label } = elem;
         return (
-          <div key={index}>
+          <div key={index} className="login-form">
             <Field
               name={name}
               component={renderField}
@@ -68,7 +68,7 @@ let LoginForm = props => {
 
 LoginForm = reduxForm({
   form: "Login",
-  validate
+
 })(LoginForm);
 
 export default connect(

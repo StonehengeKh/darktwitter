@@ -2,6 +2,14 @@
     color: red;
   }
   
-  .input-error {
+  .valid-error {
     border: 2px solid red;
+    padding: 5px 10px;
+    outline: none;
+    background: none;
+    border-radius: 3px;
+    background-color: #ffffff;
+    font-size: 18px;
+    /* border: 1px solid #d0d0d0; */
+    margin: 5px;
   }

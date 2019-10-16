@@ -63,7 +63,7 @@ a {
 .header .icon-search,
 .header .icon-enter,
 .header .icon-exit {
-  font-size: 25px;
+  font-size: 20px;
 }
 .header .icon-user-check:hover,
 .header .icon-man-woman:hover,
@@ -88,6 +88,7 @@ a {
 
 .header__span-text{
   font-size: 18px;
+  text-align: center;
 }
 
 @media (min-width: 480px)  {
