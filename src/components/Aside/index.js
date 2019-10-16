@@ -14,13 +14,7 @@ class Aside extends React.Component {
     name = !name ? "Home" : name;
     return (
       <div className="left-side-bar">
-        <nav className="aside-nav">
-          <ul className="menu">
-            <li>{this.upperCaseName(name)}</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
-        </nav>
+        {this.upperCaseName(name)}
       </div>
     );
   }
