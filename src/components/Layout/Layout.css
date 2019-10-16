@@ -12,7 +12,7 @@
 }
 
 .layout-block-page {
-    /* background: url("../../assets/img/img1.jpg") 0 50% no-repeat; */
+    background: url("../../assets/img/img2.jpg") 0 50% no-repeat;
     background-size: cover;
     flex-grow: 2;
     height: 100vh;

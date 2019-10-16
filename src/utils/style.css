@@ -1,7 +1,10 @@
 .span-error {
     color: red;
-  }
-  
+}
+
+.input-error {
+    border: 2px solid red;
+}
   .valid-error {
     border: 2px solid red;
     padding: 5px 10px;

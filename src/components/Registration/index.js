@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {registration} from "../../actions/user";
 import { Field, reduxForm } from 'redux-form'
 import {renderField,  validate} from '../../utils/valid'
+import "./style.css"
 
 
 class Registration extends Component {
@@ -56,15 +57,17 @@ let RegistrationForm = props => {
  				<Field name={name} component={renderField} type={type}  label={label} />
 				</div>
 		 })}
-		<button type="submit" disabled={submitting} className="button">Registration</button>
+		<button type="submit" disabled={submitting} className="button">
+			Registration
+		</button>
 		<button
-        type="button"
-        disabled={pristine || submitting}
-        onClick={reset}
-        className="button"
-      >
-        Clear Values
-      </button>
+			type="button"
+			disabled={pristine || submitting}
+			onClick={reset}
+			className="button"
+      	>
+        	Clear Values
+      	</button>
 	  </form>
 	)
   }

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import Login from "../../components/Login";
 import Regisration from "../../components/Registration";
-import { connect } from "react-redux";
 import * as actions from "../../actions/user";
 import { Redirect, Route } from "react-router-dom";
 import "./style.css";
@@ -17,7 +18,13 @@ export class Auth extends Component {
     const { login } = this.state;
     return (
       <div className="wrapper">
-        <div className="left-div"></div>
+        <div className="left-div">
+          <ul className="list-block">
+              <li>Follow your interests.</li>
+              <li>Hear what people are talking about.</li>
+              <li>Join the conversation.</li>
+          </ul>
+        </div>
 
         <div className="rigth-div">
           {isFetching && <p>Loading...</p>}

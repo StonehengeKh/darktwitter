@@ -15,6 +15,10 @@
 .left-div{
   height: 50%;
   background-color: #1b95e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .registration-form,
@@ -75,6 +79,19 @@
 
 .error {
   color: red;
+}
+
+.list-block {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+}
+
+.list-block li {
+  margin: 20px;
 }
 
 @media (min-width: 768px)  {

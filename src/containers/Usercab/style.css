@@ -72,7 +72,22 @@
   font-size: 80%;
 }
 
+.avatar {
+  border-radius: 50%;
+  margin: 10px;
+}
 
+.btn-edit {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-weight: bold;
+  outline: none;
+}
+
+.btn-edit:hover {
+  background-color: grey;
+}
 
 @media (min-width: 480px)  {
   .input__label {

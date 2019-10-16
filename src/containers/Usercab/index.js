@@ -40,9 +40,9 @@ const UserCab = ({
       {!!userAvatar && (
         <section className="userInfo">
           <h2>{user.nick}</h2>
-          <img src={userAvatar} alt="avatar" className="avatar"/>
+          <img src={userAvatar} alt="avatar" className="avatar" />
           <div className="generalInfo"></div>
-          <button onClick={() => openSettings(!isSetOpen)}>EDIT</button>
+          <button className="btn-edit" onClick={() => openSettings(!isSetOpen)}>EDIT</button>
           {isSetOpen && (
             <SettingMenu
               upsertFetching={upsertFetching}
@@ -84,5 +84,5 @@ const mapStateToProps = ({ userReduser, myPostsReduser }) => {
 
 export default connect(
   mapStateToProps,
-  {userUpsertNick,userUpsertAvatar, createNewPost }
+  {userUpsertNick, userUpsertAvatar, createNewPost }
 )(UserCab);

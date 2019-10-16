@@ -14,6 +14,7 @@ function Card(props) {
         </p>
       )}
       {props.text ? <p>{props.text}</p> : null}
+
       {props.images
         ? props.images.map(image => {
             return (
