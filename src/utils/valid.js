@@ -1,6 +1,4 @@
-
 import React from 'react'
-
 
 export const renderField = ({
     input,
@@ -10,7 +8,7 @@ export const renderField = ({
   }) => (
     <div>
       <label className="input__label">{label}
-        <input {...input} placeholder={label} type={type}  className={ touched && error ? "valid-error input" : "input"}/>
+        <input {...input} placeholder={label} type={type} className={ touched && error ? "valid-error input" : "input"}/>
         {touched &&
           ((error && <span className="span-error">{error}</span>) ||
             (warning && <span>{warning}</span>))}
