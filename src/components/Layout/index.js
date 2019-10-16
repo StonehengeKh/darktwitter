@@ -42,19 +42,18 @@ class Layout extends Component {
     const { children, loadFetching, loadUserFetching, user } = this.props;
     return (
       <div className="layout-block">
-        {user && <Aside />}
+        {user && <Header />}
+
         <section
           className="layout-center"
           onScroll={
             loadFetching ? null : loadUserFetching ? null : e => this.scroll(e)
           }
         >
-          {user && <Header />}
-          <div className="layout-block-page">
-            {children}
-          </div>
+          {user && <Aside />}
+          <div className="layout-block-page">{children}</div>
         </section>
-        <div/>
+        <div />
       </div>
     );
   }
