@@ -1,0 +1,17 @@
+.top-side-bar {
+  min-width: 100px;
+  height: 80px;
+  position: relative;
+  border-right: 1px solid white;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e6ecf0;
+}
+
+.page-name{
+  color: black;
+  font-size: 25px;
+  margin-left: 15%;
+  font-weight: bold;
+}

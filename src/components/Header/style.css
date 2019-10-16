@@ -6,6 +6,7 @@
   border-bottom: 1px solid white;
   z-index: 10;
   width: 30%;
+  border-right: 1px solid #e6ecf0;
 }
 
 .avatar-img {
@@ -35,7 +36,6 @@
   padding: 0;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
 }
 
 a {
@@ -51,7 +51,6 @@ a {
 
 .header__link--active {
   color: #0023ff;
-  padding-bottom: 5px;
 }
 
 .header .icon-user-check,
@@ -78,7 +77,9 @@ a {
 .header__item {
   list-style: none;
   margin: 10px;
-  font-size: 75%;
+  font-size: 85%;
+  display: flex;
+  align-items: center;
 }
 
 .header__span-text{
@@ -88,6 +89,7 @@ a {
 .header__span-text{
   font-size: 18px;
   text-align: center;
+  margin-left: 10px;
 }
 
 @media (min-width: 480px)  {

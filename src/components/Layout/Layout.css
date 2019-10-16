@@ -19,6 +19,12 @@
     /* box-shadow: 0 0 15px 5px white; */
     position: relative;
     overflow: auto;
+    padding: 15px 20px;
+}
+
+.layout-block-page {
+    flex-grow: 2;
+    height: 100vh;
 }
 
 .layout-center {
