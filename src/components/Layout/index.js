@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import { loadPosts } from "../../actions/posts";
 import { loadUsers } from "../../actions/users";
 import { connect } from "react-redux";
-import Aside from "../Aside";
+import TopSide from "../Topside";
 import "./Layout.css";
 
 class Layout extends Component {
@@ -50,8 +50,8 @@ class Layout extends Component {
             loadFetching ? null : loadUserFetching ? null : e => this.scroll(e)
           }
         >
-          {user && <Aside />}
-          <div className="layout-block-page">{children}</div>
+          {user && <TopSide />}
+          <div className={localStorage.authToken ?  user  ? "layout-block-page": "layout-block-auth" : "layout-block-auth"}>{children}</div>
         </section>
         <div />
       </div>

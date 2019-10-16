@@ -28,6 +28,7 @@ class Header extends React.Component {
           }
           to={el.path}
         >
+          <span className={el.icon}/>
           <span className="header__span-text">{el.link.title}</span>
         </Link>
       </li>
