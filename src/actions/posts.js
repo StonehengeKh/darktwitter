@@ -33,7 +33,7 @@ export const getAllPosts = () => {
           }
         } `,
       // { query: JSON.stringify([{}, { sort: ["_id", -1] }]) }
-      { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [10] }]) }
+      { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [15] }]) }
     );
     if (res.PostFind) {
       dispatch(getAllPostsReguestSuccess(res.PostFind));
@@ -74,7 +74,7 @@ export const loadPosts =  skip => {
             }
           }
         } `,
-      { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [10], skip: [skip] }]) }
+      { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [15], skip: [skip] }]) }
     );
     if (res.PostFind.length > 0) {
       dispatch(loadPostsReguestSuccess(res.PostFind));

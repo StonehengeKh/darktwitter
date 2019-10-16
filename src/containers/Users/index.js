@@ -36,7 +36,7 @@ class Users extends Component {
   render() {
     const { users, user } = this.props;
     return (
-      <div>
+      <div className="user-page">
         {users &&
           users.map(userF => {
             return (

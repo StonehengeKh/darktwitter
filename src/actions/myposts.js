@@ -44,6 +44,11 @@ export const getAllMyPosts = id => {
   };
 };
 
+export const refreshMyPost = payload => ({
+  type: types.REFRESH_MY_POST,
+  payload
+})
+
 // export const userFindOne = id => {
 //   return async dispatch => {
 //     checkToken();

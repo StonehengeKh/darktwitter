@@ -6,32 +6,37 @@
 
 
 .button {
-  font-size: 80%;
-  background-color: #0023ff;
+  background-color: #1da1f2;
   color: #ffffff;
   border: none;
   outline: none;
   user-select: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
   border-radius: 20px;
-  padding: 10px 20px;
-  box-shadow: 2px 2px 5px #000000;
+  padding: 6px 16px;
+  box-shadow: 2px 2px 4px gray;
   transition: 0.2s;
-  margin: 20px 10px 0 10px;
+  margin: 0 10px 0 10px;
 }
 
+.button:hover{
+  background-color: #006dbf;
+}
 .button:active {
   transform: scale(0.97);
-  box-shadow: inset 2px 2px 5px #000000;
+  box-shadow: inset 2px 2px 4px gray;
 }
 
 .input-number {
   padding: 5px 10px;
   outline: none;
   background: none;
-  border-radius: 10px;
+  border-radius: 3px;
   background-color: #ffffff;
   font-size: 18px;
-  border: 1px solid #d0d0d0;
   margin: 5px;
 }
 
@@ -52,6 +57,7 @@
   width: 320px;
   font-size: 80%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 5px;
@@ -66,39 +72,56 @@
   font-size: 80%;
 }
 
+.avatar {
+  border-radius: 50%;
+  margin: 10px;
+}
 
+.btn-edit {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-weight: bold;
+  outline: none;
+}
+
+.btn-edit:hover {
+  background-color: grey;
+}
 
 @media (min-width: 480px)  {
   .input__label {
     width: 380px;
-    font-size: 85%;
+    font-size: 90%;
   }
   
   .button {
-    font-size: 85%;
+    font-size: 90%;
   }
   .input__label input {
-    width: 200px;
-    font-size: 85%;
+    width: 240px;
+    font-size: 90%;
   }
-
+  .span-error,
   .text_response{
-    font-size: 85%;
+    font-size: 90%;
   }
 }
 
 @media (min-width: 640px)  {
   .input__label {
-    width: 420px;
+    width: 380px;
     font-size: 90%;
   }
   .button {
     font-size: 90%;
   }
+  .valid-error,
   .input__label input {
-    width: 220px;
+    width: 240px;
     font-size: 90%;
   }
+  .span-error,
   .text_response{
     font-size: 90%;
   }
@@ -106,16 +129,18 @@
 
 @media (min-width: 768px)  {
   .input__label {
-    width: 420px;
+    width: 380px;
     font-size: 100%;
   }
   .button {
     font-size: 100%;
   }
+  .valid-error,
   .input__label input {
     width: 240px;
     font-size: 100%;
   }
+  .span-error,
   .text_response{
     font-size: 100%;
   }

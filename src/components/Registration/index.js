@@ -36,11 +36,6 @@ class Registration extends Component {
 
 let field = [
 	{
-		name: "nick",
-		type:"text",
-		label:"Nick"
-	},
-	{
 		name: "login",
 		type:"text",
 		label:"Login"
@@ -49,13 +44,7 @@ let field = [
 		name: "password",
 		type:"password",
 		label:"Password"
-	},
-	{
-		name: "confirmPassword",
-		type:"password",
-		label:"Confirm password"
 	}
-
 ]
 
 let RegistrationForm = props => {
@@ -63,15 +52,10 @@ let RegistrationForm = props => {
 	return (
 	  <form onSubmit={handleSubmit}>
 		 { field.map((elem, index)=> {
-		 	const {name, type, label} = elem
-			return <div key={index} >
- 				<Field
-					name={name}
-					component={renderField}
-					type={type}
-					label={label}
-				/>
-			</div>
+			 const {name, type, label} = elem
+			return <div key={index} className="registration-form">
+ 				<Field name={name} component={renderField} type={type}  label={label} />
+				</div>
 		 })}
 		<button type="submit" disabled={submitting} className="button">
 			Registration

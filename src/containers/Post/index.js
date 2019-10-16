@@ -39,7 +39,7 @@ class Post extends Component {
                       alt="img"
                       src={`http://hipstagram.asmer.fs.a-level.com.ua/${image.url}`}
                       className="img"
-                    ></img>
+                    />
                   );
                 })
               : null}

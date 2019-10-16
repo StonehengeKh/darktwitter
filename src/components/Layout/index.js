@@ -51,12 +51,10 @@ class Layout extends Component {
         >
           {user && <Header />}
           <div className="layout-block-page">
-            {/* {user && <Header />} */}
-            <div className="margin-top" />
-
             {children}
           </div>
         </section>
+        <div/>
       </div>
     );
   }

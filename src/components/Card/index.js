@@ -8,7 +8,7 @@ function Card(props) {
       {props.title ? <p><Link to={`/post/${props.id}`}> {props.title} </Link></p> : <p><Link to={`/post/${props.id}`}> Title </Link></p>}
       {props.text ? <p>{props.text}</p> : null}
       {props.images ? props.images.map(image=>{
-      return <img key={image._id} alt="img"src={`http://hipstagram.asmer.fs.a-level.com.ua/${image.url}`} className="all-post-img"></img>} 
+      return <img key={image._id} alt="img" src={`http://hipstagram.asmer.fs.a-level.com.ua/${image.url}`} className="all-post-img" />}
   ) : null}
     </div>
   )
