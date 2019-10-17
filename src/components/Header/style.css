@@ -1,6 +1,6 @@
 .header {
   font-size: 18px;
-  color: grey;
+  color: black;
   position: relative;
   right:  0;
   border-bottom: 1px solid white;
@@ -23,10 +23,10 @@
   height: 100%;
   width: 100%;
 }
-
+.header__link--active,
 .header__item:active,
 .header__item:hover  {
-  color: #0023ff;
+  color: #1b95e0;
 }
 
 .nav-menu-ul {
@@ -36,6 +36,7 @@
   padding: 0;
   flex-direction: column;
   justify-content: space-around;
+  padding-bottom: 50px;
 }
 
 a {
@@ -47,10 +48,6 @@ a {
 
 .exit {
   cursor: pointer;
-}
-
-.header__link--active {
-  color: #0023ff;
 }
 
 .header .icon-user-check,
@@ -71,7 +68,7 @@ a {
 .header .icon-search:hover,
 .header .icon-enter:hover,
 .header .icon-exit:hover{
-  color: #0023ff;
+  color: #1b95e0;
 }
 
 .header__item {

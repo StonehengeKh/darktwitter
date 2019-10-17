@@ -12,6 +12,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .left-div{
   height: 50%;
   background-color: #1b95e0;
@@ -68,13 +69,7 @@
   background-color: #ffffff;
   font-size: 18px;
   border: 1px solid #e6ecf0;
-  /* border: 1px solid #d0d0d0; */
   margin: 5px;
-}
-
-.input:focus {
-  box-shadow: 2px 2px 5px #000000;
-  outline: none;
 }
 
 .error {
