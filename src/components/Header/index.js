@@ -7,6 +7,7 @@ import { ROUTERS } from "../../App";
 import { withRouter } from "react-router-dom";
 import { url } from "../../actions/user";
 import kartinka from "../../assets/img/smile.jpg";
+import {Logo} from "../../containers/Auth"
 
 class Header extends React.Component {
   exitClick = event => {
@@ -41,6 +42,7 @@ class Header extends React.Component {
       <div className="header">
         <nav className="nav-menu">
           <ul className="nav-menu-ul">
+            <li  className="header__item"><Logo/></li>
             {ROUTERS.map(el =>
               el.link
                 ? localStorage.authToken && user
