@@ -87,10 +87,9 @@ class Header extends React.Component {
             )} */}
             {localStorage.authToken && user && (
               <li className="header__item">
-                <Link className="header__link">
+                <Link className="header__link"  onClick={this.exitClick}>
                 <span
                   className="exit icon-exit"
-                  onClick={this.exitClick}
                 ></span><span className="header__span-text">Log out</span>
                 </Link>
               </li>
