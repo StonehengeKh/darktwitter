@@ -23,6 +23,12 @@
 .nick-posts{
   font-weight: bold;
 }
+
+.title,
+.card-text{
+  margin: 5px 0;
+}
+.posts-commnets,
 .createdAt-posts{
   margin-left: 10px;
   font-weight: normal;

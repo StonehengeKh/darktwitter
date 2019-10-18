@@ -12,16 +12,21 @@
   padding: 20px;
 }
 
-.context-post {
-  border: 2px solid #d0d0d0;
-  border-radius: 25px;
-  padding: 20px;
-  margin: 20px auto;
-  font-size: 18px;
+.post-conteiner {
+  width: 80%;
+  border: 1px solid #e6ecf0;
+  width: 99%; 
+  margin: 5px 0;
+  padding: 10px 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding-right: 15px;
+  box-shadow: 2px 2px 4px gray;
+}
+
+.post-like{
+  display: flex;
   align-items: center;
-  background-color: #ffffff;
 }
 
 .img {

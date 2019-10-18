@@ -23,12 +23,11 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, likefFetching: true };
     }
     case types.ADD_LIKE_REQUEST_SUCCESS: {
-    
       const likes = [...state.post.likes, payload[0]];
       return {
         ...state,
-        likeFetching: false,
-        post: {...state.post, likes:likes}
+        post: {...state.post, likes:likes},
+        likeFetching: false
       };
 		}
 
@@ -36,12 +35,11 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, likeFetching: true };
     }
     case types.DEL_LIKE_REQUEST_SUCCESS: {
-      
 			const likes = state.post.likes.filter(like=> like._id !== payload[0])
       return {
         ...state,
-        likeFetching: false,
-				post: {...state.post, likes:likes}
+        post: {...state.post, likes:likes},
+        likeFetching: false
       };
     }
 

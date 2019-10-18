@@ -25,8 +25,9 @@ export const getPost = (id) => {
             text,
             title,
             images{_id, url}
-            owner{_id},
+            owner{_id, avatar{_id, url}, nick, login},
             likes{_id, owner{_id}},
+            createdAt,
             comments{
               _id, text
             }

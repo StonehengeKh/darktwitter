@@ -7,7 +7,7 @@ import { ROUTERS } from "../../App";
 import { withRouter } from "react-router-dom";
 import { url } from "../../actions/user";
 import kartinka from "../../assets/img/smile.jpg";
-import {Logo} from "../../containers/Auth"
+import { Logo } from "../../containers/Auth";
 
 class Header extends React.Component {
   exitClick = event => {
@@ -29,7 +29,7 @@ class Header extends React.Component {
           }
           to={el.path}
         >
-          <span className={el.icon}/>
+          <span className={el.icon} />
           <span className="header__span-text">{el.link.title}</span>
         </Link>
       </li>
@@ -42,7 +42,9 @@ class Header extends React.Component {
       <div className="header">
         <nav className="nav-menu">
           <ul className="nav-menu-ul">
-            <li  className="header__item"><Logo/></li>
+            <li className="header__item">
+              <Logo />
+            </li>
             {ROUTERS.map(el =>
               el.link
                 ? localStorage.authToken && user
@@ -87,11 +89,10 @@ class Header extends React.Component {
             )} */}
             {localStorage.authToken && user && (
               <li className="header__item">
-                <Link className="header__link"  onClick={this.exitClick}>
-                <span
-                  className="exit icon-exit"
-                ></span><span className="header__span-text">Log out</span>
-                </Link>
+                <span className="header__link" onClick={this.exitClick}>
+                  <span className="exit icon-exit"></span>
+                  <span className="header__span-text">Log out</span>
+                </span>
               </li>
             )}
           </ul>
