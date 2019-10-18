@@ -71,7 +71,7 @@ export const loadPosts =  skip => {
             likes{_id, owner{_id}},
             createdAt,
             comments{
-              _id, text
+              _id
             }
           }
         } `,

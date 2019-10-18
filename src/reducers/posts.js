@@ -6,8 +6,7 @@ const initialState = {
   fail: false,
   likeFetching: false,
   loadFetching: false,
-  loadFail: false,
-  likeFetching: false
+  loadFail: false
 };
 
 export default (state = initialState, { type, payload }) => {

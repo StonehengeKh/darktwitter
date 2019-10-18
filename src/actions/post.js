@@ -29,7 +29,11 @@ export const getPost = (id) => {
             likes{_id, owner{_id}},
             createdAt,
             comments{
-              _id, text
+              _id, 
+              text, 
+              owner{_id, avatar{_id, url}, nick, login },
+              createdAt, 
+              likes{_id, owner{_id}}
             }
           }
         } `,

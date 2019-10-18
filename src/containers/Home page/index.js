@@ -3,15 +3,13 @@ import { connect } from "react-redux";
 // import { userFindOne } from "../../actions/user";
 import { getAllPosts, loadPosts } from "../../actions/posts";
 
-import  Card  from "../../components/Card";
+import Card from "../../components/Card";
 import "./style.css";
 
-
 class HomePage extends React.Component {
-
-  componentDidMount(){
+  componentDidMount() {
     const { getAllPosts } = this.props;
-    getAllPosts()
+    getAllPosts();
   }
   clicker = () => {
     const { getAllPosts } = this.props;
@@ -39,7 +37,7 @@ class HomePage extends React.Component {
   };
 
   render() {
-    const { posts, isFetching, loadFetching, loadFail, user } = this.props;
+    const { posts, isFetching, loadFetching, loadFail } = this.props;
     return (
       <div className="all-posts">
         {isFetching ? (
@@ -73,7 +71,6 @@ class HomePage extends React.Component {
                       login={owner.login}
                       createdAt={createdAt}
                       comments={comments}
-                      // userId={user.id}
                       likes={likes}
                     />
                   );
@@ -87,13 +84,12 @@ class HomePage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ postsReduser, userReduser }) => {
+const mapStateToProps = ({ postsReduser }) => {
   return {
     posts: postsReduser.posts,
     isFetching: postsReduser.isFetching,
     loadFetching: postsReduser.loadFetching,
-    loadFail: postsReduser.loadFail,
-    user: userReduser.user
+    loadFail: postsReduser.loadFail
   };
 };
 

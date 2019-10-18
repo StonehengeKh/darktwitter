@@ -5,6 +5,7 @@ import { url } from "../../actions/user";
 import { connect } from "react-redux";
 import { addLikePosts, delLikePosts } from "../../actions/likes";
 
+
 export const formatDate = date => {
   if (date.indexOf(".") !== -1) return date;
   var mass = date.split("/");
@@ -13,7 +14,6 @@ export const formatDate = date => {
 
 function Card(props) {
   const checkLike = () => {
-    console.log(props)
     const { user } = props;
     let like = props.likes.find(like => like.owner._id === user.id);
     like ? props.delLikePosts(like._id, props.id)  : props.addLikePosts(props.id);

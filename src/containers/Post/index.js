@@ -6,6 +6,7 @@ import { getPost } from "../../actions/post";
 import avatar from "../../assets/img/smile.jpg";
 import { url } from "../../actions/user";
 import { formatDate } from "../../components/Card";
+import Comment from "../../components/Comment"
 
 class Post extends Component {
   componentDidMount() {
@@ -17,11 +18,10 @@ class Post extends Component {
     const { user, addLike, delLike } = this.props;
     let like = post.likes.find(like => like.owner._id === user.id);
     like ? delLike(like._id, post._id) : addLike(post._id);
-    // refreshPost(post._id);
   };
 
   render() {
-    const { post,likeFetching, user } = this.props;
+    const { post, likeFetching, user } = this.props;
     return (
       <div className="wrap">
         {!post ? (
@@ -39,7 +39,7 @@ class Post extends Component {
                 <img src={avatar} className="avatar-posts" alt="avatar" />
               )}
             </div>
-            <div>
+            <div className="post-context">
               <div className="nick-posts">
                 {post.owner.nick || post.owner.login}
                 <span className="createdAt-posts">
@@ -78,6 +78,32 @@ class Post extends Component {
                 ></button>
                 <span className="like">{post.likes.length}</span>
               </div>
+              
+            {post.comments ? post.comments.map(comment=>{
+                        const {
+                          text,
+                          owner,
+                          createdAt,
+                          likes,
+                          _id
+                        } = comment;
+             return <Comment
+             key={_id}
+             id={_id}
+             text={text}
+             avatar={owner.avatar}
+             nick={owner.nick}
+             login={owner.login}
+             createdAt={createdAt}
+             likes={likes}
+             />
+
+            }
+            
+            
+            )
+              
+              : null}  
             </div>
           </div>
         )}

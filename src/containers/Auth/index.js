@@ -50,7 +50,7 @@ export class Auth extends Component {
     this.setState(prevState => ({ ...prevState, login: !prevState.login }));
 
   render() {
-    const { isFetching, incorected, mailExists, user } = this.props;
+    const { isFetching, incorected, mailExists} = this.props;
     const { login } = this.state;
     return (
       <div className="wrapper">
@@ -95,7 +95,6 @@ export class Auth extends Component {
 }
 const mapStateToProps = ({ userReduser }) => {
   return {
-    user: userReduser.user,
     isFetching: userReduser.isFetching,
     incorected: userReduser.incorected,
     mailExists: userReduser.mailExists
