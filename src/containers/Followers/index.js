@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
-import kartinka from "../../assets/img/smile.jpg"
+import avatar from "../../assets/img/smile.jpg"
 
 
 class Followers extends Component {
@@ -33,7 +33,7 @@ class Followers extends Component {
                 <img src={url + userF.avatar.url} className="avatar-img" alt="avatar"/>
               ) : (
                 <img
-                  src={kartinka}
+                  src={avatar}
                   className="avatar-img"
                   alt="avatar"
                 />

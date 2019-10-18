@@ -34,7 +34,6 @@ const UserCab = ({
     createNewPost({ title: titleValue, text: textValue })
     openNewPostWindow(false)
   };
-  console.log(posts)
   return (
     <main className="userCabMain">
       {!!userAvatar && (

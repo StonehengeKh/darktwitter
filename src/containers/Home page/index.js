@@ -55,9 +55,8 @@ class HomePage extends React.Component {
                     title,
                     text,
                     images,
-                    comments,
-                    likes,
                     owner,
+                    createdAt,
                     _id
                   } = post;
                   return (
@@ -67,6 +66,10 @@ class HomePage extends React.Component {
                       id={_id}
                       images={images}
                       text={text}
+                      avatar={owner.avatar}
+                      nick={owner.nick}
+                      login={owner.login}
+                      createdAt={createdAt}
                     />
                   );
                 })

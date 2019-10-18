@@ -25,14 +25,14 @@ export const getAllPosts = () => {
             text,
             title,
             images{_id, url}
-            owner{_id},
+            owner{_id, avatar{_id, url}, nick, login},
             likes{_id, owner{_id}},
+            createdAt,
             comments{
               _id, text
             }
           }
         } `,
-      // { query: JSON.stringify([{}, { sort: ["_id", -1] }]) }
       { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [15] }]) }
     );
     if (res.PostFind) {
@@ -67,8 +67,9 @@ export const loadPosts =  skip => {
             text,
             title,
             images{_id, url}
-            owner{_id},
+            owner{_id, avatar{_id, url}, nick, login},
             likes{_id, owner{_id}},
+            createdAt,
             comments{
               _id, text
             }

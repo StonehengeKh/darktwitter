@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
-import kartinka from "../../assets/img/smile.jpg";
+import avatar from "../../assets/img/smile.jpg";
 
 class Users extends Component {
   addFollowin = id => {
@@ -48,7 +48,7 @@ class Users extends Component {
                     alt="avatar"
                   />
                 ) : (
-                  <img src={kartinka} className="avatar-img" alt="avatar" />
+                  <img src={avatar} className="avatar-img" alt="avatar" />
                 )}
                 {userF.login && (
                   <p className="user-login">{userF.nick || userF.login}</p>

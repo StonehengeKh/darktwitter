@@ -35,6 +35,7 @@
   margin: 0;
   padding: 0;
   flex-direction: column;
+  align-items: center;
   justify-content: space-around;
   padding-bottom: 50px;
 }
@@ -75,17 +76,19 @@ a {
   list-style: none;
   margin: 10px;
   font-size: 85%;
-  display: flex;
-  align-items: center;
 }
 
 .header__span-text{
   display: none;
 }
 
+.header__link{
+  display: inline-flex;
+  align-items: center;
+}
+
 .header__span-text{
   font-size: 18px;
-  text-align: center;
   margin-left: 10px;
 }
 
@@ -104,6 +107,9 @@ a {
 @media (min-width: 768px)  {
   .header__item {
     font-size: 100%;
+  }
+  .nav-menu-ul {
+    align-items: flex-start;
   }
   .header__span-text{
     display: inline-block;
