@@ -33,15 +33,15 @@ function Comment(props) {
         </div>
         {props.text ? <div className="card-text">{props.text}</div> : null}
         <div className="post-like">
-          <button
+                    <button
             className={
-              props.likes ?  props.likes.some(like => like.owner._id === props.user.id)
+              props.likes.some(like => like.owner._id === props.user.id)
                 ? "icon-heart like-button like-red"
-                : "icon-heart like-button like-white" : "icon-heart like-button like-white"
+                : "icon-heart like-button like-white"
             }
             onClick={props.likeFetching ? null : checkLike}
           ></button>
-          <span className="like">{props.likes ? props.likes.length : 0}</span>
+          <span className="like">{props.likes.length}</span>
         </div>
       </div>
     </div>

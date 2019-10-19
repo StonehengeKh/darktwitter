@@ -6,7 +6,7 @@ import { getPost } from "../../actions/post";
 import avatar from "../../assets/img/smile.jpg";
 import { url } from "../../actions/user";
 import { formatDate } from "../../components/Card";
-import Comment from "../../components/Comment"
+import Comment from "../../components/Comment";
 
 class Post extends Component {
   componentDidMount() {
@@ -27,85 +27,81 @@ class Post extends Component {
         {!post ? (
           <div>Loading...</div>
         ) : (
-          <div className="post-conteiner">
-            <div className="avatar-conteiner">
-              {post.avatar ? (
-                <img
-                  src={url + post.avatar.url}
-                  className="avatar-posts"
-                  alt="avatar"
-                />
-              ) : (
-                <img src={avatar} className="avatar-posts" alt="avatar" />
-              )}
-            </div>
-            <div className="post-context">
-              <div className="nick-posts">
-                {post.owner.nick || post.owner.login}
-                <span className="createdAt-posts">
-                  {formatDate(new Date(+post.createdAt).toLocaleDateString())}
-                </span>
+          <>
+            <div className="post-conteiner">
+              <div className="avatar-conteiner">
+                {post.avatar ? (
+                  <img
+                    src={url + post.avatar.url}
+                    className="avatar-posts"
+                    alt="avatar"
+                  />
+                ) : (
+                  <img src={avatar} className="avatar-posts" alt="avatar" />
+                )}
               </div>
-              {post.title ? (
-                <div className="title">{post.title}</div>
-              ) : (
-                <div className="title">Title</div>
-              )}
-              {post.text ? <div className="card-text">{post.text}</div> : null}
-              {post.images ? (
-                <div>
-                  {" "}
-                  {post.images.map(image => {
-                    return (
-                      <img
-                        key={image._id}
-                        alt="img"
-                        src={`http://hipstagram.asmer.fs.a-level.com.ua/${image.url}`}
-                        className="all-post-img"
-                      ></img>
-                    );
-                  })}
+              <div className="post-context">
+                <div className="nick-posts">
+                  {post.owner.nick || post.owner.login}
+                  <span className="createdAt-posts">
+                    {formatDate(new Date(+post.createdAt).toLocaleDateString())}
+                  </span>
                 </div>
-              ) : null}
-              <div className="post-like">
-                <button
-                  className={
-                    post.likes.some(like => like.owner._id === user.id)
-                      ? "icon-heart like-button like-red"
-                      : "icon-heart like-button like-white"
-                  }
-                  onClick={likeFetching ? null : () => this.checkLike(post)}
-                ></button>
-                <span className="like">{post.likes.length}</span>
+                {post.title ? (
+                  <div className="title">{post.title}</div>
+                ) : (
+                  <div className="title">Title</div>
+                )}
+                {post.text ? (
+                  <div className="card-text">{post.text}</div>
+                ) : null}
+                {post.images ? (
+                  <div>
+                    {" "}
+                    {post.images.map(image => {
+                      return (
+                        <img
+                          key={image._id}
+                          alt="img"
+                          src={`http://hipstagram.asmer.fs.a-level.com.ua/${image.url}`}
+                          className="all-post-img"
+                        ></img>
+                      );
+                    })}
+                  </div>
+                ) : null}
+                <div className="post-like">
+                  <button
+                    className={
+                      post.likes.some(like => like.owner._id === user.id)
+                        ? "icon-heart like-button like-red"
+                        : "icon-heart like-button like-white"
+                    }
+                    onClick={likeFetching ? null : () => this.checkLike(post)}
+                  ></button>
+                  <span className="like">{post.likes.length}</span>
+                </div>
               </div>
-              
-            {post.comments ? post.comments.map(comment=>{
-                        const {
-                          text,
-                          owner,
-                          createdAt,
-                          likes,
-                          _id
-                        } = comment;
-             return <Comment
-             key={_id}
-             id={_id}
-             text={text}
-             avatar={owner.avatar}
-             nick={owner.nick}
-             login={owner.login}
-             createdAt={createdAt}
-             likes={likes}
-             />
-
-            }
-            
-            
-            )
-              
-              : null}  
             </div>
-          </div>
+            {post.comments
+              ? post.comments.map(comment => {
+                  const { text, owner, createdAt, likes, _id } = comment;
+                  return (
+                    <Comment
+                      key={_id}
+                      id={_id}
+                      text={text}
+                      avatar={owner.avatar}
+                      nick={owner.nick}
+                      login={owner.login}
+                      createdAt={createdAt}
+                      likes={likes}
+                    />
+                  );
+                })
+              : null}
+               <div className="add-comment-conteiner">  <input  className="input add-comment-input"/>  <button className="button">Add comment</button></div>
+          </>
         )}
       </div>
     );

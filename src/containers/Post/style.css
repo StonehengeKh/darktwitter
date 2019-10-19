@@ -17,22 +17,39 @@
 }
 
 .comment-conteiner{
-  width: 100%;
+  width: 99%;
   border: 1px solid #e6ecf0;
   padding: 10px 10px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 
+.add-comment-conteiner>button{
+  margin: 10px;
+}
+
+.add-comment-input{
+  width: 100%;
+}
+.add-comment-conteiner{
+  width: 99%;
+  border: 1px solid #e6ecf0;
+  padding: 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-direction: row;
+}
 .post-conteiner {
   border: 1px solid #e6ecf0;
   width: 99%; 
-  margin: 5px 0;
+  margin: 5px 0 0 0;
   padding: 10px 10px;
   display: flex;
   flex-direction: row;
   padding-right: 15px;
-  box-shadow: 2px 2px 4px gray;
+  /* box-shadow: 2px 2px 4px gray; */
 }
 
 .post-like{
@@ -50,6 +67,7 @@
 
 .like {
   padding: 10px;
+  margin-right: 10px;
 }
 
 .like-white{

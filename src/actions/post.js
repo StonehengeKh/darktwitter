@@ -32,8 +32,8 @@ export const getPost = (id) => {
               _id, 
               text, 
               owner{_id, avatar{_id, url}, nick, login },
-              createdAt, 
               likes{_id, owner{_id}}
+              createdAt
             }
           }
         } `,
