@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css"
+import "./style.css";
 
 export const renderField = ({
   input,
@@ -23,6 +23,7 @@ export const renderField = ({
   </div>
 );
 
+
 export const validate = values => {
   const errors = {};
   if (!values.nick) {
@@ -45,5 +46,6 @@ export const validate = values => {
   } else if (values.confirmPassword !== values.password) {
     errors.confirmPassword = "Confirm password bad";
   }
+
   return errors;
 };

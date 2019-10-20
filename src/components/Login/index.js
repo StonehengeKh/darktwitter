@@ -68,7 +68,6 @@ let LoginForm = props => {
 
 LoginForm = reduxForm({
   form: "Login",
-
 })(LoginForm);
 
 export default connect(

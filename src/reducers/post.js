@@ -4,7 +4,8 @@ const initialState = {
   post: null,
   isFetching: false,
   fail: false,
-  likeFetching: false
+  likeFetching: false,
+  commentFetching: false
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -41,6 +42,26 @@ export default (state = initialState, { type, payload }) => {
         post: {...state.post, likes:likes},
         likeFetching: false
       };
+    }
+
+    case types.ADD_NEW_COMMENT_REQUEST: {
+      return { ...state,  commentFetching: true};
+    }
+    case types.ADD_NEW_COMMENT_REQUEST_SUCCESS: {
+      return { ...state, commentFetching: false, post: {...state.post, comments: payload} };
+    }
+    case types.ADD_NEW_COMMENT_REQUEST_FAIL: {
+      return { ...state, commentFetching: false};
+    }
+
+    case types.EDIT_COMMENT_REQUEST: {
+      return { ...state,  commentFetching: true};
+    }
+    case types.EDIT_COMMENT_REQUEST_SUCCESS: {
+      return { ...state, commentFetching: false, post: {...state.post, comments: payload} };
+    }
+    case types.EDIT_COMMENT_REQUEST_FAIL: {
+      return { ...state, commentFetching: false};
     }
 
 

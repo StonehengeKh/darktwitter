@@ -26,11 +26,10 @@ export const createNewPost = data => {
          }`,
       { post: { title: data.title, text: data.text} } 
     );
-    console.log(res.PostUpsert)
     if (res.PostUpsert){
     dispatch(createNewPostRequestSuccess(res.PostUpsert));
     } else {
-      dispatch(createNewPostRequestFail(res.PostUpsert));
+      dispatch(createNewPostRequestFail());
     }
   };
 };
