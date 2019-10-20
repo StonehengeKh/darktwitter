@@ -7,15 +7,20 @@ import { editComment } from "../../actions/post";
 
 function Comment(props) {
   const [isInputOpen, openInput] = useState(false);
-  const Form = (props) => {
+  const Form = props => {
     const [textValue, setTextValue] = useState("");
-    const submit = (event)=>{
-      event.preventDefault();
-      props.edit(textValue, props.id, props.postID)
-      openInput(!isInputOpen)
+    const [touch, changeTouch] = useState(false);
+    if (!touch) {
+      setTextValue(props.text);
+      changeTouch(true)
     }
+    const submit = event => {
+      event.preventDefault();
+      props.edit(textValue, props.id, props.postID);
+      openInput(!isInputOpen);
+    };
     return (
-      <form  onSubmit={event => submit(event)}>
+      <form onSubmit={event => submit(event)}>
         <input
           onChange={event => setTextValue(event.target.value)}
           value={textValue}
@@ -25,7 +30,6 @@ function Comment(props) {
       </form>
     );
   };
-  const closed = () => openInput(!isInputOpen)
   const checkLike = () => {
     const { user } = props;
     // let like = props.likes.find(like => like.ownerID === user.id);
@@ -53,12 +57,22 @@ function Comment(props) {
         </div>
         {props.text ? (
           isInputOpen ? (
-            <Form id={props.id} edit={props.editComment} postID={props.postID} onClick={closed}/>
+            <Form
+              id={props.id}
+              edit={props.editComment}
+              postID={props.postID}
+              text={props.text}
+            />
           ) : (
             <div className="card-text">{props.text}</div>
           )
         ) : isInputOpen ? (
-          <Form id={props.id} edit={props.editComment} postID={props.postID} onClick={closed}/>
+          <Form
+            id={props.id}
+            edit={props.editComment}
+            postID={props.postID}
+            text={props.text}
+          />
         ) : null}
         <div className="post-like">
           <div>
@@ -93,4 +107,7 @@ const mapStateToProps = ({ userReduser, postReduser }) => {
   };
 };
 
-export default connect(mapStateToProps, {editComment})(Comment);
+export default connect(
+  mapStateToProps,
+  { editComment }
+)(Comment);
