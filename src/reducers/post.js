@@ -5,7 +5,8 @@ const initialState = {
   isFetching: false,
   fail: false,
   likeFetching: false,
-  commentFetching: false
+  commentFetching: false,
+  LCFetching: false
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -64,6 +65,26 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, commentFetching: false};
     }
 
+
+    case types.ADD_LIKE_COMMENT_REQUEST: {
+      return { ...state,  LCFetching: true};
+    }
+    case types.ADD_LIKE_COMMENT_REQUEST_SUCCESS: {
+      return { ...state,post: {...state.post, comments: payload}, LCFetching: false };
+    }
+    case types.ADD_LIKE_COMMENT_REQUEST_FAIL: {
+      return { ...state, LCFetching: false};
+    }
+
+    case types.DEL_LIKE_COMMENT_REQUEST: {
+      return { ...state,  LCFetching: true};
+    }
+    case types.DEL_LIKE_COMMENT_REQUEST_SUCCESS: {
+      return { ...state, post: {...state.post, comments: payload}, LCFetching: false };
+    }
+    case types.DEL_LIKE_COMMENT_REQUEST_FAIL: {
+      return { ...state, LCFetching: false};
+    }
 
     default: {
       return state;

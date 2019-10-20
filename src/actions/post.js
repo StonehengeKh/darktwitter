@@ -95,13 +95,11 @@ export const addNewComment = (data, id) => {
   };
 };
 
-
-
 const editCommentRequest = () => ({
   type: types.EDIT_COMMENT_REQUEST
 });
 
-const editCommentRequesttSuccess = payload => ({
+const editCommentRequestSuccess = payload => ({
   type: types.EDIT_COMMENT_REQUEST_SUCCESS,
   payload
 });
@@ -119,7 +117,7 @@ export const editComment = (textValue, commentid, id) => {
              _id, text
           }
          }`,
-      { comment: { text: textValue, "_id" : commentid } }
+      { comment: { text: textValue, _id: commentid } }
     );
     if (res.CommentUpsert) {
       const post = await gql.request(
@@ -137,9 +135,101 @@ export const editComment = (textValue, commentid, id) => {
         { query: JSON.stringify([{ _id: id }]) }
       );
       if (post.PostFindOne)
-        dispatch(editCommentRequesttSuccess(post.PostFindOne.comments));
+        dispatch(editCommentRequestSuccess(post.PostFindOne.comments));
     } else {
       dispatch(editCommentRequestFail());
+    }
+  };
+};
+
+const addLikeCommentRequest = () => ({
+  type: types.ADD_LIKE_COMMENT_REQUEST
+});
+const  addLikeCommentRequestSuccess = payload => ({
+  type: types.ADD_LIKE_COMMENT_REQUEST_SUCCESS,
+  payload
+});
+const  addLikeCommentRequestFail = () => ({
+  type: types.ADD_LIKE_COMMENT_REQUEST_FAIL
+});
+
+export const addLikeComment = (commentId, postId) => {
+  return async dispatch => {
+    dispatch(addLikeCommentRequest());
+    checkToken();
+    const res = await gql.request(
+      `mutation like($like: LikeInput){
+        LikeUpsert(like: $like) {
+              _id, owner{_id}
+          }
+        }`,
+      { like: { comment: { _id: commentId } } }
+    );
+    if (res.LikeUpsert) {
+      const post = await gql.request(
+        `query post($query:String!){
+            PostFindOne(query: $query){
+              comments{
+                _id, 
+                text, 
+                owner{_id, avatar{_id, url}, nick, login },
+                likes{_id, owner{_id}}
+                createdAt
+              }
+            }
+          } `,
+        { query: JSON.stringify([{ _id: postId }]) }
+      );
+      if (post.PostFindOne)
+        dispatch(addLikeCommentRequestSuccess(post.PostFindOne.comments));
+    } else {
+      dispatch(addLikeCommentRequestFail());
+    }
+  };
+};
+
+const delLikeCommentRequest = () => ({
+  type: types.DEL_LIKE_COMMENT_REQUEST
+});
+const  delLikeCommentRequestSuccess = payload => ({
+  type: types.DEL_LIKE_COMMENT_REQUEST_SUCCESS,
+  payload
+});
+const  delLikeCommentRequestFail = () => ({
+  type: types.DEL_LIKE_COMMENT_REQUEST_FAIL
+});
+
+export const delLikeComment = (likeId, postId) => {
+  return async dispatch => {
+    dispatch(delLikeCommentRequest());
+    checkToken();
+    const res = await gql.request(
+      `mutation like($like: LikeInput){
+        LikeDelete(like: $like) {
+              _id
+          }
+        }`,
+        { like: { _id: likeId } }
+    );
+    if (res.LikeDelete) {
+      const post = await gql.request(
+        `query post($query:String!){
+            PostFindOne(query: $query){
+              comments{
+                _id, 
+                text, 
+                owner{_id, avatar{_id, url}, nick, login },
+                likes{_id, owner{_id}}
+                createdAt
+              }
+            }
+          } `,
+        { query: JSON.stringify([{ _id: postId }]) }
+      );
+      if (post.PostFindOne)
+        dispatch(delLikeCommentRequestSuccess(post.PostFindOne.comments));
+    } else {
+      dispatch(delLikeCommentRequestFail());
     }
   };
 };

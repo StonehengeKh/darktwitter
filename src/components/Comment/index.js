@@ -3,7 +3,11 @@ import avatar from "../../assets/img/smile.jpg";
 import { url } from "../../actions/user";
 import { connect } from "react-redux";
 import { formatDate } from "../Card";
-import { editComment } from "../../actions/post";
+import {
+  editComment,
+  addLikeComment,
+  delLikeComment
+} from "../../actions/post";
 
 function Comment(props) {
   const [isInputOpen, openInput] = useState(false);
@@ -12,7 +16,7 @@ function Comment(props) {
     const [touch, changeTouch] = useState(false);
     if (!touch) {
       setTextValue(props.text);
-      changeTouch(true)
+      changeTouch(true);
     }
     const submit = event => {
       event.preventDefault();
@@ -30,10 +34,13 @@ function Comment(props) {
       </form>
     );
   };
+
   const checkLike = () => {
-    const { user } = props;
-    // let like = props.likes.find(like => like.ownerID === user.id);
-    // like ? props.delLikePosts(like._id, props.id)  : props.addLikePosts(props.id);
+    const { user, addLikeComment, delLikeComment } = props;
+    let like = props.likes.find(like => like.owner._id === user.id);
+    like
+      ? delLikeComment(like._id, props.postID)
+      : addLikeComment(props.id, props.postID);
   };
   return (
     <div className="comment-conteiner" key={props.id}>
@@ -82,7 +89,7 @@ function Comment(props) {
                   ? "icon-heart like-button like-red"
                   : "icon-heart like-button like-white"
               }
-              onClick={props.likeFetching ? null : checkLike}
+              onClick={props.LCFetching ? null : checkLike}
             ></button>
             <span className="like">{props.likes.length}</span>
           </div>
@@ -103,11 +110,12 @@ function Comment(props) {
 const mapStateToProps = ({ userReduser, postReduser }) => {
   return {
     user: userReduser.user,
-    commentFetching: postReduser.commentFetching
+    commentFetching: postReduser.commentFetching,
+    LCFetching: postReduser.LCFetching
   };
 };
 
 export default connect(
   mapStateToProps,
-  { editComment }
+  { editComment, addLikeComment, delLikeComment }
 )(Comment);
