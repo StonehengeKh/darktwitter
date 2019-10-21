@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 // import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg";
+import { Link } from "react-router-dom";
 
 class Following extends Component {
   delFollowin = id => {
@@ -25,7 +26,7 @@ class Following extends Component {
         {following &&
           following.map(userF => {
             return (
-              <div key={userF._id} className="user-wrap">
+              <Link to={`users/${userF._id}`} key={userF._id}><div className="user-wrap">
                 {userF.avatar ? (
                   <img
                     src={url + userF.avatar.url}
@@ -40,7 +41,7 @@ class Following extends Component {
                   className="followers-border icon-minus"
                   onClick={() => this.delFollowin(userF._id)}
                 />
-              </div>
+              </div></Link>
             );
           })}
       </div>

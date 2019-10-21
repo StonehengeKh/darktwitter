@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
+
 import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg";
@@ -16,7 +19,6 @@ class Users extends Component {
         })
       : ( []);
     newFollowing.push({ _id: id });
-    console.log(newFollowing);
     userUpsertFollowing(user.id, newFollowing);
   };
 
@@ -40,6 +42,7 @@ class Users extends Component {
         {users &&
           users.map(userF => {
             return (
+              <Link to={`users/${userF._id}`} key={userF._id}>
               <div key={userF._id} className="user-wrap">
                 {userF.avatar ? (
                   <img
@@ -65,7 +68,7 @@ class Users extends Component {
                     onClick={() => this.addFollowin(userF._id)}
                   />
                 )}
-              </div>
+              </div></Link>
             );
           })}
       </div>

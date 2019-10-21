@@ -47,7 +47,6 @@ export const registration = data => {
            `,
       { login: data.login, password: data.password }
     );
-    console.log(res.createUser);
     if (res.createUser) {
       dispatch(userLogin(data));
     } else dispatch(userRequestRegistrFail());

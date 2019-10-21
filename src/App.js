@@ -14,6 +14,7 @@ import Post from "./containers/Post";
 import Admin from "./containers/Admin";
 import UserCab from "./containers/Usercab";
 import Search from "./containers/Search";
+import SelectedUser from './containers/SelectedUser'
 import "./App.css";
 // import { withRouter } from "react-router-dom";
 
@@ -148,14 +149,14 @@ export const ROUTERS = [
     exact: true,
     role: ["user", "admin"]
   },
-  // {
-  //   id: 8,
-  //   path: "/update/:id",
-  //   component: UpdateRecipe,
-  //   privateRoute: true,
-  //   exact: true,
-  //   role: ["user", "admin"]
-  // },
+  {
+    id: 8,
+    path: "/users/:id",
+    component: SelectedUser,
+    privateRoute: true,
+    exact: true,
+    role: ["user", "admin"]
+  },
   {
     id: 9,
     component: NotFound,

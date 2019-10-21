@@ -72,6 +72,7 @@ class HomePage extends React.Component {
                       createdAt={createdAt}
                       comments={comments}
                       likes={likes}
+                      ownerId={owner._id}
                     />
                   );
                 })
