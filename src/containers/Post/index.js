@@ -86,7 +86,6 @@ class Post extends Component {
                   </div>
                 ) : null}
                 <div className="post-like">
-                  <div>
                   <button
                     className={
                       post.likes.some(like => like.owner._id === user.id)
@@ -96,13 +95,12 @@ class Post extends Component {
                     onClick={likeFetching ? null : () => this.checkLike(post)}
                   ></button>
                   <span className="like">{post.likes.length}</span>
-                  </div>
                 </div>
               </div>
             </div>
             {post.comments
               ? post.comments.map(comment => {
-                  const { text, owner, createdAt, likes, _id} = comment;
+                  const { text, owner, createdAt, likes, _id } = comment;
                   return (
                     <Comment
                       key={_id}

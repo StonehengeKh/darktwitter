@@ -61,11 +61,15 @@
   width: calc(100% - 60px);
 }
 
+.comment-like{
+  justify-content: space-between;
+}
+
+.comment-like,
 .post-like{
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .img {

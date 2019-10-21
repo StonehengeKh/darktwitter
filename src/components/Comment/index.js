@@ -20,8 +20,10 @@ function Comment(props) {
     }
     const submit = event => {
       event.preventDefault();
-      props.edit(textValue, props.id, props.postID);
-      openInput(!isInputOpen);
+      if (textValue.length > 2 ) {
+        props.edit(textValue, props.id, props.postID);
+        openInput(!isInputOpen);
+      }
     };
     return (
       <form onSubmit={event => submit(event)}>
@@ -81,7 +83,7 @@ function Comment(props) {
             text={props.text}
           />
         ) : null}
-        <div className="post-like">
+        <div className="comment-like">
           <div>
             <button
               className={
