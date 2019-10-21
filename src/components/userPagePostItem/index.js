@@ -9,6 +9,7 @@ const PostItem = ({ post, user, addLike, delLike, getPost, getAllMyPosts, likeFe
   const checkLike = async post => {
     if(!likeFetching && !isFetching && !postFetching){
       let like = post.likes.find(like => like.owner._id === user.id);
+      console.log("like",like)
       await getPost(post._id)
       await like ? delLike(like._id, post._id) : addLike(post._id);
       await getAllMyPosts(user.id)
