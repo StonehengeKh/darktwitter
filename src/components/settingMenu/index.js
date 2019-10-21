@@ -3,7 +3,7 @@ import Dropzone from "react-dropzone";
 
 const imageMaxSize = 1024 * 1024;
 
-const SettingMenu = ({upsertFetching, user, nickHandler, sendHandler, userUpsertAvatar, nick}) => {
+const SettingMenu = ({upsertFetching, user, nickHandler, sendHandler, userUpsertAvatar, nick, handleClose}) => {
     const handleOnDrop = async (files, rejectedFile) => {
         // console.log("file rejected", rejectedFile);
         if (files && files.length > 0) {
@@ -26,17 +26,19 @@ const SettingMenu = ({upsertFetching, user, nickHandler, sendHandler, userUpsert
 
     return(
         <div className="settingsMenu">
-    
+      <button onClick={()=>handleClose(false) } className='btn-create btn-done'>Done</button>
           <>
-            {user.nick ? <span>Change nick</span> : <span>Add nick</span>}
+             <label>Nickname
             <input
               name="nick"
               type="text"
-              value={nick}
+              value={user.nick}
               onChange={nickHandler}
-            />{" "}
-            <button onClick={sendHandler}>Go!</button>
+
+            />{" "} </label>
+            <button onClick={sendHandler} className='btn-create'>{user.nick ? 'Change': 'Add'}</button>
           </>
+          <h3>Change photo</h3>
       <Dropzone
         onDrop={handleOnDrop}
         maxSize={imageMaxSize}
@@ -44,7 +46,7 @@ const SettingMenu = ({upsertFetching, user, nickHandler, sendHandler, userUpsert
         accept="image/*"
       >
         {({ getRootProps, getInputProps }) => (
-          <section>
+          <section className="dropZone">
             <div {...getRootProps()} className="drop_div">
               {/* <input {...getInputProps()} /> */}
               <p>Drop image here</p>

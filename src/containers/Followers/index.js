@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 // import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg"
+import { Link } from "react-router-dom";
 
 
 class Followers extends Component {
@@ -18,7 +19,6 @@ class Followers extends Component {
         })
       : ( []);
     newFollowing.push({ _id: id });
-    console.log(newFollowing);
     userUpsertFollowing(user.id, newFollowing);
   };
 
@@ -28,7 +28,7 @@ class Followers extends Component {
       <div>
         {followers && 
           followers.map(userF => {
-            return <div key={userF._id} className="user-wrap">
+            return <Link to={`users/${userF._id}`} key={userF._id}><div  className="user-wrap">
               {userF.avatar ? (
                 <img src={url + userF.avatar.url} className="avatar-img" alt="avatar"/>
               ) : (
@@ -43,6 +43,7 @@ class Followers extends Component {
               onClick={() => this.addFollowin(userF._id)} 
              /> }
             </div>
+            </Link>
         })}
       </div>
     );

@@ -15,7 +15,7 @@ const selectedUserRequestFail = payload => ({
   payload
 });
 
-export const selectedUser = id => {
+export const getSelectedUser = id => {
   return async dispatch => {
     dispatch(selectedUserRequest());
     checkToken();
@@ -33,6 +33,7 @@ export const selectedUser = id => {
       `,
       { query: JSON.stringify([{ _id: id }]) }
     );
+
     if (user.UserFindOne) {
       const posts = await gql.request(
         `query post($query:String!){
@@ -68,3 +69,8 @@ export const selectedUser = id => {
     }
   };
 };
+
+export const deleteSelectedUser = () => ({
+  type: types.DELETE_SELECTED_USER
+
+})

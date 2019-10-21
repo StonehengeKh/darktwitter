@@ -18,8 +18,9 @@ function Card(props) {
     let like = props.likes.find(like => like.owner._id === user.id);
     like ? props.delLikePosts(like._id, props.id)  : props.addLikePosts(props.id);
   };
+  
   return (
-    <div className="all-post-conteiner" key={props.id}>
+    <div className="all-post-conteiner">
       <div className="avatar-conteiner">
         {props.avatar ? (
           <img
@@ -33,7 +34,7 @@ function Card(props) {
       </div>
       <div>
         <div className="nick-posts">
-          {props.nick || props.login}
+          <Link to={`/users/${props.ownerId}`}>{props.nick || props.login}</Link>
           <span className="createdAt-posts">
             {formatDate(new Date(+props.createdAt).toLocaleDateString())}
           </span>

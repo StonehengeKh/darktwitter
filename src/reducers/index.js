@@ -5,6 +5,7 @@ import usersReduser from './users';
 import postsReduser from './posts';
 import postReduser from './post';
 import myPostsReduser from './myposts';
+import selectedUserReducer from './selectedUser'
 import { reducer as formReducer } from 'redux-form'
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
 	myPostsReduser,
 	usersReduser,
 	postReduser,
+	selectedUserReducer,
 	form: formReducer
 });
