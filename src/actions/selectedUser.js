@@ -61,10 +61,10 @@ export const selectedUser = id => {
           selectedUserRequestSuccess([user.UserFindOne, posts.PostFind])
         );
       } else {
-        dispatch(selectedUserRequestFail([user.UserFindOne, posts.PostFind]));
+        dispatch(selectedUserRequestFail());
       }
     } else {
-      dispatch(selectedUserRequestFail([user.UserFindOne, posts.PostFind]));
+      dispatch(selectedUserRequestFail());
     }
   };
 };
