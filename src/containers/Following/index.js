@@ -26,22 +26,23 @@ class Following extends Component {
         {following &&
           following.map(userF => {
             return (
-              <Link to={`users/${userF._id}`} key={userF._id}><div className="user-wrap">
-                {userF.avatar ? (
-                  <img
-                    src={url + userF.avatar.url}
-                    className="avatar-img"
-                    alt="avatar"
+              <Link to={`users/${userF._id}`} key={userF._id}>
+                <div className="user-wrap">
+                  {userF.avatar ? (
+                    <img
+                      src={url + userF.avatar.url}
+                      className="avatar-img"
+                      alt="avatar"
+                    />
+                  ) : (
+                    <img src={avatar} className="avatar-img" alt="avatar" />
+                  )}
+                  <p className="user-login">{userF.nick || userF.login}</p>
+                  <span
+                    className="followers-border icon-minus"
+                    onClick={() => this.delFollowin(userF._id)}
                   />
-                ) : (
-                  <img src={avatar} className="avatar-img" alt="avatar" />
-                )}
-                <p className="user-login">{userF.nick || userF.login}</p>
-                <span
-                  className="followers-border icon-minus"
-                  onClick={() => this.delFollowin(userF._id)}
-                />
-              </div>
+                </div>
               </Link>
             );
           })}

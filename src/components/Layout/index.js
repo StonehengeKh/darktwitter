@@ -51,7 +51,17 @@ class Layout extends Component {
           }
         >
           {user && <TopSide />}
-          <div className={localStorage.authToken ?  user  ? "layout-block-page": "layout-block-auth" : "layout-block-auth"}>{children}</div>
+          <div
+            className={
+              localStorage.authToken
+                ? user
+                  ? "layout-block-page"
+                  : "layout-block-auth"
+                : "layout-block-auth"
+            }
+          >
+            {children}
+          </div>
         </section>
         <div />
       </div>

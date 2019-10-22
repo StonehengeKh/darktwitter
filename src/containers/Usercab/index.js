@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { createNewPost } from "../../actions/addPost"
+
+import { createNewPost } from "../../actions/addPost";
 import SettingMenu from "../../components/settingMenu";
 import "./style.css";
 import { userUpsertNick, userUpsertAvatar } from "../../actions/user";
 import Post from "../../components/userPagePostItem";
-import defaultAvatar from '../../assets/img/smile.jpg'
-import Modal from '../../components/Modal'
+import defaultAvatar from "../../assets/img/smile.jpg";
+import Modal from "../../components/Modal";
+import { getAllMyPosts } from "../../actions/myposts";
 
 const UserCab = ({
   user,
   userUpsertNick,
   userUpsertAvatar,
   upsertFetching,
+  getAllMyPosts,
   createNewPost,
   posts
 }) => {
@@ -33,27 +36,30 @@ const UserCab = ({
   }
   const getValues = event => {
     event.preventDefault();
-    createNewPost({ title: titleValue, text: textValue })
-    openNewPostWindow(false)
+    createNewPost({ title: titleValue, text: textValue });
+    openNewPostWindow(false);
   };
+  useEffect(() => {
+    getAllMyPosts();
+  }, []);
 
   return (
     <main className="userCabMain">
-      {
-        !!user && 
-        (
-          <section className="userInfo">
-
-            <div className="generalInfo">
-
-              <img src={userAvatar ? userAvatar : defaultAvatar} alt="avatar" className="avatar" />
-              <h2>
-                {user.nick}
-              </h2>
-            </div>
-            <button className="btn-edit" onClick={() => openSettings(!isSetOpen)}>EDIT</button>
-            {isSetOpen && (
-              <Modal className='setting-modal'>
+      {!!user && (
+        <section className="userInfo">
+          <div className="generalInfo">
+            <img
+              src={userAvatar ? userAvatar : defaultAvatar}
+              alt="avatar"
+              className="avatar"
+            />
+            <h2>{user.nick}</h2>
+          </div>
+          <button className="btn-edit" onClick={() => openSettings(!isSetOpen)}>
+            EDIT
+          </button>
+          {isSetOpen && (
+            <Modal className="setting-modal">
               <SettingMenu
                 upsertFetching={upsertFetching}
                 user={user}
@@ -63,24 +69,34 @@ const UserCab = ({
                 nick={nick}
                 handleClose={openSettings}
               />
-              </Modal>
-            )}
-          </section>
-        )}
-      <button onClick={() => openNewPostWindow(!isNewPost)} className='btn-create'>CREATE POST</button>
-      {isNewPost && <form onSubmit={event => getValues(event)} className='createForm'>
-        <input
-          onChange={event => setTitleValue(event.target.value)}
-          value={titleValue}
-        />
-        <textarea
-          onChange={event => setTextValue(event.target.value)}
-          value={textValue}
-        />
-        <button type="submit" className="btn-create form-create">Create</button>
-      </form>}
+            </Modal>
+          )}
+        </section>
+      )}
+      <button
+        onClick={() => openNewPostWindow(!isNewPost)}
+        className="btn-create"
+      >
+        CREATE POST
+      </button>
+      {isNewPost && (
+        <form onSubmit={event => getValues(event)} className="createForm">
+          <input
+            onChange={event => setTitleValue(event.target.value)}
+            value={titleValue}
+          />
+          <textarea
+            onChange={event => setTextValue(event.target.value)}
+            value={textValue}
+          />
+          <button type="submit" className="btn-create form-create">
+            Create
+          </button>
+        </form>
+      )}
       <section className="myPostsSection">
-        {posts && posts.map(post => <Post post={post} user={user} key={post._id} />)}
+        {posts &&
+          posts.map(post => <Post post={post} user={user} key={post._id} />)}
       </section>
     </main>
   );
@@ -96,5 +112,5 @@ const mapStateToProps = ({ userReducer, myPostsReducer }) => {
 
 export default connect(
   mapStateToProps,
-  { userUpsertNick, userUpsertAvatar, createNewPost }
+  { userUpsertNick, userUpsertAvatar, createNewPost, getAllMyPosts }
 )(UserCab);

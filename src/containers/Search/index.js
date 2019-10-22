@@ -6,7 +6,7 @@ import Card from "../../components/Card";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg";
 import { Link } from "react-router-dom";
-import Preloader from "../../components/Preloader"
+import Preloader from "../../components/Preloader";
 
 import "./style.css";
 
@@ -22,24 +22,22 @@ const Search = ({
   userUpsertFollowing
 }) => {
   const [searchValue, setSearchValue] = useState("");
-  const [isPostSearch, setpostSearch] = useState(false)
+  const [isPostSearch, setpostSearch] = useState(false);
 
   const startSearch = () => {
     if (searchValue.length > 2) {
-      !isPostSearch
-        ? searchUser(searchValue)
-        : searchPosts(searchValue);
+      !isPostSearch ? searchUser(searchValue) : searchPosts(searchValue);
       setSearchValue("");
     }
   };
   const addFollowin = id => {
     let newFollowing = user.following
       ? user.following.map(x => {
-        delete x.avatar;
-        delete x.nick;
-        delete x.login;
-        return x;
-      })
+          delete x.avatar;
+          delete x.nick;
+          delete x.login;
+          return x;
+        })
       : [];
     newFollowing.push({ _id: id });
     userUpsertFollowing(user.id, newFollowing);
@@ -49,53 +47,65 @@ const Search = ({
       {isFetching && <Preloader />}
       <div className="search-user-block">
         <div className="block-search">
-          <div className='search-header'>
-            <h3>Search {!isPostSearch ? 'user' : 'post'}</h3>
+          <div className="search-header">
+            <h3>Search {!isPostSearch ? "user" : "post"}</h3>
             <input
               className="input"
               value={searchValue}
               onChange={event => setSearchValue(event.target.value)}
             />
-            <span className="button icon-search button-top" onClick={startSearch} />
+            <span
+              className="button icon-search button-top"
+              onClick={startSearch}
+            />
           </div>
 
-          <div className='searchButtons'>
-            <button onClick={() => setpostSearch(false)} className={isPostSearch ? 'btn-create-disable' : 'btn-create'}>User</button>
-            <button onClick={() => setpostSearch(true)} className={!isPostSearch ? 'btn-create-disable' : 'btn-create'}>Posts</button>
+          <div className="searchButtons">
+            <button
+              onClick={() => setpostSearch(false)}
+              className={isPostSearch ? "btn-create-disable" : "btn-create"}
+            >
+              User
+            </button>
+            <button
+              onClick={() => setpostSearch(true)}
+              className={!isPostSearch ? "btn-create-disable" : "btn-create"}
+            >
+              Posts
+            </button>
           </div>
-
         </div>
-
       </div>
-      {!isPostSearch ? <div className="search-page-block">
-        {userFail && <div>User not found</div>}
-        {userS && (
-          <Link to={`users/${userS._id}`}>
-            <div className="user-wrap">
-              {userS.avatar ? (
-                <img
-                  src={url + userS.avatar.url}
-                  className="avatar-img"
-                  alt="avatar"
-                />
-              ) : (
+      {!isPostSearch ? (
+        <div className="search-page-block">
+          {userFail && <div>User not found</div>}
+          {userS && (
+            <Link to={`users/${userS._id}`}>
+              <div className="user-wrap">
+                {userS.avatar ? (
+                  <img
+                    src={url + userS.avatar.url}
+                    className="avatar-img"
+                    alt="avatar"
+                  />
+                ) : (
                   <img src={avatar} className="avatar-img" alt="avatar" />
                 )}
-              <p className="user-login">{userS.nick || userS.login}</p>
-              {user.following &&
+                <p className="user-login">{userS.nick || userS.login}</p>
+                {user.following &&
                 user.following.some(user => user._id === userS._id) ? null : (
                   <span
                     className="followers-border icon-plus"
                     onClick={() => addFollowin(userS._id)}
                   />
                 )}
-            </div>
-          </Link>
-        )}
-      </div>
-        : <div className="search-page-block">
+              </div>
+            </Link>
+          )}
+        </div>
+      ) : (
+        <div className="search-page-block">
           <div className="block-search">
-
             {postsFail && <div>Post not found</div>}
           </div>
 
@@ -128,7 +138,8 @@ const Search = ({
                 />
               );
             })}
-        </div>}
+        </div>
+      )}
     </div>
   );
 };
