@@ -19,8 +19,9 @@ export const getSelectedUser = id => {
   return async dispatch => {
     dispatch(selectedUserRequest());
     checkToken();
-    const user = await gql.request(
-      `query user($query:String!){
+    try {
+      const user = await gql.request(
+        `query user($query:String!){
         UserFindOne(query:$query){
           nick,
           _id,
@@ -31,12 +32,11 @@ export const getSelectedUser = id => {
         }
       }
       `,
-      { query: JSON.stringify([{ _id: id }]) }
-    );
-
-    if (user.UserFindOne) {
-      const posts = await gql.request(
-        `query post($query:String!){
+        { query: JSON.stringify([{ _id: id }]) }
+      );
+      if (user.UserFindOne) {
+        const posts = await gql.request(
+          `query post($query:String!){
               PostFind(query: $query){
                 _id,
                 text,
@@ -55,16 +55,15 @@ export const getSelectedUser = id => {
                 }
               }
             } `,
-        { query: JSON.stringify([{ ___owner: id }, { sort: ["_id", -1] }]) }
-      );
-      if (posts.PostFind) {
-        dispatch(
-          selectedUserRequestSuccess([user.UserFindOne, posts.PostFind])
+          { query: JSON.stringify([{ ___owner: id }, { sort: ["_id", -1] }]) }
         );
-      } else {
-        dispatch(selectedUserRequestFail());
+        if (posts.PostFind) {
+          dispatch(
+            selectedUserRequestSuccess([user.UserFindOne, posts.PostFind])
+          );
+        }
       }
-    } else {
+    } catch {
       dispatch(selectedUserRequestFail());
     }
   };
@@ -72,5 +71,4 @@ export const getSelectedUser = id => {
 
 export const deleteSelectedUser = () => ({
   type: types.DELETE_SELECTED_USER
-
-})
+});

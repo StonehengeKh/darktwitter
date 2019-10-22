@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { Redirect } from "react-router-dom";
 import { addLike, delLike } from "../../actions/likes";
 import "./style.css";
 import { getPost, addNewComment } from "../../actions/post";
@@ -38,9 +38,10 @@ class Post extends Component {
   handleChange = event => this.setState({ comment: event.target.value });
 
   render() {
-    const { post, likeFetching, user, commentFetching } = this.props;
+    const { post, likeFetching, user, commentFetching, fail } = this.props;
     return (
       <div className="wrap">
+        {fail && <Redirect to="/page not found" />}
         {!post ? (
           <Preloader/>
         ) : (
@@ -146,7 +147,8 @@ const mapStateToProps = ({ userReducer, postReducer }) => {
     user: userReducer.user,
     post: postReducer.post,
     commentFetching: postReducer.commentFetching,
-    likeFetching: postReducer.likeFetching
+    likeFetching: postReducer.likeFetching,
+    fail: postReducer.fail,
   };
 };
 

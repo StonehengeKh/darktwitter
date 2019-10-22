@@ -18,8 +18,9 @@ export const getPost = id => {
   return async dispatch => {
     dispatch(getPostReguest());
     checkToken();
-    const res = await gql.request(
-      `query post($query:String!){
+    try {
+      const res = await gql.request(
+        `query post($query:String!){
           PostFindOne(query: $query){
             _id,
             text,
@@ -38,11 +39,12 @@ export const getPost = id => {
             }
           }
         } `,
-      { query: JSON.stringify([{ _id: id }]) }
-    );
-    if (res.PostFindOne) {
-      dispatch(getPostReguestSuccess(res.PostFindOne));
-    } else {
+        { query: JSON.stringify([{ _id: id }]) }
+      );
+      if (res.PostFindOne) {
+        dispatch(getPostReguestSuccess(res.PostFindOne));
+      } 
+    } catch {
       dispatch(getPostReguestFail());
     }
   };
@@ -145,11 +147,11 @@ export const editComment = (textValue, commentid, id) => {
 const addLikeCommentRequest = () => ({
   type: types.ADD_LIKE_COMMENT_REQUEST
 });
-const  addLikeCommentRequestSuccess = payload => ({
+const addLikeCommentRequestSuccess = payload => ({
   type: types.ADD_LIKE_COMMENT_REQUEST_SUCCESS,
   payload
 });
-const  addLikeCommentRequestFail = () => ({
+const addLikeCommentRequestFail = () => ({
   type: types.ADD_LIKE_COMMENT_REQUEST_FAIL
 });
 
@@ -191,11 +193,11 @@ export const addLikeComment = (commentId, postId) => {
 const delLikeCommentRequest = () => ({
   type: types.DEL_LIKE_COMMENT_REQUEST
 });
-const  delLikeCommentRequestSuccess = payload => ({
+const delLikeCommentRequestSuccess = payload => ({
   type: types.DEL_LIKE_COMMENT_REQUEST_SUCCESS,
   payload
 });
-const  delLikeCommentRequestFail = () => ({
+const delLikeCommentRequestFail = () => ({
   type: types.DEL_LIKE_COMMENT_REQUEST_FAIL
 });
 
@@ -209,7 +211,7 @@ export const delLikeComment = (likeId, postId) => {
               _id
           }
         }`,
-        { like: { _id: likeId } }
+      { like: { _id: likeId } }
     );
     if (res.LikeDelete) {
       const post = await gql.request(

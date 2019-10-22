@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
+import { Redirect } from "react-router-dom";
 import { getSelectedUser, deleteSelectedUser } from "../../actions/selectedUser";
-import Post from "../../components/userPagePostItem";
+// import Post from "../../components/userPagePostItem";
 import defaultAvatar from '../../assets/img/smile.jpg'
 import { url } from "../../actions/user";
 import Card from "../../components/Card";
@@ -12,7 +12,8 @@ const SelectedUserCab = ({
     getSelectedUser,
     deleteSelectedUser,
     posts,
-    match
+    match,
+    fail
 }) => {
     let userAvatar;
 
@@ -27,6 +28,7 @@ const SelectedUserCab = ({
     }
     return (
         <main className="userCabMain">
+            {fail && <Redirect to="/page not found" />}
             {
                 !!selectedUser &&
                 (
@@ -66,7 +68,8 @@ const SelectedUserCab = ({
 const mapStateToProps = ({ selectedUserReducer }) => {
     return {
         selectedUser: selectedUserReducer.selectedUser,
-        posts: selectedUserReducer.selectedUsersPosts
+        posts: selectedUserReducer.selectedUsersPosts,
+        fail: selectedUserReducer.fail
     };
 };
 

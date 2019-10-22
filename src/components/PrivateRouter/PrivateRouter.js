@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, user, role, ...rest }) => (
       if (localStorage.authToken && user) {
         const has = role.some(el => el === user.role);
         if (!has) {
-          return <Redirect to="/not" />;
+          return <Redirect to="/page not found" />;
         } else {
           return <Component {...props} />;
         }
