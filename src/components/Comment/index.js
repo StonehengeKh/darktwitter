@@ -21,7 +21,7 @@ function Comment(props) {
     }
     const submit = event => {
       event.preventDefault();
-      if (textValue.length > 2 ) {
+      if (textValue.length > 2) {
         props.edit(textValue, props.id, props.postID);
         openInput(!isInputOpen);
       }
@@ -60,7 +60,9 @@ function Comment(props) {
       </div>
       <div className="comment-context">
         <div className="nick-posts">
-        <Link to={`/users/${props.ownerID}`}>{props.nick || props.login}</Link>
+          <Link to={`/users/${props.ownerID}`}>
+            {props.nick || props.login}
+          </Link>
           <span className="createdAt-posts">
             {formatDate(new Date(+props.createdAt).toLocaleDateString())}
           </span>

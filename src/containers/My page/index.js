@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 import { getAllMyPosts } from "../../actions/myposts";
 import "./style.css";
-import Preloader from "../../components/Preloader"
+import Preloader from "../../components/Preloader";
 
 class MyPage extends Component {
   componentDidMount() {
-    this.props.getAllMyPosts(this.props.user.id)
+    this.props.getAllMyPosts(this.props.user.id);
   }
 
   render() {
@@ -16,7 +16,7 @@ class MyPage extends Component {
     return (
       <div>
         {isFetching ? (
-          <Preloader/>
+          <Preloader />
         ) : (
           <>
             {myPosts &&
@@ -40,4 +40,7 @@ const mapStateToProps = ({ userReducer, myPostsReducer }) => {
   };
 };
 
-export default connect(mapStateToProps, {getAllMyPosts})(MyPage);
+export default connect(
+  mapStateToProps,
+  { getAllMyPosts }
+)(MyPage);

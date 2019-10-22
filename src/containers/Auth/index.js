@@ -6,7 +6,7 @@ import Regisration from "../../components/Registration";
 import * as actions from "../../actions/user";
 import { Redirect, Route } from "react-router-dom";
 import "./style.css";
-import Preloader from "../../components/Preloader"
+import Preloader from "../../components/Preloader";
 
 export const Logo = () => {
   return (
@@ -52,7 +52,7 @@ export class Auth extends Component {
     this.setState(prevState => ({ ...prevState, login: !prevState.login }));
 
   render() {
-    const { isFetching, incorected, mailExists} = this.props;
+    const { isFetching, incorected, mailExists } = this.props;
     const { login } = this.state;
     return (
       <div className="wrapper">
@@ -65,9 +65,9 @@ export class Auth extends Component {
         </div>
 
         <div className="rigth-div">
-          {isFetching && <Preloader/>}
+          {isFetching && <Preloader />}
           <div className="for-logo">
-            <Logo/>
+            <Logo />
 
             {login ? (
               <button onClick={this.toggleAuthProperty} className="button">

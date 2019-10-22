@@ -2,26 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import "./style.css";
 
-
-
 class AddRecipes extends React.Component {
-
-
-
   render() {
-    return (
-      <div>
-      add new post
-      </div>
-    );
+    return <div>Add new post</div>;
   }
 }
 
 const mapStateToProps = state => {
-  return {
-  };
+  return {};
 };
 
-export default connect(
-  mapStateToProps
-)(AddRecipes);
+export default connect(mapStateToProps)(AddRecipes);
