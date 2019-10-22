@@ -22,7 +22,7 @@
     flex-wrap: wrap;
     justify-content: start;
     align-items: center;
-    height: 250px;
+    min-height: 250px;
 }
 
 .block-search {
