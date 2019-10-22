@@ -65,7 +65,7 @@ const SelectedUserCab = ({
             />
           ))}
       </section>
-    </main>
+    </main>)
 };
 
 const mapStateToProps = ({ selectedUserReducer }) => {
