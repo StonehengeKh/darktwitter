@@ -65,6 +65,7 @@ export const searchUser = payload => {
     const res = await gql.request(
       `query user($query:String!){
         UserFindOne(query:$query){
+          _id,
           nick,
           login,
           followers{_id, avatar{_id, url}, login, nick},

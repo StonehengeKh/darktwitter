@@ -95,7 +95,7 @@ const Search = ({
             )}
               <p className="user-login">{userS.nick || userS.login}</p>
             {user.following &&
-            user.following.some(user => user.id === userS._id) ? (
+            user.following.some(user => user._id === userS._id) ? (
               <span
                 className="followers-border icon-minus"
                 onClick={() => this.delFollowin(userS._id)}
