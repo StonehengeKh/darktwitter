@@ -147,6 +147,7 @@ export const ROUTERS = [
   },
   {
     id: 9,
+      path: "/error",
     component: NotFound,
     privateRoute: false,
     exact: true

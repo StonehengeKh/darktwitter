@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import Login from "../../components/Login";
 import Regisration from "../../components/Registration";
 import * as actions from "../../actions/user";
 import { Redirect, Route } from "react-router-dom";
 import "./style.css";
+import Preloader from "../../components/Preloader"
 
 export const Logo = () => {
   return (
@@ -63,7 +65,7 @@ export class Auth extends Component {
         </div>
 
         <div className="rigth-div">
-          {isFetching && <p>Loading...</p>}
+          {isFetching && <Preloader/>}
           <div className="for-logo">
             <Logo/>
 

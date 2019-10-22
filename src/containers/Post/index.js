@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import { addLike, delLike } from "../../actions/likes";
 import "./style.css";
 import { getPost, addNewComment } from "../../actions/post";
@@ -7,6 +8,7 @@ import avatar from "../../assets/img/smile.jpg";
 import { url } from "../../actions/user";
 import { formatDate } from "../../components/Card";
 import Comment from "../../components/Comment";
+import Preloader from "../../components/Preloader"
 
 class Post extends Component {
   state = { comment: "" };
@@ -40,7 +42,7 @@ class Post extends Component {
     return (
       <div className="wrap">
         {!post ? (
-          <div>Loading...</div>
+          <Preloader/>
         ) : (
           <>
             <div className="post-conteiner">
@@ -118,7 +120,7 @@ class Post extends Component {
                 })
               : null}
             {commentFetching ? (
-              <div>Loading...</div>
+              <Preloader/>
             ) : (
               <form
                 className="add-comment-conteiner"

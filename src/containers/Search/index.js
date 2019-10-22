@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+
 import { searchPosts, searchUser } from "../../actions/search";
 import Card from "../../components/Card";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg"
 import { Link } from "react-router-dom";
+import Preloader from "../../components/Preloader"
 
 import "./style.css";
 
@@ -44,7 +46,7 @@ const Search = ({
   return (
     <div className="search-block">
         <div className="search-user-block">
-            {isFetching && <div>Loading...</div>}
+            {isFetching && <Preloader/>}
             <div className="block-search">
                 <h3>Search user</h3>
                 <input
