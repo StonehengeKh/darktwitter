@@ -3,7 +3,9 @@
   margin-bottom: 15px;
 }
 
-
+.button-top{
+  margin-top: 15px;
+}
 
 .search-user-block {
     display: flex;
@@ -19,4 +21,10 @@
   flex-wrap: wrap;
   justify-content: start;
   align-items: center;
+}
+
+@media (min-width: 727px)  {
+  .button-top{
+    margin-top: 0;
+  }
 }

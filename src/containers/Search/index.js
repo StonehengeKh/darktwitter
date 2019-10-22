@@ -58,7 +58,7 @@ const Search = ({
             value={searchUserValue}
             onChange={event => setSearchUserValue(event.target.value)}
           />
-          <span className="button icon-search" onClick={startSearchUser} />
+          <span className="button icon-search button-top" onClick={startSearchUser} />
           {userFail && <div>User not found</div>}
         </div>
         {userS && (
@@ -94,7 +94,7 @@ const Search = ({
             onChange={event => setSearchPostValue(event.target.value)}
           />
           <span
-            className="button icon-search button-search"
+            className="button icon-search button-search button-top"
             onClick={startSearchPost}
           />
           {postsFail && <div>Post not found</div>}
