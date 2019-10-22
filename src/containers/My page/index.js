@@ -6,7 +6,7 @@ import "./style.css";
 
 class MyPage extends Component {
   componentDidMount() {
-    this.props.getAllMyPosts()
+    this.props.getAllMyPosts(this.props.user.id)
   }
 
   render() {
