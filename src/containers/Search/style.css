@@ -23,8 +23,36 @@
   align-items: center;
 }
 
+.block-search>h3{
+  width: 40%;
+}
+
+.searchButtons{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
 @media (min-width: 727px)  {
   .button-top{
     margin-top: 0;
   }
+}
+
+.btn-create-disable{
+  border-radius: 10px;
+  width: 130px;
+  height: 30px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  background: rgba(46, 45, 45, 0.89);
+  color: white;
+  border: none;
+}
+
+.search-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
