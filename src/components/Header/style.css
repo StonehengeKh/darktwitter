@@ -41,7 +41,7 @@
 }
 
 a {
-  margin: 20px 0;
+  margin: 15px 0;
   text-decoration: none;
   color: inherit;
   font-size: inherit;
@@ -105,12 +105,19 @@ a {
   .header__item {
     font-size: 90%;
   }
+  a {
+    margin: 20px 0;
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+  }
 }
 
 @media (min-width: 768px)  {
   .header__item {
     font-size: 100%;
   }
+
   .nav-menu-ul {
     align-items: flex-start;
   }
