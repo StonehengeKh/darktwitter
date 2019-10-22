@@ -8,6 +8,11 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+
+
+    case types.DEL_MY_POSTS: {
+      return { ...state, myPosts:[] };
+    }
     case types.GET_ALL_MY_POSTS_REQUEST: {
       return { ...state,  isFetching: true, fail: false };
     }

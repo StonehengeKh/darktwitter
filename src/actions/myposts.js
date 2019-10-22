@@ -74,3 +74,8 @@ export const refreshMyPost = payload => ({
 //     console.log(res);
 //   };
 // };
+
+
+export const delMyPosts = () => ({
+  type: types.DEL_MY_POSTS
+});

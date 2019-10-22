@@ -2,7 +2,8 @@ import React from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../../actions/user";
+import {delUser} from "../../actions/user";
+import {delMyPosts} from "../../actions/myposts";
 import { ROUTERS } from "../../App";
 import { withRouter } from "react-router-dom";
 import { url } from "../../actions/user";
@@ -14,6 +15,7 @@ class Header extends React.Component {
     const { delUser } = this.props;
     event.preventDefault();
     delUser();
+    delMyPosts()
     localStorage.removeItem("authToken");
   };
 
@@ -97,5 +99,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  actions
+  {delMyPosts, delUser}
 )(withRouter(Header));
