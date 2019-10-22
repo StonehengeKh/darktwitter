@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import "./style.css";
+import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg";
 import { Link } from "react-router-dom";
@@ -22,7 +22,7 @@ class Following extends Component {
   render() {
     const { following } = this.props;
     return (
-      <div>
+      <div className="followings">
         {following &&
           following.map(userF => {
             return (

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import "./style.css";
+import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg"
 import { Link } from "react-router-dom";
@@ -25,8 +25,8 @@ class Followers extends Component {
   render() {
     const { followers, user} = this.props;
     return (
-      <div>
-        {followers && 
+      <div className="followers">
+        {followers &&
           followers.map(userF => {
             return <Link to={`users/${userF._id}`} key={userF._id}><div  className="user-wrap">
               {userF.avatar ? (
@@ -40,7 +40,7 @@ class Followers extends Component {
               )}
               <p className="user-login">{userF.nick || userF.login}</p>
              {user.following && user.following.some(user => user._id === userF._id) ?  null : <span className="followers-border icon-plus"
-              onClick={() => this.addFollowin(userF._id)} 
+              onClick={() => this.addFollowin(userF._id)}
              /> }
             </div>
             </Link>
