@@ -2,7 +2,8 @@ import React from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../../actions/user";
+import {delUser} from "../../actions/user";
+import {delMyPosts} from "../../actions/myposts";
 import { ROUTERS } from "../../App";
 import { withRouter } from "react-router-dom";
 import { url } from "../../actions/user";
@@ -14,6 +15,7 @@ class Header extends React.Component {
     const { delUser } = this.props;
     event.preventDefault();
     delUser();
+    delMyPosts()
     localStorage.removeItem("authToken");
   };
 
@@ -43,6 +45,7 @@ class Header extends React.Component {
         <nav className="nav-menu">
           <ul className="nav-menu-ul">
             <li className="header__item">
+              
               <Logo />
             </li>
             {ROUTERS.map(el =>
@@ -57,7 +60,7 @@ class Header extends React.Component {
             {localStorage.authToken && user ? (
               user.avatar ? (
                 <li className="header__item">
-                  <Link to="/usercab">
+                  <Link to="/usercab" className="header__link">
                     <img
                       src={url + user.avatar.url}
                       className="avatar-img"
@@ -67,26 +70,12 @@ class Header extends React.Component {
                 </li>
               ) : (
                 <li className="header__item">
-                  <Link to="/usercab">
+                  <Link  className="header__link" to="/usercab">
                     <img src={kartinka} className="avatar-img" alt="avatar" />
                   </Link>
                 </li>
               )
             ) : null}
-            {/* {localStorage.authToken && user && (
-              <li className="header__item">
-                <Link
-                  to="/usercab"
-                  className={
-                    location.pathname === "/usercab"
-                      ? "header__link header__link--active"
-                      : "header__link"
-                  }
-                >
-                  {user.nick || user.login}
-                </Link>
-              </li>
-            )} */}
             {localStorage.authToken && user && (
               <li className="header__item">
                 <span className="header__link" onClick={this.exitClick}>
@@ -110,5 +99,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  actions
+  {delMyPosts, delUser}
 )(withRouter(Header));

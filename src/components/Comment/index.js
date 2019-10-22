@@ -3,6 +3,7 @@ import avatar from "../../assets/img/smile.jpg";
 import { url } from "../../actions/user";
 import { connect } from "react-redux";
 import { formatDate } from "../Card";
+import { Link } from "react-router-dom";
 import {
   editComment,
   addLikeComment,
@@ -59,7 +60,7 @@ function Comment(props) {
       </div>
       <div className="comment-context">
         <div className="nick-posts">
-          {props.nick || props.login}
+        <Link to={`/users/${props.ownerID}`}>{props.nick || props.login}</Link>
           <span className="createdAt-posts">
             {formatDate(new Date(+props.createdAt).toLocaleDateString())}
           </span>

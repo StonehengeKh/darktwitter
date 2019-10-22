@@ -46,7 +46,7 @@ class Post extends Component {
             <div className="post-conteiner">
               <div className="avatar-conteiner">
                 {post.owner.avatar ? (
-                  <img
+                <img
                     src={url + post.owner.avatar.url}
                     className="avatar-posts"
                     alt="avatar"

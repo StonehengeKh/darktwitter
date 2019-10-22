@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { getAllMyPosts } from "../../actions/myposts";
 import "./style.css";
 
 class MyPage extends Component {
+  componentDidMount() {
+    this.props.getAllMyPosts()
+  }
+
   render() {
     const { isFetching, myPosts } = this.props;
     return (
@@ -33,4 +38,4 @@ const mapStateToProps = ({ userReduser, myPostsReduser }) => {
   };
 };
 
-export default connect(mapStateToProps)(MyPage);
+export default connect(mapStateToProps, {getAllMyPosts})(MyPage);
