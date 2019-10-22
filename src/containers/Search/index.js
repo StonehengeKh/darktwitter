@@ -49,8 +49,7 @@ const Search = ({
   };
   return (
     <div className="search-block">
-<<<<<<< HEAD
-         {isFetching && <div>Loading...</div>}
+         {isFetching && <Preloader/>}
       <div className="search-user-block">
         <div className="block-search">
           <h3>Search user</h3>
@@ -80,16 +79,6 @@ const Search = ({
                 <span
                   className="followers-border icon-plus"
                   onClick={() => addFollowin(userS._id)}
-=======
-        <div className="search-user-block">
-            {isFetching && <Preloader/>}
-            <div className="block-search">
-                <h3>Search user</h3>
-                <input
-                    className="input"
-                    value={searchUserValue}
-                    onChange={event => setSearchUserValue(event.target.value)}
->>>>>>> sasha
                 />
               )}
             </div>
