@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { searchPosts, searchUser } from "../../actions/search";
 import Card from "../../components/Card";
-import { url} from "../../actions/user";
+import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg"
 import { Link } from "react-router-dom";
 
@@ -16,7 +16,8 @@ const Search = ({
   searchUser,
   userFail,
   userS,
-  user
+  user,
+  userUpsertFollowing 
 }) => {
   const [searchPostValue, setSearchPostValue] = useState("");
   const [searchUserValue, setSearchUserValue] = useState("");
@@ -27,6 +28,18 @@ const Search = ({
   const startSearchUser = () => {
     searchUser(searchUserValue);
     setSearchUserValue("");
+  };
+  const addFollowin = id => {
+    let newFollowing = user.following
+      ? user.following.map(x => {
+          delete x.avatar;
+          delete x.nick;
+          delete x.login;
+          return x;
+        })
+      : ( []);
+    newFollowing.push({ _id: id });
+    userUpsertFollowing(user.id, newFollowing);
   };
   return (
     <div className="search-block">
@@ -96,14 +109,11 @@ const Search = ({
               <p className="user-login">{userS.nick || userS.login}</p>
             {user.following &&
             user.following.some(user => user._id === userS._id) ? (
-              <span
-                className="followers-border icon-minus"
-                onClick={() => this.delFollowin(userS._id)}
-              />
+             null
             ) : (
               <span
                 className="followers-border icon-plus"
-                onClick={() => this.addFollowin(userS._id)}
+                onClick={() => addFollowin(userS._id)}
               />
             )}
           </div>
@@ -126,5 +136,5 @@ const mapStateToProps = ({ searchReducer , userReducer}) => {
 
 export default connect(
   mapStateToProps,
-  { searchPosts, searchUser }
+  { searchPosts, searchUser, userUpsertFollowing  }
 )(Search);
