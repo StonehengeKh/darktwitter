@@ -43,27 +43,56 @@ const Search = ({
   };
   return (
     <div className="search-block">
-      {isFetching && <div>Loading...</div>}
-      <>
-        <h3>Search post</h3>
-        <input
-          className="input"
-          value={searchPostValue}
-          onChange={event => setSearchPostValue(event.target.value)}
-        />
-        <span className="button icon-search" onClick={startSearchPost} />
-        {postsFail && <div>Post not found</div>}
-      </>
-      <>
-        <h3>Search user</h3>
-        <input
-          className="input"
-          value={searchUserValue}
-          onChange={event => setSearchUserValue(event.target.value)}
-        />
-        <span className="button icon-search" onClick={startSearchUser} />
-        {userFail && <div>User not found</div>}
-      </>
+        <div className="search-user-block">
+            {isFetching && <div>Loading...</div>}
+            <div className="block-search">
+                <h3>Search user</h3>
+                <input
+                    className="input"
+                    value={searchUserValue}
+                    onChange={event => setSearchUserValue(event.target.value)}
+                />
+                <span className="button icon-search" onClick={startSearchUser} />
+                {userFail && <div>User not found</div>}
+            </div>
+            {userS && (
+                <Link to={`users/${userS._id}`}>
+                    <div className="user-wrap">
+                        {userS.avatar ? (
+                            <img
+                                src={url + userS.avatar.url}
+                                className="avatar-img"
+                                alt="avatar"
+                            />
+                        ) : (
+                            <img src={avatar} className="avatar-img" alt="avatar" />
+                        )}
+                        <p className="user-login">{userS.nick || userS.login}</p>
+                        {user.following &&
+                        user.following.some(user => user._id === userS._id) ? (
+                            null
+                        ) : (
+                            <span
+                                className="followers-border icon-plus"
+                                onClick={() => addFollowin(userS._id)}
+                            />
+                        )}
+                    </div>
+                </Link>
+            )}
+        </div>
+        <div className="search-page-block">
+          <div className="block-search">
+            <h3>Search post</h3>
+            <input
+              className="input"
+              value={searchPostValue}
+              onChange={event => setSearchPostValue(event.target.value)}
+            />
+            <span className="button icon-search" onClick={startSearchPost} />
+            {postsFail && <div>Post not found</div>}
+          </div>
+
       {posts &&
         posts.map(post => {
           const {
@@ -93,32 +122,7 @@ const Search = ({
             />
           );
         })}
-
-      {userS && (
-        <Link to={`users/${userS._id}`}>
-          <div className="user-wrap">
-            {userS.avatar ? (
-              <img
-                src={url + userS.avatar.url}
-                className="avatar-img"
-                alt="avatar"
-              />
-            ) : (
-              <img src={avatar} className="avatar-img" alt="avatar" />
-            )}
-              <p className="user-login">{userS.nick || userS.login}</p>
-            {user.following &&
-            user.following.some(user => user._id === userS._id) ? (
-             null
-            ) : (
-              <span
-                className="followers-border icon-plus"
-                onClick={() => addFollowin(userS._id)}
-              />
-            )}
-          </div>
-        </Link>
-      )}
+        </div>
     </div>
   );
 };

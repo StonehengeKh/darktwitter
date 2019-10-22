@@ -16,3 +16,19 @@
   transform: scale(0.97);
   box-shadow: inset 2px 2px 5px #000000;
 }
+
+.search-user-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    height: 250px;
+}
+
+.block-search {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+}
