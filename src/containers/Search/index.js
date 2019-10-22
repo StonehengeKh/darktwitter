@@ -21,46 +21,54 @@ const Search = ({
   user,
   userUpsertFollowing
 }) => {
-  const [searchPostValue, setSearchPostValue] = useState("");
-  const [searchUserValue, setSearchUserValue] = useState("");
-  const startSearchPost = () => {
-    if (searchPostValue.length > 2) {
-      searchPosts(searchPostValue);
-      setSearchPostValue("");
-    }
-  };
-  const startSearchUser = () => {
-    if (searchUserValue.length > 2) {
-      searchUser(searchUserValue);
-      setSearchUserValue("");
+  const [searchValue, setSearchValue] = useState("");
+  const [isPostSearch, setpostSearch] = useState(false)
+
+  const startSearch = () => {
+    if (searchValue.length > 2) {
+      !isPostSearch
+        ? searchUser(searchValue)
+        : searchPosts(searchValue);
+      setSearchValue("");
     }
   };
   const addFollowin = id => {
     let newFollowing = user.following
       ? user.following.map(x => {
-          delete x.avatar;
-          delete x.nick;
-          delete x.login;
-          return x;
-        })
+        delete x.avatar;
+        delete x.nick;
+        delete x.login;
+        return x;
+      })
       : [];
     newFollowing.push({ _id: id });
     userUpsertFollowing(user.id, newFollowing);
   };
   return (
     <div className="search-block">
-         {isFetching && <Preloader/>}
+      {isFetching && <Preloader />}
       <div className="search-user-block">
         <div className="block-search">
-          <h3>Search user</h3>
-          <input
-            className="input"
-            value={searchUserValue}
-            onChange={event => setSearchUserValue(event.target.value)}
-          />
-          <span className="button icon-search button-top" onClick={startSearchUser} />
-          {userFail && <div>User not found</div>}
+          <div className='search-header'>
+            <h3>Search {!isPostSearch ? 'user' : 'post'}</h3>
+            <input
+              className="input"
+              value={searchValue}
+              onChange={event => setSearchValue(event.target.value)}
+            />
+            <span className="button icon-search button-top" onClick={startSearch} />
+          </div>
+
+          <div className='searchButtons'>
+            <button onClick={() => setpostSearch(false)} className={isPostSearch ? 'btn-create-disable' : 'btn-create'}>User</button>
+            <button onClick={() => setpostSearch(true)} className={!isPostSearch ? 'btn-create-disable' : 'btn-create'}>Posts</button>
+          </div>
+
         </div>
+
+      </div>
+      {!isPostSearch ? <div className="search-page-block">
+        {userFail && <div>User not found</div>}
         {userS && (
           <Link to={`users/${userS._id}`}>
             <div className="user-wrap">
@@ -71,65 +79,56 @@ const Search = ({
                   alt="avatar"
                 />
               ) : (
-                <img src={avatar} className="avatar-img" alt="avatar" />
-              )}
+                  <img src={avatar} className="avatar-img" alt="avatar" />
+                )}
               <p className="user-login">{userS.nick || userS.login}</p>
               {user.following &&
-              user.following.some(user => user._id === userS._id) ? null : (
-                <span
-                  className="followers-border icon-plus"
-                  onClick={() => addFollowin(userS._id)}
-                />
-              )}
+                user.following.some(user => user._id === userS._id) ? null : (
+                  <span
+                    className="followers-border icon-plus"
+                    onClick={() => addFollowin(userS._id)}
+                  />
+                )}
             </div>
           </Link>
         )}
       </div>
-      <div className="search-page-block">
-        <div className="block-search">
-          <h3>Search post</h3>
-          <input
-            className="input"
-            value={searchPostValue}
-            onChange={event => setSearchPostValue(event.target.value)}
-          />
-          <span
-            className="button icon-search button-search button-top"
-            onClick={startSearchPost}
-          />
-          {postsFail && <div>Post not found</div>}
-        </div>
+        : <div className="search-page-block">
+          <div className="block-search">
 
-        {posts &&
-          posts.map(post => {
-            const {
-              title,
-              text,
-              images,
-              owner,
-              createdAt,
-              comments,
-              likes,
-              _id
-            } = post;
-            return (
-              <Card
-                title={title}
-                key={_id}
-                id={_id}
-                images={images}
-                text={text}
-                avatar={owner.avatar}
-                nick={owner.nick}
-                login={owner.login}
-                createdAt={createdAt}
-                comments={comments}
-                likes={likes}
-                ownerId={owner._id}
-              />
-            );
-          })}
-      </div>
+            {postsFail && <div>Post not found</div>}
+          </div>
+
+          {posts &&
+            posts.map(post => {
+              const {
+                title,
+                text,
+                images,
+                owner,
+                createdAt,
+                comments,
+                likes,
+                _id
+              } = post;
+              return (
+                <Card
+                  title={title}
+                  key={_id}
+                  id={_id}
+                  images={images}
+                  text={text}
+                  avatar={owner.avatar}
+                  nick={owner.nick}
+                  login={owner.login}
+                  createdAt={createdAt}
+                  comments={comments}
+                  likes={likes}
+                  ownerId={owner._id}
+                />
+              );
+            })}
+        </div>}
     </div>
   );
 };
