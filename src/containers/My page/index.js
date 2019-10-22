@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { getAllMyPosts } from "../../actions/myposts";
 import "./style.css";
+import Preloader from "../../components/Preloader"
 
 class MyPage extends Component {
   componentDidMount() {
@@ -14,7 +16,7 @@ class MyPage extends Component {
     return (
       <div>
         {isFetching ? (
-          <div>Loading...</div>
+          <Preloader/>
         ) : (
           <>
             {myPosts &&

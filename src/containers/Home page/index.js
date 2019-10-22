@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import { userFindOne } from "../../actions/user";
 import { getAllPosts, loadPosts } from "../../actions/posts";
-
+import Preloader from "../../components/Preloader"
 import Card from "../../components/Card";
 import "./style.css";
 
@@ -41,7 +41,7 @@ class HomePage extends React.Component {
     return (
       <div className="all-posts">
         {isFetching ? (
-          <div>Loading...</div>
+            <Preloader/>
         ) : (
           <div
             className="all-posts-wrapp"
@@ -79,7 +79,7 @@ class HomePage extends React.Component {
               : null}
           </div>
         )}
-        {loadFetching && <div>Loading...</div>}
+        {loadFetching && <Preloader/>}
       </div>
     );
   }

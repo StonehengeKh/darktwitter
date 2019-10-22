@@ -41,7 +41,8 @@ class Following extends Component {
                   className="followers-border icon-minus"
                   onClick={() => this.delFollowin(userF._id)}
                 />
-              </div></Link>
+              </div>
+              </Link>
             );
           })}
       </div>
