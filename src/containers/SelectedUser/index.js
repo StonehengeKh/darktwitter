@@ -6,6 +6,8 @@ import { getSelectedUser, deleteSelectedUser } from "../../actions/selectedUser"
 import defaultAvatar from '../../assets/img/smile.jpg'
 import { url } from "../../actions/user";
 import Card from "../../components/Card";
+import Preloader from "../../components/Preloader"
+
 
 const SelectedUserCab = ({
     selectedUser,
@@ -13,7 +15,7 @@ const SelectedUserCab = ({
     deleteSelectedUser,
     posts,
     match,
-    fail
+    fail,
 }) => {
     let userAvatar;
 
@@ -30,7 +32,7 @@ const SelectedUserCab = ({
         <main className="userCabMain">
             {fail && <Redirect to="/page not found" />}
             {
-                !!selectedUser &&
+                !selectedUser ? <Preloader/> :
                 (
                     <section className="userInfo">
 
@@ -61,6 +63,7 @@ const SelectedUserCab = ({
                  ownerId={post.owner._id}
                      />)}
             </section>
+            
         </main>
     );
 };

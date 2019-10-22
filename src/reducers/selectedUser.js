@@ -10,7 +10,7 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case types.SELECTED_USER_REQUEST: {
-      return { ...state,  isFetching: true,   fail: false};
+      return { ...state,  isFetching: true,  fail: false};
     }
     case types.SELECTED_USER_REQUEST_SUCCESS: {
       return { ...state, isFetching: false, selectedUser: payload[0], selectedUsersPosts: payload[1]  };
