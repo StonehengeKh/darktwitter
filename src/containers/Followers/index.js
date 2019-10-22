@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import "./style.css";
+import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg"
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ class Followers extends Component {
   render() {
     const { followers, user} = this.props;
     return (
-      <div>
+      <div className="followers">
         {followers && 
           followers.map(userF => {
             return <Link to={`users/${userF._id}`} key={userF._id}><div  className="user-wrap">

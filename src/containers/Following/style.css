@@ -1,0 +1,4 @@
+.followings {
+    display: flex;
+    flex-wrap: wrap;
+}

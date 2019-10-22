@@ -3,12 +3,13 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-
+  /*background: url("../../assets/img/img1.jpg") 0 50% no-repeat;*/
+  /*background-size: cover;*/
 }
 
 .user-wrap{
   border: 1px solid #e6ecf0;
-  border-radius: 50%;
+  box-shadow: 2px 2px 4px gray;
   margin: 20px;
   display: flex;
   flex-direction: column;
