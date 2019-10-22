@@ -84,10 +84,10 @@ function Card(props) {
   );
 }
 
-const mapStateToProps = ({ userReduser, postsReduser }) => {
+const mapStateToProps = ({ userReducer, postsReducer }) => {
   return {
-    user: userReduser.user,
-    likeFetching: postsReduser.likeFetching
+    user: userReducer.user,
+    likeFetching: postsReducer.likeFetching
   };
 };
 

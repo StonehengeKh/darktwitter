@@ -49,10 +49,10 @@ class Following extends Component {
   }
 }
 
-const mapStateToProps = ({ userReduser }) => {
+const mapStateToProps = ({ userReducer }) => {
   return {
-    following: userReduser.user.following,
-    user: userReduser.user
+    following: userReducer.user.following,
+    user: userReducer.user
   };
 };
 

@@ -67,10 +67,10 @@ const PostItem = ({ post, user, addLike, delLike, getPost, getAllMyPosts, likeFe
     </div>
   </div>)
 }
-const mapStateToProps = ({ postReduser, myPostsReduser }) => ({
-  likeFetching: postReduser.likeFetching,
-  isFetching: myPostsReduser.isFetching,
-  postFetching: postReduser.isFetching
+const mapStateToProps = ({ postReducer, myPostsReducer }) => ({
+  likeFetching: postReducer.likeFetching,
+  isFetching: myPostsReducer.isFetching,
+  postFetching: postReducer.isFetching
 })
 
 export default connect(

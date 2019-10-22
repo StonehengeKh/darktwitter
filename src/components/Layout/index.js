@@ -59,15 +59,15 @@ class Layout extends Component {
   }
 }
 
-const mapStateToProps = ({ postsReduser, usersReduser, userReduser }) => {
+const mapStateToProps = ({ postsReducer, usersReducer, userReducer }) => {
   return {
-    posts: postsReduser.posts,
-    loadFetching: postsReduser.loadFetching,
-    loadFail: postsReduser.loadFail,
-    users: usersReduser.users,
-    loadUserFail: usersReduser.loadUserFail,
-    loadUserFetching: usersReduser.loadUserFetching,
-    user: userReduser.user
+    posts: postsReducer.posts,
+    loadFetching: postsReducer.loadFetching,
+    loadFail: postsReducer.loadFail,
+    users: usersReducer.users,
+    loadUserFail: usersReducer.loadUserFail,
+    loadUserFetching: usersReducer.loadUserFetching,
+    user: userReducer.user
   };
 };
 

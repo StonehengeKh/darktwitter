@@ -86,11 +86,11 @@ const UserCab = ({
   );
 };
 
-const mapStateToProps = ({ userReduser, myPostsReduser }) => {
+const mapStateToProps = ({ userReducer, myPostsReducer }) => {
   return {
-    user: userReduser.user,
-    upsertFetching: userReduser.upsertFetching,
-    posts: myPostsReduser.myPosts
+    user: userReducer.user,
+    upsertFetching: userReducer.upsertFetching,
+    posts: myPostsReducer.myPosts
   };
 };
 

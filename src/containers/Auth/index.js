@@ -93,11 +93,11 @@ export class Auth extends Component {
     );
   }
 }
-const mapStateToProps = ({ userReduser }) => {
+const mapStateToProps = ({ userReducer }) => {
   return {
-    isFetching: userReduser.isFetching,
-    incorected: userReduser.incorected,
-    mailExists: userReduser.mailExists
+    isFetching: userReducer.isFetching,
+    incorected: userReducer.incorected,
+    mailExists: userReducer.mailExists
   };
 };
 

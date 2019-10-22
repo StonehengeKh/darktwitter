@@ -50,10 +50,10 @@ class Followers extends Component {
   }
 }
 
-const mapStateToProps = ({ userReduser }) => {
+const mapStateToProps = ({ userReducer }) => {
   return {
-    followers: userReduser.user.followers,
-    user: userReduser.user,
+    followers: userReducer.user.followers,
+    user: userReducer.user,
   };
 };
 

@@ -91,9 +91,9 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({userReducer}) => {
   return {
-    user: state.userReduser.user
+    user: userReducer.user
   };
 };
 

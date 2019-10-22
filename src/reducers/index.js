@@ -1,19 +1,21 @@
 import { combineReducers } from 'redux';
 
-import userReduser from './user';
-import usersReduser from './users';
-import postsReduser from './posts';
-import postReduser from './post';
-import myPostsReduser from './myposts';
+import userReducer from './user';
+import usersReducer from './users';
+import postsReducer from './posts';
+import postReducer from './post';
+import searchReducer from './search';
+import myPostsReducer from './myposts';
 import selectedUserReducer from './selectedUser'
 import { reducer as formReducer } from 'redux-form'
 
 export default combineReducers({
-	userReduser,
-	postsReduser,
-	myPostsReduser,
-	usersReduser,
-	postReduser,
+	userReducer,
+	postsReducer,
+	myPostsReducer,
+	usersReducer,
+	postReducer,
 	selectedUserReducer,
+	searchReducer,
 	form: formReducer
 });

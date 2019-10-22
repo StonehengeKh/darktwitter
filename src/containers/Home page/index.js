@@ -85,12 +85,12 @@ class HomePage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ postsReduser }) => {
+const mapStateToProps = ({ postsReducer }) => {
   return {
-    posts: postsReduser.posts,
-    isFetching: postsReduser.isFetching,
-    loadFetching: postsReduser.loadFetching,
-    loadFail: postsReduser.loadFail
+    posts: postsReducer.posts,
+    isFetching: postsReducer.isFetching,
+    loadFetching: postsReducer.loadFetching,
+    loadFail: postsReducer.loadFail
   };
 };
 

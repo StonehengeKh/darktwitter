@@ -139,12 +139,12 @@ class Post extends Component {
   }
 }
 
-const mapStateToProps = ({ userReduser, postReduser }) => {
+const mapStateToProps = ({ userReducer, postReducer }) => {
   return {
-    user: userReduser.user,
-    post: postReduser.post,
-    commentFetching: postReduser.commentFetching,
-    likeFetching: postReduser.likeFetching
+    user: userReducer.user,
+    post: postReducer.post,
+    commentFetching: postReducer.commentFetching,
+    likeFetching: postReducer.likeFetching
   };
 };
 

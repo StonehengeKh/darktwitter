@@ -110,11 +110,11 @@ function Comment(props) {
   );
 }
 
-const mapStateToProps = ({ userReduser, postReduser }) => {
+const mapStateToProps = ({ userReducer, postReducer }) => {
   return {
-    user: userReduser.user,
-    commentFetching: postReduser.commentFetching,
-    LCFetching: postReduser.LCFetching
+    user: userReducer.user,
+    commentFetching: postReducer.commentFetching,
+    LCFetching: postReducer.LCFetching
   };
 };
 

@@ -19,8 +19,8 @@ const PrivateRoute = ({ component: Component, user, role, ...rest }) => (
   />
 );
 
-const mapStateToProps = ({ userReduser }) => ({
-  user: userReduser.user
+const mapStateToProps = ({ userReducer }) => ({
+  user: userReducer.user
 });
 
 export default connect(mapStateToProps)(PrivateRoute);
