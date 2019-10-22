@@ -8,6 +8,8 @@ import {
 import defaultAvatar from "../../assets/img/smile.jpg";
 import { url } from "../../actions/user";
 import Card from "../../components/Card";
+import Preloader from "../../components/Preloader"
+
 
 const SelectedUserCab = ({
   selectedUser,
@@ -64,7 +66,6 @@ const SelectedUserCab = ({
           ))}
       </section>
     </main>
-  );
 };
 
 const mapStateToProps = ({ selectedUserReducer }) => {
