@@ -97,18 +97,6 @@ export const ROUTERS = [
     icon: "icon-file-text2",
     role: ["user", "admin"]
   },
-  // {
-  //   id: 3,
-  //   link: {
-  //     title: "Add recipes"
-  //   },
-  //   path: "/Add recipes",
-  //   component: AddRecipes,
-  //   className: "header__link",
-  //   privateRoute: true,
-  //   exact: true,
-  //   role: ["user", "admin"]
-  // },
   {
     id: 4,
     link: {

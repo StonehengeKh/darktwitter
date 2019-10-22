@@ -65,7 +65,7 @@ export const addNewComment = (data, id) => {
     dispatch(addNewCommentRequest());
     checkToken();
     const res = await gql.request(
-      ` mutation newCommen($comment:CommentInput){
+      ` mutation newComment($comment:CommentInput){
         CommentUpsert(comment: $comment){
              _id, text
           }
@@ -112,7 +112,7 @@ export const editComment = (textValue, commentid, id) => {
     dispatch(editCommentRequest());
     checkToken();
     const res = await gql.request(
-      ` mutation newCommen($comment:CommentInput){
+      ` mutation newComment($comment:CommentInput){
         CommentUpsert(comment: $comment){
              _id, text
           }
