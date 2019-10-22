@@ -12,7 +12,7 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
 
     case types.SEARCH_POSTS_REQUEST: {
-      return { ...state,  isFetching: true, postsFail: false};
+      return { ...state,  isFetching: true, postsFail: false,  userS: null, posts: []};
     }
     case types.SEARCH_POSTS_REQUEST_SUCCESS: {
       return { ...state, isFetching: false, posts: payload};
@@ -22,7 +22,7 @@ export default (state = initialState, { type, payload }) => {
     }
 
     case types.SEARCH_USER_REQUEST: {
-      return { ...state,  isFetching: true, userFail: false};
+      return { ...state,  isFetching: true, userFail: false, userS: null, posts: []};
     }
     case types.SEARCH_USER_REQUEST_SUCCESS: {
       return { ...state, isFetching: false, userS: payload};
