@@ -40,7 +40,7 @@ const UserCab = ({
     openNewPostWindow(false);
   };
   useEffect(() => {
-    getAllMyPosts();
+    getAllMyPosts(user.id);
   }, []);
 
   return (
