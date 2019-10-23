@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {  Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRouter/PrivateRouter";
 import { NotFound } from "./containers/Nofound";
 import Layout from "./components/Layout";
@@ -14,7 +14,8 @@ import Post from "./containers/Post";
 import Admin from "./containers/Admin";
 import UserCab from "./containers/Usercab";
 import Search from "./containers/Search";
-import SelectedUser from './containers/SelectedUser'
+import SelectedUser from "./containers/SelectedUser";
+import Preloader from "./components/Preloader"
 import "./App.css";
 // import { withRouter } from "react-router-dom";
 
@@ -159,8 +160,8 @@ class App extends React.Component {
     return (
       <div className="main-wrapper">
         {isFetching ? (
-          <div>Loading...</div>
-        ) :   
+          <Preloader/>
+        ) : (
           <Layout>
             <Switch>
               {ROUTERS.map(route => {
@@ -191,7 +192,7 @@ class App extends React.Component {
               })}
             </Switch>
           </Layout>
-        }
+        )}
       </div>
     );
   }

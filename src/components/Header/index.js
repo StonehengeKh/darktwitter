@@ -2,8 +2,8 @@ import React from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {delUser} from "../../actions/user";
-import {delMyPosts} from "../../actions/myposts";
+import { delUser } from "../../actions/user";
+import { delMyPosts } from "../../actions/myposts";
 import { ROUTERS } from "../../App";
 import { withRouter } from "react-router-dom";
 import { url } from "../../actions/user";
@@ -15,7 +15,7 @@ class Header extends React.Component {
     const { delUser } = this.props;
     event.preventDefault();
     delUser();
-    delMyPosts()
+    delMyPosts();
     localStorage.removeItem("authToken");
   };
 
@@ -45,7 +45,6 @@ class Header extends React.Component {
         <nav className="nav-menu">
           <ul className="nav-menu-ul">
             <li className="header__item">
-              
               <Logo />
             </li>
             {ROUTERS.map(el =>
@@ -70,7 +69,7 @@ class Header extends React.Component {
                 </li>
               ) : (
                 <li className="header__item">
-                  <Link  className="header__link" to="/usercab">
+                  <Link className="header__link" to="/usercab">
                     <img src={kartinka} className="avatar-img" alt="avatar" />
                   </Link>
                 </li>
@@ -91,7 +90,7 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = ({userReducer}) => {
+const mapStateToProps = ({ userReducer }) => {
   return {
     user: userReducer.user
   };
@@ -99,5 +98,5 @@ const mapStateToProps = ({userReducer}) => {
 
 export default connect(
   mapStateToProps,
-  {delMyPosts, delUser}
+  { delMyPosts, delUser }
 )(withRouter(Header));

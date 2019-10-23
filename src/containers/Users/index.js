@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-
 import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg";
@@ -17,7 +16,7 @@ class Users extends Component {
           delete x.login;
           return x;
         })
-      : ( []);
+      : [];
     newFollowing.push({ _id: id });
     userUpsertFollowing(user.id, newFollowing);
   };
@@ -43,32 +42,33 @@ class Users extends Component {
           users.map(userF => {
             return (
               <Link to={`users/${userF._id}`} key={userF._id}>
-              <div key={userF._id} className="user-wrap">
-                {userF.avatar ? (
-                  <img
-                    src={url + userF.avatar.url}
-                    className="avatar-img"
-                    alt="avatar"
-                  />
-                ) : (
-                  <img src={avatar} className="avatar-img" alt="avatar" />
-                )}
-                {userF.login && (
-                  <p className="user-login">{userF.nick || userF.login}</p>
-                )}
-                {user.following &&
-                user.following.some(user => user._id === userF._id) ? (
-                  <span
-                    className="followers-border icon-minus"
-                    onClick={() => this.delFollowin(userF._id)}
-                  />
-                ) : (
-                  <span
-                    className="followers-border icon-plus"
-                    onClick={() => this.addFollowin(userF._id)}
-                  />
-                )}
-              </div></Link>
+                <div key={userF._id} className="user-wrap">
+                  {userF.avatar ? (
+                    <img
+                      src={url + userF.avatar.url}
+                      className="avatar-img"
+                      alt="avatar"
+                    />
+                  ) : (
+                    <img src={avatar} className="avatar-img" alt="avatar" />
+                  )}
+                  {userF.login && (
+                    <p className="user-login">{userF.nick || userF.login}</p>
+                  )}
+                  {user.following &&
+                  user.following.some(user => user._id === userF._id) ? (
+                    <span
+                      className="followers-border icon-minus"
+                      onClick={() => this.delFollowin(userF._id)}
+                    />
+                  ) : (
+                    <span
+                      className="followers-border icon-plus"
+                      onClick={() => this.addFollowin(userF._id)}
+                    />
+                  )}
+                </div>
+              </Link>
             );
           })}
       </div>

@@ -8,7 +8,7 @@ import avatar from "../../assets/img/smile.jpg";
 import { url } from "../../actions/user";
 import { formatDate } from "../../components/Card";
 import Comment from "../../components/Comment";
-import Preloader from "../../components/Preloader"
+import Preloader from "../../components/Preloader";
 
 class Post extends Component {
   state = { comment: "" };
@@ -43,13 +43,13 @@ class Post extends Component {
       <div className="wrap">
         {fail && <Redirect to="/page not found" />}
         {!post ? (
-          <Preloader/>
+          <Preloader />
         ) : (
           <>
             <div className="post-conteiner">
               <div className="avatar-conteiner">
                 {post.owner.avatar ? (
-                <img
+                  <img
                     src={url + post.owner.avatar.url}
                     className="avatar-posts"
                     alt="avatar"
@@ -121,7 +121,7 @@ class Post extends Component {
                 })
               : null}
             {commentFetching ? (
-              <Preloader/>
+              <Preloader />
             ) : (
               <form
                 className="add-comment-conteiner"
@@ -148,7 +148,7 @@ const mapStateToProps = ({ userReducer, postReducer }) => {
     post: postReducer.post,
     commentFetching: postReducer.commentFetching,
     likeFetching: postReducer.likeFetching,
-    fail: postReducer.fail,
+    fail: postReducer.fail
   };
 };
 

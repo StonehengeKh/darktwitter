@@ -5,7 +5,6 @@ import { url } from "../../actions/user";
 import { connect } from "react-redux";
 import { addLikePosts, delLikePosts } from "../../actions/likes";
 
-
 export const formatDate = date => {
   if (date.indexOf(".") !== -1) return date;
   var mass = date.split("/");
@@ -16,9 +15,11 @@ function Card(props) {
   const checkLike = () => {
     const { user } = props;
     let like = props.likes.find(like => like.owner._id === user.id);
-    like ? props.delLikePosts(like._id, props.id)  : props.addLikePosts(props.id);
+    like
+      ? props.delLikePosts(like._id, props.id)
+      : props.addLikePosts(props.id);
   };
-  
+
   return (
     <div className="all-post-conteiner">
       <div className="avatar-conteiner">
@@ -34,7 +35,9 @@ function Card(props) {
       </div>
       <div>
         <div className="nick-posts">
-          <Link to={`/users/${props.ownerId}`}>{props.nick || props.login}</Link>
+          <Link to={`/users/${props.ownerId}`}>
+            {props.nick || props.login}
+          </Link>
           <span className="createdAt-posts">
             {formatDate(new Date(+props.createdAt).toLocaleDateString())}
           </span>
