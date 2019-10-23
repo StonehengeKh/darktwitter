@@ -15,6 +15,7 @@ import Admin from "./containers/Admin";
 import UserCab from "./containers/Usercab";
 import Search from "./containers/Search";
 import SelectedUser from "./containers/SelectedUser";
+import Preloader from "./components/Preloader"
 import "./App.css";
 // import { withRouter } from "react-router-dom";
 
@@ -159,7 +160,7 @@ class App extends React.Component {
     return (
       <div className="main-wrapper">
         {isFetching ? (
-          <div>Loading...</div>
+          <Preloader/>
         ) : (
           <Layout>
             <Switch>
