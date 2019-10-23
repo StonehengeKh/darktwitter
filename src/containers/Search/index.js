@@ -50,7 +50,7 @@ const Search = ({
           <div className="search-header">
             <h3>Search {!isPostSearch ? "user" : "post"}</h3>
             <input
-              className="input"
+              className="input input-search"
               value={searchValue}
               onChange={event => setSearchValue(event.target.value)}
             />

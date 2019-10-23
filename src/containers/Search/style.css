@@ -4,7 +4,7 @@
 }
 
 .button-top{
-  margin-top: 15px;
+  margin: 15px 0;
 }
 
 .search-user-block {
@@ -24,7 +24,7 @@
 }
 
 .block-search>h3{
-  width: 40%;
+  width: 50%;
 }
 
 .searchButtons{
@@ -33,9 +33,19 @@
   justify-content: space-around;
 }
 
+.input-search {
+  width: 200px;
+}
+
 @media (min-width: 727px)  {
   .button-top{
-    margin-top: 0;
+    margin: 0;
+  }
+}
+
+@media (min-width: 480px)  {
+  .input-search {
+    width: 240px;
   }
 }
 
@@ -49,10 +59,16 @@
   background: rgba(46, 45, 45, 0.89);
   color: white;
   border: none;
+  margin: 5px;
 }
 
 .search-header{
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
+.btn-create{
+  margin: 5px;
+}
+
