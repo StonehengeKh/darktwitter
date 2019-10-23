@@ -7,7 +7,7 @@ const allUsers = payload => ({
 });
 
 
-export const userFind = id => {
+export const userFind = () => {
   return async dispatch => {
     checkToken();
     const res = await gql.request(

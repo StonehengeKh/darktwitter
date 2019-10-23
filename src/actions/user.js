@@ -1,8 +1,6 @@
 import * as types from "../actionTypes";
 import jwt_decode from "jwt-decode";
 import { GraphQLClient } from "graphql-request";
-// import { getAllPosts } from "./posts";
-import { userFind } from "./users";
 export const url = "http://hipstagram.asmer.fs.a-level.com.ua/";
 
 export let gql;
@@ -23,11 +21,6 @@ export const delUser = () => ({
 const userRequestRegistr = () => ({
   type: types.USER_REQUEST_REGISTR
 });
-
-// const userRequestRegistrSuccess = payload => ({
-//   type: types.USER_REQUEST_REGISTR_SUCCESS,
-//   payload
-// });
 
 const userRequestRegistrFail = payload => ({
   type: types.USER_REQUEST_REGISTR_FAIL,
@@ -56,11 +49,6 @@ export const registration = data => {
 const userRequestLogin = () => ({
   type: types.USER_REQUEST_LOGIN
 });
-
-// const userRequestLoginSuccess = payload => ({
-//   type: types.USER_REQUEST_LOGIN_SUCCESS,
-//   payload
-// });
 
 const userRequestLoginFail = payload => ({
   type: types.USER_REQUEST_LOGIN_FAIL,
@@ -97,32 +85,18 @@ export const tokenDecode = () => {
   return dispatch => {
     let decoded = jwt_decode(localStorage.authToken);
     dispatch(addUser(decoded.sub));
-    // dispatch(getAllPosts());
-    dispatch(userFind());
+
     dispatch(userFindOne(decoded.sub.id));
   };
 };
-
-
-
-// const addUserSetingsRequest = () => ({
-//   type: types.ADD_USER_SETINGS_REQUEST
-// });
 
 const addUserSetingsRequestSuccess = payload => ({
   type: types.ADD_USER_SETINGS_REQUEST_SUCCESS,
   payload
 });
 
-// const addUserSetingsRequestFail = ()=> ({
-//   type: types.ADD_USER_SETINGS_REQUEST_FAIL,
-// });
-
-
-
 export const userFindOne = id => {
   return async dispatch => {
-    // dispatch(addUserSetingsRequest());
     checkToken();
     const res = await gql.request(
       `query user($query:String!){
@@ -139,9 +113,7 @@ export const userFindOne = id => {
     if (res.UserFindOne){
     dispatch(addUserSetingsRequestSuccess(res.UserFindOne));
     } 
-    // else {
-    //   dispatch(addUserSetingsRequestFail());
-    // }
+
   };
 };
 

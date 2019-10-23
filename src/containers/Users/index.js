@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
 import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
+import { userFind } from "../../actions/users";
 import avatar from "../../assets/img/smile.jpg";
 
 class Users extends Component {
+  componentDidMount() {
+    this.props.userFind();
+  }
+
   addFollowin = id => {
     const { user, userUpsertFollowing } = this.props;
     let newFollowing = user.following
@@ -85,5 +89,5 @@ const mapStateToProps = ({ usersReducer, userReducer }) => {
 
 export default connect(
   mapStateToProps,
-  { userUpsertFollowing }
+  { userUpsertFollowing, userFind }
 )(Users);
