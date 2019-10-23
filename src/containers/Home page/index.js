@@ -2,33 +2,23 @@ import React from "react";
 import { connect } from "react-redux";
 // import { userFindOne } from "../../actions/user";
 import { getAllPosts, loadPosts } from "../../actions/posts";
-import Preloader from "../../components/Preloader"
+import Preloader from "../../components/Preloader";
 import Card from "../../components/Card";
 import "./style.css";
 
 class HomePage extends React.Component {
   componentDidMount() {
-    const { getAllPosts } = this.props;
-    getAllPosts();
+    const { getAllPosts, user } = this.props;
+    getAllPosts(user.following);
   }
-  clicker = () => {
-    const { getAllPosts } = this.props;
-    getAllPosts();
-  };
 
-  // user = () => {
-  //   const { userFindOne } = this.props;
-  //   let id = "5d7cf2a28657825417878094";
-  //   userFindOne(id);
+  // scroll = e => {
+  //   let scrollBottom =
+  //     e.target.scrollTop + e.target.offsetHeight > e.target.scrollHeight - 150;
+  //   if (scrollBottom) {
+  //     this.loadContent();
+  //   }
   // };
-
-  scroll = e => {
-    let scrollBottom =
-      e.target.scrollTop + e.target.offsetHeight > e.target.scrollHeight - 150;
-    if (scrollBottom) {
-      this.loadContent();
-    }
-  };
 
   loadContent = () => {
     const { loadPosts, posts, loadFail } = this.props;
@@ -41,12 +31,9 @@ class HomePage extends React.Component {
     return (
       <div className="all-posts">
         {isFetching ? (
-            <Preloader/>
+          <Preloader />
         ) : (
-          <div
-            className="all-posts-wrapp"
-            onScroll={loadFail || loadFetching ? null : e => this.scroll(e)}
-          >
+          <div className="all-posts-wrapp">
             {posts
               ? posts.map(post => {
                   const {
@@ -79,18 +66,19 @@ class HomePage extends React.Component {
               : null}
           </div>
         )}
-        {loadFetching && <Preloader/>}
+        {loadFetching && <Preloader />}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ postsReducer }) => {
+const mapStateToProps = ({ postsReducer, userReducer }) => {
   return {
     posts: postsReducer.posts,
     isFetching: postsReducer.isFetching,
     loadFetching: postsReducer.loadFetching,
-    loadFail: postsReducer.loadFail
+    loadFail: postsReducer.loadFail,
+    user: userReducer.user
   };
 };
 

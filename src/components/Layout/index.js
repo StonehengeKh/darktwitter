@@ -23,11 +23,12 @@ class Layout extends Component {
       loadPosts,
       loadUsers,
       users,
-      loadUserFail
+      loadUserFail,
+      user
     } = this.props;
     switch (location.pathname) {
       case "/":
-        loadFail || loadPosts(posts.length);
+        loadFail || loadPosts(user.following, posts.length);
         break;
       case "/users":
         loadUserFail || loadUsers(users.length);
