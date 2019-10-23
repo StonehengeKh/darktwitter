@@ -41,34 +41,34 @@ class Users extends Component {
         {users &&
           users.map(userF => {
             return (
-              <Link to={`users/${userF._id}`} key={userF._id}>
-                <div key={userF._id} className="user-wrap">
-                  {userF.avatar ? (
-                    <img
-                      src={url + userF.avatar.url}
-                      className="avatar-img"
-                      alt="avatar"
-                    />
-                  ) : (
-                    <img src={avatar} className="avatar-img" alt="avatar" />
-                  )}
-                  {userF.login && (
+              <div key={userF._id} className="user-wrap">
+                {userF.avatar ? (
+                  <img
+                    src={url + userF.avatar.url}
+                    className="avatar-img"
+                    alt="avatar"
+                  />
+                ) : (
+                  <img src={avatar} className="avatar-img" alt="avatar" />
+                )}
+                {userF.login && (
+                  <Link to={`users/${userF._id}`}>
                     <p className="user-login">{userF.nick || userF.login}</p>
-                  )}
-                  {user.following &&
-                  user.following.some(user => user._id === userF._id) ? (
-                    <span
-                      className="followers-border icon-minus"
-                      onClick={() => this.delFollowin(userF._id)}
-                    />
-                  ) : (
-                    <span
-                      className="followers-border icon-plus"
-                      onClick={() => this.addFollowin(userF._id)}
-                    />
-                  )}
-                </div>
-              </Link>
+                  </Link>
+                )}
+                {user.following &&
+                user.following.some(user => user._id === userF._id) ? (
+                  <span
+                    className="followers-border icon-minus"
+                    onClick={() => this.delFollowin(userF._id)}
+                  />
+                ) : (
+                  <span
+                    className="followers-border icon-plus"
+                    onClick={() => this.addFollowin(userF._id)}
+                  />
+                )}
+              </div>
             );
           })}
       </div>

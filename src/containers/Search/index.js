@@ -80,27 +80,27 @@ const Search = ({
         <div className="search-page-block">
           {userFail && <div>User not found</div>}
           {userS && (
-            <Link to={`users/${userS._id}`}>
-              <div className="user-wrap">
-                {userS.avatar ? (
-                  <img
-                    src={url + userS.avatar.url}
-                    className="avatar-img"
-                    alt="avatar"
-                  />
-                ) : (
-                  <img src={avatar} className="avatar-img" alt="avatar" />
-                )}
-                <p className="user-login">{userS.nick || userS.login}</p>
-                {user.following &&
-                user.following.some(user => user._id === userS._id) ? null : (
-                  <span
-                    className="followers-border icon-plus"
-                    onClick={() => addFollowin(userS._id)}
-                  />
-                )}
-              </div>
-            </Link>
+            <div className="user-wrap">
+              {userS.avatar ? (
+                <img
+                  src={url + userS.avatar.url}
+                  className="avatar-img"
+                  alt="avatar"
+                />
+              ) : (
+                <img src={avatar} className="avatar-img" alt="avatar" />
+              )}
+              <Link to={`users/${userS._id}`}>
+                <p className="user-login">{userS.nick || userS.login}</p>{" "}
+              </Link>
+              {user.following &&
+              user.following.some(user => user._id === userS._id) ? null : (
+                <span
+                  className="followers-border icon-plus"
+                  onClick={() => addFollowin(userS._id)}
+                />
+              )}
+            </div>
           )}
         </div>
       ) : (

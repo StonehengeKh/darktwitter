@@ -8,8 +8,7 @@ import {
 import defaultAvatar from "../../assets/img/smile.jpg";
 import { url } from "../../actions/user";
 import Card from "../../components/Card";
-import Preloader from "../../components/Preloader"
-
+import Preloader from "../../components/Preloader";
 
 const SelectedUserCab = ({
   selectedUser,
@@ -33,7 +32,9 @@ const SelectedUserCab = ({
   return (
     <main className="userCabMain">
       {fail && <Redirect to="/page not found" />}
-      {!!selectedUser && (
+      {!selectedUser ? (
+        <Preloader />
+      ) : (
         <section className="userInfo">
           <div className="generalInfo">
             <img
@@ -65,7 +66,8 @@ const SelectedUserCab = ({
             />
           ))}
       </section>
-    </main>)
+    </main>
+  );
 };
 
 const mapStateToProps = ({ selectedUserReducer }) => {

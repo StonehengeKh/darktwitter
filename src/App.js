@@ -8,7 +8,7 @@ import HomePage from "./containers/Home page";
 import Users from "./containers/Users";
 import Following from "./containers/Following";
 import Followers from "./containers/Followers";
-import MyPage from "./containers/My page";
+// import MyPage from "./containers/My page";
 import Auth from "./containers/Auth";
 import Post from "./containers/Post";
 import Admin from "./containers/Admin";
@@ -17,7 +17,7 @@ import Search from "./containers/Search";
 import SelectedUser from "./containers/SelectedUser";
 import Preloader from "./components/Preloader"
 import "./App.css";
-// import { withRouter } from "react-router-dom";
+
 
 export const ROUTERS = [
   {

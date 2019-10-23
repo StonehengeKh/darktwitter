@@ -12,22 +12,8 @@ class HomePage extends React.Component {
     getAllPosts(user.following);
   }
 
-  // scroll = e => {
-  //   let scrollBottom =
-  //     e.target.scrollTop + e.target.offsetHeight > e.target.scrollHeight - 150;
-  //   if (scrollBottom) {
-  //     this.loadContent();
-  //   }
-  // };
-
-  loadContent = () => {
-    const { loadPosts, posts, loadFail } = this.props;
-    let skip = posts.length;
-    loadFail || loadPosts(skip);
-  };
-
   render() {
-    const { posts, isFetching, loadFetching, loadFail } = this.props;
+    const { posts, isFetching, loadFetching } = this.props;
     return (
       <div className="all-posts">
         {isFetching ? (
@@ -77,7 +63,6 @@ const mapStateToProps = ({ postsReducer, userReducer }) => {
     posts: postsReducer.posts,
     isFetching: postsReducer.isFetching,
     loadFetching: postsReducer.loadFetching,
-    loadFail: postsReducer.loadFail,
     user: userReducer.user
   };
 };

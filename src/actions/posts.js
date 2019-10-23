@@ -18,8 +18,9 @@ export const getAllPosts = following => {
   return async dispatch => {
     dispatch(getAllPostsReguest());
     checkToken();
-    const res = await gql.request(
-      `query postAll($query:String!){
+    if (following) {
+      const res = await gql.request(
+        `query postAll($query:String!){
           PostFind(query: $query){
             _id,
             text,
@@ -33,11 +34,19 @@ export const getAllPosts = following => {
             }
           }
         } `,
-          { query: JSON.stringify([{___owner: {$in: following.map(user=> user._id)}}, { sort: ["_id", -1], limit: [8] }])}
-      // { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [8] }]) }
-    );
-    if (res.PostFind) {
-      dispatch(getAllPostsReguestSuccess(res.PostFind));
+        {
+          query: JSON.stringify([
+            { ___owner: { $in: following.map(user => user._id) } },
+            { sort: ["_id", -1], limit: [8] }
+          ])
+        }
+        // { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [8] }]) }
+      );
+      if (res.PostFind) {
+        dispatch(getAllPostsReguestSuccess(res.PostFind));
+      } else {
+        dispatch(getAllPostsRuguestFail());
+      }
     } else {
       dispatch(getAllPostsRuguestFail());
     }
@@ -57,12 +66,13 @@ const loadPostsRuguestFail = () => ({
   type: types.LOAD_POSTS_REQUEST_FAIL
 });
 
-export const loadPosts = (following,skip)  => {
+export const loadPosts = (following, skip) => {
   return async dispatch => {
     dispatch(loadPostsReguest());
     checkToken();
-    const res = await gql.request(
-      `query postAll($query:String!){
+    if (following) {
+      const res = await gql.request(
+        `query postAll($query:String!){
           PostFind(query: $query){
             _id,
             text,
@@ -75,14 +85,22 @@ export const loadPosts = (following,skip)  => {
               _id
             }
           }
-        } `,  { query: JSON.stringify([{___owner: {$in: following.map(user=> user._id)}}, { sort: ["_id", -1], limit: [8], skip: [skip] }])}
-      // { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [8], skip: [skip] }]) }
-    );
-    if (res.PostFind.length > 0) {
-      dispatch(loadPostsReguestSuccess(res.PostFind));
+        } `,
+        {
+          query: JSON.stringify([
+            { ___owner: { $in: following.map(user => user._id) } },
+            { sort: ["_id", -1], limit: [8], skip: [skip] }
+          ])
+        }
+        // { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [8], skip: [skip] }]) }
+      );
+      if (res.PostFind.length > 0) {
+        dispatch(loadPostsReguestSuccess(res.PostFind));
+      } else {
+        dispatch(loadPostsRuguestFail());
+      }
     } else {
       dispatch(loadPostsRuguestFail());
     }
   };
 };
-
