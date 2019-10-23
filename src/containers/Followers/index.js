@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import "./style.css";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg";
 import { Link } from "react-router-dom";
 import Preloader from "../../components/Preloader";
+
 
 class Followers extends Component {
   addFollowin = id => {

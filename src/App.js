@@ -85,19 +85,19 @@ export const ROUTERS = [
     icon: "icon-man-woman",
     role: ["user", "admin"]
   },
-  {
-    id: 2,
-    link: {
-      title: "My page"
-    },
-    path: "/My page",
-    component: MyPage,
-    className: "header__link",
-    privateRoute: true,
-    exact: true,
-    icon: "icon-file-text2",
-    role: ["user", "admin"]
-  },
+  // {
+  //   id: 2,
+  //   link: {
+  //     title: "My page"
+  //   },
+  //   path: "/My page",
+  //   component: MyPage,
+  //   className: "header__link",
+  //   privateRoute: true,
+  //   exact: true,
+  //   icon: "icon-file-text2",
+  //   role: ["user", "admin"]
+  // },
   {
     id: 4,
     link: {
