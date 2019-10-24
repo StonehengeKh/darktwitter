@@ -83,3 +83,7 @@ export const searchUser = payload => {
     }
   };
 };
+
+export const delSearch = () => ({
+  type: types.DEL_SEARCH
+});

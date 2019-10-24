@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { searchPosts, searchUser } from "../../actions/search";
+import { searchPosts, searchUser, delSearch } from "../../actions/search";
 import Card from "../../components/Card";
 import { url, userUpsertFollowing } from "../../actions/user";
 import avatar from "../../assets/img/smile.jpg";
@@ -18,7 +18,8 @@ const Search = ({
   userFail,
   userS,
   user,
-  userUpsertFollowing
+  userUpsertFollowing,
+  delSearch
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const [isPostSearch, setpostSearch] = useState(false);
@@ -41,6 +42,11 @@ const Search = ({
     newFollowing.push({ _id: id });
     userUpsertFollowing(user.id, newFollowing);
   };
+  useEffect(() => {
+    return () => {
+      delSearch()
+    }
+  }, []);
   return (
     <div className="search-block">
       {isFetching && <Preloader />}
@@ -156,5 +162,5 @@ const mapStateToProps = ({ searchReducer, userReducer }) => {
 
 export default connect(
   mapStateToProps,
-  { searchPosts, searchUser, userUpsertFollowing }
+  { searchPosts, searchUser, userUpsertFollowing, delSearch }
 )(Search);

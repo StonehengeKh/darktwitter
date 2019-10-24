@@ -7,7 +7,7 @@ import { userUpsertNick, userUpsertAvatar } from "../../actions/user";
 import Post from "../../components/userPagePostItem";
 import defaultAvatar from "../../assets/img/smile.jpg";
 import Modal from "../../components/Modal";
-import { getAllMyPosts } from "../../actions/myposts";
+import { getAllMyPosts,  delMyPosts  } from "../../actions/myposts";
 
 const UserCab = ({
   user,
@@ -16,7 +16,8 @@ const UserCab = ({
   upsertFetching,
   getAllMyPosts,
   createNewPost,
-  posts
+  posts,
+  delMyPosts 
 }) => {
   const [nick, setNick] = useState("");
   const [isSetOpen, openSettings] = useState(false);
@@ -40,6 +41,11 @@ const UserCab = ({
   };
   useEffect(() => {
     getAllMyPosts(user.id);
+  }, []);
+  useEffect(() => {
+    return () => {
+      delMyPosts();
+    }
   }, []);
 
   return (
@@ -111,5 +117,5 @@ const mapStateToProps = ({ userReducer, myPostsReducer }) => {
 
 export default connect(
   mapStateToProps,
-  { userUpsertNick, userUpsertAvatar, createNewPost, getAllMyPosts }
+  { userUpsertNick, userUpsertAvatar, createNewPost, getAllMyPosts,  delMyPosts  }
 )(UserCab);
