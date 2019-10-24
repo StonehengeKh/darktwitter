@@ -14,7 +14,7 @@ const getAllPostsRuguestFail = () => ({
   type: types.GET_ALL_POSTS_REQUEST_FAIL
 });
 
-export const getAllPosts = following => {
+export const getAllPosts = (following, id) => {
   return async dispatch => {
     dispatch(getAllPostsReguest());
     checkToken();
@@ -36,11 +36,10 @@ export const getAllPosts = following => {
         } `,
         {
           query: JSON.stringify([
-            { ___owner: { $in: following.map(user => user._id) } },
+            { ___owner: { $in: [...following.map(user => user._id), id]} },
             { sort: ["_id", -1], limit: [8] }
           ])
         }
-        // { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [8] }]) }
       );
       if (res.PostFind) {
         dispatch(getAllPostsReguestSuccess(res.PostFind));
@@ -66,7 +65,7 @@ const loadPostsRuguestFail = () => ({
   type: types.LOAD_POSTS_REQUEST_FAIL
 });
 
-export const loadPosts = (following, skip) => {
+export const loadPosts = (following,id, skip) => {
   return async dispatch => {
     dispatch(loadPostsReguest());
     checkToken();
@@ -88,11 +87,10 @@ export const loadPosts = (following, skip) => {
         } `,
         {
           query: JSON.stringify([
-            { ___owner: { $in: following.map(user => user._id) } },
+            { ___owner: { $in: [...following.map(user => user._id), id] } },
             { sort: ["_id", -1], limit: [8], skip: [skip] }
           ])
         }
-        // { query: JSON.stringify([{}, { sort: ["_id", -1], limit: [8], skip: [skip] }]) }
       );
       if (res.PostFind.length > 0) {
         dispatch(loadPostsReguestSuccess(res.PostFind));
@@ -104,3 +102,7 @@ export const loadPosts = (following, skip) => {
     }
   };
 };
+
+export const delPosts = () => ({
+  type: types.DEL_POSTS
+});

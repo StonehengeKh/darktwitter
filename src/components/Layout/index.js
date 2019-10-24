@@ -28,7 +28,7 @@ class Layout extends Component {
     } = this.props;
     switch (location.pathname) {
       case "/":
-        loadFail || loadPosts(user.following, posts.length);
+        loadFail || loadPosts(user.following, user.id, posts.length);
         break;
       case "/users":
         loadUserFail || loadUsers(users.length);
@@ -44,7 +44,6 @@ class Layout extends Component {
     return (
       <div className="layout-block">
         {user && <Header />}
-
         <section
           className="layout-center"
           onScroll={

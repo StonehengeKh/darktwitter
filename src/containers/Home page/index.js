@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 // import { userFindOne } from "../../actions/user";
-import { getAllPosts, loadPosts } from "../../actions/posts";
+import { getAllPosts, loadPosts, delPosts } from "../../actions/posts";
 import Preloader from "../../components/Preloader";
 import Card from "../../components/Card";
 import "./style.css";
@@ -9,11 +9,14 @@ import "./style.css";
 class HomePage extends React.Component {
   componentDidMount() {
     const { getAllPosts, user } = this.props;
-    getAllPosts(user.following);
+    getAllPosts(user.following, user.id);
+  }
+  componentWillUnmount() {
+    this.props.delPosts();
   }
 
   render() {
-    const { posts, isFetching, loadFetching } = this.props;
+    const { posts, isFetching } = this.props;
     return (
       <div className="all-posts">
         {isFetching ? (
@@ -52,7 +55,6 @@ class HomePage extends React.Component {
               : null}
           </div>
         )}
-        {loadFetching && <Preloader />}
       </div>
     );
   }
@@ -69,5 +71,5 @@ const mapStateToProps = ({ postsReducer, userReducer }) => {
 
 export default connect(
   mapStateToProps,
-  { getAllPosts, loadPosts }
+  { getAllPosts, loadPosts, delPosts }
 )(HomePage);

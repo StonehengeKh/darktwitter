@@ -112,7 +112,7 @@ export const ROUTERS = [
   },
   {
     id: 5,
-    path: "/usercab",
+    path: "/user_cabinet",
     component: UserCab,
     privateRoute: true,
     exact: true,

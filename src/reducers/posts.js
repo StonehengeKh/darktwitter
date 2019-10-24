@@ -56,6 +56,9 @@ export default (state = initialState, { type, payload }) => {
     case types.LOAD_POSTS_REQUEST_FAIL: {
       return { ...state, loadFetching: false, loadFail: true };
     }
+    case types.DEL_POSTS: {
+      return { ...state, posts: null };
+    }
 
     default: {
       return state;

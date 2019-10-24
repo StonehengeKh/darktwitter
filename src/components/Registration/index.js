@@ -6,18 +6,6 @@ import { renderField, validate } from "../../utils/valid";
 import "./style.css";
 
 class Registration extends Component {
-  // sendRequest = () => {
-  // 	const { registration } = this.props;
-  // 	const values = Object.keys(this.state.form).reduce((prev, elem) => {
-  // 		return { ...prev, [elem]: this.state.form[elem].value };
-  // 	}, {});
-  // 	values.email.toLowerCase()
-  // 	values.role = "user"
-  // 	registration(values)
-  // 	console.log("values", values);
-  // 	this.clearInput();
-  // };
-
   submit = values => {
     const { registration } = this.props;
     registration(values);

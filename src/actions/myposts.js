@@ -39,7 +39,6 @@ export const getAllMyPosts = id => {
               }
             }
           } `,
-      // { query: JSON.stringify([{___owner: {$in: [...id]}}])}
       { query: JSON.stringify([{___owner: id },{ sort: ["_id", -1]}])}
     );
     if(res.PostFind){ 
@@ -54,27 +53,6 @@ export const refreshMyPost = payload => ({
   type: types.REFRESH_MY_POST,
   payload
 })
-
-// export const userFindOne = id => {
-//   return async dispatch => {
-//     checkToken();
-//     const res = await gql.request(
-//       `query user($query:String!){
-//         UserFindOne(query:$query){
-//           _id, login, nick
-//           likes{_id},
-//           incomings{_id},
-//           followers{_id},
-//           following{_id}
-//         }
-//       }
-//       `,
-//      {query: JSON.stringify([{ _id: id }])}
-//     );
-//     console.log(res);
-//   };
-// };
-
 
 export const delMyPosts = () => ({
   type: types.DEL_MY_POSTS

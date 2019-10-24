@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-
 import { searchPosts, searchUser } from "../../actions/search";
 import Card from "../../components/Card";
 import { url, userUpsertFollowing } from "../../actions/user";

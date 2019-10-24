@@ -54,39 +54,6 @@ export const delLike = (id, postid) => {
   };
 };
 
-//  const refreshPostReguest = () => ({
-//   type: types.GET_ALL_POSTS_REQUEST
-// });
-
-// const refreshPostReguestSuccess = payload => ({
-//   type: types.GET_ALL_POSTS_REQUEST_SUCCESS,
-//   payload
-// });
-
-// export const refreshPost = (id) => {
-//   return async dispatch => {
-//     dispatch( refreshPostReguest());
-//       checkToken();
-//       const res = await gql.request(
-//         `query postAll($query:String!){
-//           PostFindOne(query: $query){
-//             _id,
-//             text,
-//             title,
-//             images{_id, url}
-//             owner{_id},
-//             likes{_id, owner{_id}},
-//             comments{
-//               _id, text
-//             }
-//           }
-//         } `,
-//         {query: JSON.stringify([{ _id: id }])}
-//       );
-//       dispatch(refreshPostReguestSuccess(res.PostFindOne));
-//   };
-// };
-
 const addLikePostsReguest = () => ({
   type: types.ADD_LIKE_POSTS_REQUEST
 });

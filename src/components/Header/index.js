@@ -59,7 +59,7 @@ class Header extends React.Component {
             {localStorage.authToken && user ? (
               user.avatar ? (
                 <li className="header__item">
-                  <Link to="/usercab" className="header__link">
+                  <Link to="/user_cabinet" className="header__link">
                     <img
                       src={url + user.avatar.url}
                       className="avatar-img"
@@ -69,7 +69,7 @@ class Header extends React.Component {
                 </li>
               ) : (
                 <li className="header__item">
-                  <Link className="header__link" to="/usercab">
+                  <Link className="header__link" to="/user_cabinet">
                     <img src={kartinka} className="avatar-img" alt="avatar" />
                   </Link>
                 </li>

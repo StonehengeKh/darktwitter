@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
 import { createNewPost } from "../../actions/addPost";
 import SettingMenu from "../../components/settingMenu";
 import "./style.css";
